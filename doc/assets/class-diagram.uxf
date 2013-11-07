@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="11.3">
-  <zoom_level>12</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>636</x>
-      <y>1116</y>
-      <w>528</w>
-      <h>84</h>
+      <x>672</x>
+      <y>399</y>
+      <w>182</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 AdventureListener
@@ -17,10 +17,10 @@ AdventureListener
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>636</x>
-      <y>1296</y>
-      <w>528</w>
-      <h>84</h>
+      <x>630</x>
+      <y>497</y>
+      <w>105</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 AdventureEvent
@@ -32,24 +32,25 @@ AdventureEvent
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>852</x>
-      <y>1164</y>
-      <w>60</w>
-      <h>156</h>
+      <x>686</x>
+      <y>427</y>
+      <w>34</w>
+      <h>83</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>36;132;36;36</additional_attributes>
+    <additional_attributes>21;70;21;21</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>636</x>
-      <y>948</y>
-      <w>528</w>
-      <h>84</h>
+      <x>1001</x>
+      <y>483</y>
+      <w>259</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>TextAdventure
 --
++ TextAdventure(DataSource datasource)
 + getPlayer() : Player
 + getCurrentRoom() : Room</panel_attributes>
     <additional_attributes/>
@@ -57,10 +58,10 @@ AdventureEvent
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1272</x>
-      <y>876</y>
-      <w>252</w>
-      <h>156</h>
+      <x>1638</x>
+      <y>469</y>
+      <w>147</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Observer &lt;Type&gt;
@@ -74,32 +75,21 @@ Observer &lt;Type&gt;
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1128</x>
-      <y>924</y>
-      <w>168</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>144;36;36;36</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>852</x>
-      <y>996</y>
-      <w>60</w>
-      <h>144</h>
+      <x>735</x>
+      <y>427</y>
+      <w>279</w>
+      <h>111</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>36;36;36;120</additional_attributes>
+    <additional_attributes>266;98;21;98;21;21</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>720</x>
-      <y>744</y>
-      <w>360</w>
-      <h>84</h>
+      <x>1365</x>
+      <y>392</y>
+      <w>210</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Player
@@ -112,21 +102,21 @@ Player
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>852</x>
-      <y>792</y>
-      <w>60</w>
-      <h>180</h>
+      <x>1239</x>
+      <y>420</y>
+      <w>238</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>36;156;36;36</additional_attributes>
+    <additional_attributes>21;91;231;91;231;21</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>720</x>
-      <y>444</y>
-      <w>348</w>
-      <h>156</h>
+      <x>1365</x>
+      <y>273</y>
+      <w>203</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Creature
@@ -141,10 +131,10 @@ Creature
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>720</x>
-      <y>252</y>
-      <w>348</w>
-      <h>84</h>
+      <x>994</x>
+      <y>133</y>
+      <w>119</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 IDProvider
@@ -155,32 +145,32 @@ IDProvider
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>864</x>
-      <y>300</y>
-      <w>60</w>
-      <h>168</h>
+      <x>1064</x>
+      <y>161</y>
+      <w>28</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>36;36;36;144</additional_attributes>
+    <additional_attributes>21;21;21;84</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>852</x>
-      <y>564</y>
-      <w>60</w>
-      <h>204</h>
+      <x>1449</x>
+      <y>343</y>
+      <w>28</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>36;36;36;180</additional_attributes>
+    <additional_attributes>21;21;21;49</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1236</x>
-      <y>444</y>
-      <w>312</w>
-      <h>156</h>
+      <x>1036</x>
+      <y>245</y>
+      <w>175</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 GameObject
@@ -196,21 +186,21 @@ GameObject
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1032</x>
-      <y>468</y>
-      <w>228</w>
-      <h>60</h>
+      <x>1190</x>
+      <y>266</y>
+      <w>182</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>204;36;36;36</additional_attributes>
+    <additional_attributes>21;21;175;21</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1620</x>
-      <y>444</y>
-      <w>108</w>
-      <h>156</h>
+      <x>1239</x>
+      <y>133</y>
+      <w>63</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enum&gt;&gt;
 Location
@@ -225,16 +215,17 @@ CENTER</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>84</x>
-      <y>252</y>
-      <w>492</w>
-      <h>120</h>
+      <x>672</x>
+      <y>133</y>
+      <w>287</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Room
 --
 + getObject(Location first, Location second) : GameObject
 + hasObject(Location first, Location second) : boolean
++ removeObject(Location first, Location second) : boolean
 + getName() : String
 
 </panel_attributes>
@@ -243,23 +234,261 @@ Room
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1512</x>
-      <y>492</y>
-      <w>132</w>
-      <h>60</h>
+      <x>1155</x>
+      <y>182</y>
+      <w>91</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>108;36;36;36</additional_attributes>
+    <additional_attributes>84;21;21;21;21;63</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>540</x>
-      <y>276</y>
-      <w>204</w>
-      <h>60</h>
+      <x>938</x>
+      <y>147</y>
+      <w>69</w>
+      <h>34</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>180;36;36;36</additional_attributes>
+    <additional_attributes>56;21;21;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Systemborder</type>
+    <coordinates>
+      <x>567</x>
+      <y>91</y>
+      <w>1036</w>
+      <h>476</h>
+    </coordinates>
+    <panel_attributes>topcenter:epic.core</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Systemborder</type>
+    <coordinates>
+      <x>791</x>
+      <y>602</y>
+      <w>637</w>
+      <h>203</h>
+    </coordinates>
+    <panel_attributes>topcenter:epic.io
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1001</x>
+      <y>644</y>
+      <w>217</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+DataSource
+--
++ parse() : NodeList
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1127</x>
+      <y>532</y>
+      <w>28</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>21;112;21;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1239</x>
+      <y>504</y>
+      <w>406</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>399;21;21;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Systemborder</type>
+    <coordinates>
+      <x>1631</x>
+      <y>266</y>
+      <w>392</w>
+      <h>301</h>
+    </coordinates>
+    <panel_attributes>topcenter:epic.util</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1001</x>
+      <y>735</y>
+      <w>161</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>XMLSource</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1071</x>
+      <y>672</y>
+      <w>28</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>21;21;21;63</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>763</x>
+      <y>245</y>
+      <w>196</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+Inventory
+--
++ getItems() : Item [*]
++ addItem(Item)
++ removeItem(String id)
++ hasItem(String id)
++ fetchItem(String id) : Item</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>910</x>
+      <y>315</y>
+      <w>468</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>21;21;21;42;455;42</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1008</x>
+      <y>378</y>
+      <w>140</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+Item
+--
++ getType() : ItemType
++ getDescription() : String
++ getName() : String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>847</x>
+      <y>315</y>
+      <w>174</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>161;77;21;77;21;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1169</x>
+      <y>378</y>
+      <w>140</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+Equip
+--
++ add(Item item)
++ remove(Item item)
++ getLifeBonus() : int
++ getPowerBonus() : int
++ getDefenseBonus() : int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1288</x>
+      <y>406</y>
+      <w>84</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>21;21;77;21</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>875</x>
+      <y>413</y>
+      <w>112</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+ItemType
+--
+CONSUMABLE,
+CONTAINER,
+COLLECTABLE
+EQUIP</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1001</x>
+      <y>161</y>
+      <w>35</w>
+      <h>231</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>21;21;21;217</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>189</x>
+      <y>245</y>
+      <w>350</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+Trigger
+--
++ action(TextAdventure adventure, Object source, Object[*] attributes)
++ getName() : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>189</x>
+      <y>350</y>
+      <w>273</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+TriggerManager
+--
++ register(Trigger.class)
++ unregister(Trigger.class)
++ handle(String trigger, Object source)</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
