@@ -55,7 +55,175 @@ Our software should provide an interface for the user to create the content from
 
 \section{World design}
 
+As mentioned before, the world is devided into rooms. These rooms can be visited by the player. For some rooms he may need permission. In that case, he has to fit some requirements. These requirements (or guards) can be set in XML as well. Let us have a look at a simple world:
 
+\begin{figure}[hb]
+  \centering
+  \includegraphics[width=4in]{../demo/demo.jpg}
+  \caption{Each room is divided into 9 parts.}
+\end{figure}
+
+We want to create a simple world design where each room can have 9 parts. On each part can only be one game object at one time. It's also possible to move the player in a room or to pass doors due to enter other rooms. It is also possible to put game objects in each room. As you can see in the image, the green point is the player, the red ones are enemies, the yellow point is a neutral creature and the violet points are items, laying on the ground.
+
+\subsection{Transition into XML}
+
+To create such a world from above, we want to make it possible to create XML synthax just like in the appended XML file (see page \ref{App:xml}).
+
+\section{Java API}
+
+We also want to provide a simple Java API which can be used in order to create own text adventures. Let us imagine, we have created such a content file, called \emph{my-game.xml}. To create a text adventure by using our library, the user may write something like this:
+
+\begin{verbatim}
+TextAdventure adventure = new TextAdventure(new XMLSource("my-game.xml"));
+
+adventure.addListener(new AdventureListener() {
+
+    @Override
+    public void onAction(AdventureEvent event) {
+       // Do something with the output
+    }
+});
+
+// Add command
+adventure.command("go west");
+\end{verbatim}
+
+It is possible to enter commands to the adventure object or to fetch a response by just adding listeners. We used the listener approach because it is very easy to use our library in combination with a GUI.
+
+
+\section{Commands}
+
+Also a very important part are commands. Commands are the only way in a text adventure to interact with the game. We decided to create basic commands to interact with the current game world:
+
+\begin{itemize}
+	\item{\textbf{go} [\emph{west} | \emph{east} | \emph{north} | \emph{south}]}
+	\item{\textbf{attack} \emph{creature name}}
+	\item{\textbf{take} [\emph{item name} | \emph{all}]}
+	\item{\textbf{drop} \emph{item name} | \emph{all}]}
+	\item{\textbf{use} \emph{item name}}
+	\item{\textbf{open} [\emph{\emph{door name} | \emph{chest name}}]}
+\end{itemize}
+
+The player can use these commands any time. If an action doesn't work (for instance, the item doesn't exit or there is nothing to attack), a message will be generated.
+
+\section{Appendix}
+\label{App:xml}
+
+\begin{appendix}
+XML file to display the world from \emph{Figure 1}.
+\begin{verbatim}
+<?xml version="1.0" encoding="UTF-8"?>
+<adventure name="epic demo adventure" entry="@room/forest" story="@text/welcome">
+
+    <!--Player -->
+    <player 
+        name="Bilbo Beutlin"
+        life="100"
+        location="center" />
+
+    <!--Items -->
+    
+    <equip-item
+        id="dark_bow"
+        name="Dark bow of darkness"
+        description="A dark bow, full of darkness. What else?"
+        damage="5" />
+
+    <consum-item
+        id="iron_heart"
+        name="Iron heart"
+        description="A heavy heart"
+        trigger="@trigger/health/25"/>
+
+    <container-item
+        id="dark_chest"
+        name="Dark chest"
+        description="a heavy chest"
+        open="@trigger/item/shadow_key" />
+
+    <collect-item
+        id="shadow_key"
+        name="Shadow key"
+        description="a dark shadow key" />
+
+    <!--Creatures -->
+
+    <creature
+        id="dark_troll"
+        name="Dark troll"
+        description="A very dark troll" 
+        life="200"
+        damage="20"
+        type="neutral" />
+
+    <creature
+        id="pink_troll"
+        name="Pink troll"
+        description="A very pink troll"
+        life="500"
+        damage="10"
+        type="enemy">
+        
+        <items>
+            <item src="@item/dark_bow"/>
+        </items>
+
+    </creature>
+       
+    <!--Rooms -->
+
+    <room id="forest" name="Forest">
+
+        <doors>
+            <door location="east" target="@room/swamp"/>
+            <door location="west" target="@room/desert"/>
+        </doors>
+
+        <creatures>
+            <creature src="@creature/pink_troll" location="east" />
+            <creature src="@creature/pink_troll" location="north" />
+        </creatures>
+
+        </items>
+            <item src="@item/iron_heart" location="south" />
+        </items>
+    </room>
+
+    <room id="swamp" name="Dark swamp" message="@text/swamp">
+
+        <doors>
+            <door location="west" target="@room/forest"/>
+        </doors>
+
+        <creatures>
+            <creature src="@creature/dark_troll" location="north|east" />
+        </creatures>
+
+        </items>
+            <item src="@item/dark_chest" location="south|west">
+                <items>
+                    <item src="@item/dark_bow"/>
+                </items>
+            </item>
+        </items>
+    </room>
+
+    <room id="desert" name="Warm desert" message="@text/desert">
+
+        <doors>
+            <door location="east" target="@room/forest"/>
+        </doors>
+    </room>
+
+    <!--Texts -->
+
+    <text id="welcome">You are in a small forest. Have fun!</text>
+    <text id="swamp">You enter a dark swamp. It's very noisy here.</text>
+    <text id="desert">You enter big desert. It is very warm and you begin to sweat.</text>
+
+</adventure>
+\end{verbatim}
+\end{appendix}
 
 \end{document}
 
