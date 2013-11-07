@@ -4,7 +4,7 @@
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>636</x>
-      <y>1128</y>
+      <y>1116</y>
       <w>528</w>
       <h>84</h>
     </coordinates>
@@ -18,7 +18,7 @@ AdventureListener
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>636</x>
-      <y>1308</y>
+      <y>1296</y>
       <w>528</w>
       <h>84</h>
     </coordinates>
@@ -33,7 +33,7 @@ AdventureEvent
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>852</x>
-      <y>1176</y>
+      <y>1164</y>
       <w>60</w>
       <h>156</h>
     </coordinates>
@@ -44,7 +44,7 @@ AdventureEvent
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>636</x>
-      <y>960</y>
+      <y>948</y>
       <w>528</w>
       <h>84</h>
     </coordinates>
@@ -58,7 +58,7 @@ AdventureEvent
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>1272</x>
-      <y>888</y>
+      <y>876</y>
       <w>252</w>
       <h>156</h>
     </coordinates>
@@ -75,7 +75,7 @@ Observer &lt;Type&gt;
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>1128</x>
-      <y>936</y>
+      <y>924</y>
       <w>168</w>
       <h>60</h>
     </coordinates>
@@ -86,7 +86,7 @@ Observer &lt;Type&gt;
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>852</x>
-      <y>1008</y>
+      <y>996</y>
       <w>60</w>
       <h>144</h>
     </coordinates>
@@ -97,7 +97,7 @@ Observer &lt;Type&gt;
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>720</x>
-      <y>756</y>
+      <y>744</y>
       <w>360</w>
       <h>84</h>
     </coordinates>
@@ -113,7 +113,7 @@ Player
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>852</x>
-      <y>804</y>
+      <y>792</y>
       <w>60</w>
       <h>180</h>
     </coordinates>
@@ -124,7 +124,7 @@ Player
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>720</x>
-      <y>456</y>
+      <y>444</y>
       <w>348</w>
       <h>156</h>
     </coordinates>
@@ -142,7 +142,7 @@ Creature
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>720</x>
-      <y>264</y>
+      <y>252</y>
       <w>348</w>
       <h>84</h>
     </coordinates>
@@ -156,7 +156,7 @@ IDProvider
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>864</x>
-      <y>312</y>
+      <y>300</y>
       <w>60</w>
       <h>168</h>
     </coordinates>
@@ -167,7 +167,7 @@ IDProvider
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>852</x>
-      <y>576</y>
+      <y>564</y>
       <w>60</w>
       <h>204</h>
     </coordinates>
@@ -178,7 +178,7 @@ IDProvider
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>1236</x>
-      <y>456</y>
+      <y>444</y>
       <w>312</w>
       <h>156</h>
     </coordinates>
@@ -197,7 +197,7 @@ GameObject
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>1032</x>
-      <y>480</y>
+      <y>468</y>
       <w>228</w>
       <h>60</h>
     </coordinates>
@@ -208,7 +208,7 @@ GameObject
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>1620</x>
-      <y>456</y>
+      <y>444</y>
       <w>108</w>
       <h>156</h>
     </coordinates>
@@ -226,7 +226,7 @@ CENTER</panel_attributes>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>84</x>
-      <y>264</y>
+      <y>252</y>
       <w>492</w>
       <h>120</h>
     </coordinates>
@@ -244,7 +244,7 @@ Room
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>1512</x>
-      <y>504</y>
+      <y>492</y>
       <w>132</w>
       <h>60</h>
     </coordinates>
@@ -255,7 +255,7 @@ Room
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>540</x>
-      <y>288</y>
+      <y>276</y>
       <w>204</w>
       <h>60</h>
     </coordinates>
