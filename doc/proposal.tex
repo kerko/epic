@@ -12,7 +12,8 @@
 
 \renewcommand{\familydefault}{\sfdefault}
 \renewcommand{\baselinestretch}{1.4}\normalsize
-
+\setlength{\parskip}{11px}
+\setlength{\parindent}{0pt}
 \setlength{\oddsidemargin}{0.25in}
 \setlength{\textwidth}{6.5in}
 \setlength{\topmargin}{0in}
@@ -32,7 +33,30 @@ Proposal
 
 \maketitle
 
+\section{Motivation}
+
+This document describes, how we want to plan our project, which features should be included and what we want to improve. The first attempt was to improve the existing version of \textbf{Extreme text adventure}. After we read the minimalistic documentation it is now our aim not only to improve the software - we want to introduce a more generic way of making text adventures.\\
+
+We have finally decided to create a tool to generate text adventures by taking an XML file into account. In the following we explain, how we want to achieve the goal of a full-working game generator within 7 weeks of work.
+
 \section{Introduction}
 
-This document describes, how we want to plan our project, which features should be included and what we want to improve.
+Text adventures can be the most powerful game experience on earth, because you're able to create all graphics, events and sounds in your head. You type in commands and the game reacts. Sometimes events happen, a troll may arrack you suddenly or you find mighty items in order to improve your hero. Therefore we can derrive the following entities in each game, which can be defined by the user of your software in XML:
+
+\begin{itemize}
+	\item{\textbf{Room}: a player can only be in one room at times. The room can be called whatever the designer decides. (for instance, desert, forest, dungeon)}
+	\item{\textbf{Player}: the player in the world}
+	\item{\textbf{Item}: an item which can be collected, used or equiped by the player.}
+	\item{\textbf{Creature}: A creature can be allied, neutral or be your enemy. Additionally, creatures can hold items. Creatures may drop these items if they get killed.}
+	\item{\textbf{Door}: A door simply is a connection between two rooms. Each door can have a guard which avoids passing.}
+\end{itemize}
+
+Our software should provide an interface for the user to create the content from above in XML, by defining first all existing entities and then creating the world (rooms and fill them with content).
+
+\section{World design}
+
+
+
 \end{document}
+
+
