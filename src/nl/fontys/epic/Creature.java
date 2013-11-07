@@ -4,7 +4,7 @@ package nl.fontys.epic;
  *
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
  */
-public interface Creature extends IDProvider {
+public interface Creature extends GameObject {
 
     public String getName();
 
