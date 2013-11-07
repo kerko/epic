@@ -9,6 +9,7 @@
 \usepackage{booktabs}
 \usepackage{titlesec}
 \usepackage{tabularx}
+\usepackage{verbatim}
 
 \renewcommand{\familydefault}{\sfdefault}
 \renewcommand{\baselinestretch}{1.4}\normalsize
@@ -111,118 +112,7 @@ The player can use these commands any time. If an action doesn't work (for insta
 
 \begin{appendix}
 XML file to display the world from \emph{Figure 1}.
-\begin{verbatim}
-<?xml version="1.0" encoding="UTF-8"?>
-<adventure name="epic demo adventure" entry="@room/forest" story="@text/welcome">
-
-    <!--Player -->
-    <player 
-        name="Bilbo Beutlin"
-        life="100"
-        location="center" />
-
-    <!--Items -->
-    
-    <equip-item
-        id="dark_bow"
-        name="Dark bow of darkness"
-        description="A dark bow, full of darkness. What else?"
-        damage="5" />
-
-    <consum-item
-        id="iron_heart"
-        name="Iron heart"
-        description="A heavy heart"
-        trigger="@trigger/health/25"/>
-
-    <container-item
-        id="dark_chest"
-        name="Dark chest"
-        description="a heavy chest"
-        open="@trigger/item/shadow_key" />
-
-    <collect-item
-        id="shadow_key"
-        name="Shadow key"
-        description="a dark shadow key" />
-
-    <!--Creatures -->
-
-    <creature
-        id="dark_troll"
-        name="Dark troll"
-        description="A very dark troll" 
-        life="200"
-        damage="20"
-        type="neutral" />
-
-    <creature
-        id="pink_troll"
-        name="Pink troll"
-        description="A very pink troll"
-        life="500"
-        damage="10"
-        type="enemy">
-        
-        <items>
-            <item src="@item/dark_bow"/>
-        </items>
-
-    </creature>
-       
-    <!--Rooms -->
-
-    <room id="forest" name="Forest">
-
-        <doors>
-            <door location="east" target="@room/swamp"/>
-            <door location="west" target="@room/desert"/>
-        </doors>
-
-        <creatures>
-            <creature src="@creature/pink_troll" location="east" />
-            <creature src="@creature/pink_troll" location="north" />
-        </creatures>
-
-        </items>
-            <item src="@item/iron_heart" location="south" />
-        </items>
-    </room>
-
-    <room id="swamp" name="Dark swamp" message="@text/swamp">
-
-        <doors>
-            <door location="west" target="@room/forest"/>
-        </doors>
-
-        <creatures>
-            <creature src="@creature/dark_troll" location="north|east" />
-        </creatures>
-
-        </items>
-            <item src="@item/dark_chest" location="south|west">
-                <items>
-                    <item src="@item/dark_bow"/>
-                </items>
-            </item>
-        </items>
-    </room>
-
-    <room id="desert" name="Warm desert" message="@text/desert">
-
-        <doors>
-            <door location="east" target="@room/forest"/>
-        </doors>
-    </room>
-
-    <!--Texts -->
-
-    <text id="welcome">You are in a small forest. Have fun!</text>
-    <text id="swamp">You enter a dark swamp. It's very noisy here.</text>
-    <text id="desert">You enter big desert. It is very warm and you begin to sweat.</text>
-
-</adventure>
-\end{verbatim}
+\verbatiminput{../demo/demo.xml}
 \end{appendix}
 
 \end{document}
