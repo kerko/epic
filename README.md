@@ -10,7 +10,7 @@ TextAdventure adventure = new TextAdventure(new XMLSource("my-game.xml"));
 adventure.addListener(new AdventureListener() {
 
     @Override
-    public void onAction(String text) {
+    public void onAction(AdventureEvent event) {
        // Do something with the output
     }
 });
