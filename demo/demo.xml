@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <adventure name="epic demo adventure" entry="@room/forest" story="@text/welcome">
 
+    <!--Player -->
+    <player 
+        name="Bilbo Beutlin"
+        life="100"
+        location="center" />
+
     <!--Items -->
     
     <item
@@ -15,7 +21,7 @@
         name="Iron heart"
         description="A heavy heart"
         type="consumable" 
-        trigger="@trigger/health_trigger"/>
+        trigger="@trigger/health/25"/>
 
     <item
         id="dark_chest"
