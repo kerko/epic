@@ -1,4 +1,6 @@
-package nl.fontys.epic;
+package nl.fontys.epic.core;
+
+import nl.fontys.epic.util.Observer;
 
 /**
  *

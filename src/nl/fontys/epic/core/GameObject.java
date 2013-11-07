@@ -1,4 +1,4 @@
-package nl.fontys.epic;
+package nl.fontys.epic.core;
 
 /**
  *
