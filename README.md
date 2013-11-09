@@ -4,7 +4,7 @@ The Epic Text Adventure maker. An API to create simple text adventures based on 
 
 ## Getting started
 
-Here is an example how to use the library:
+Here is an example how to use the library properly:
 
 ```java
 TextAdventure adventure = new TextAdventure(new XMLSource("my-game.xml"));
@@ -20,3 +20,5 @@ adventure.addListener(new AdventureListener() {
 // Add command
 adventure.command("go west");
 ```
+
+
