@@ -21,4 +21,16 @@ adventure.addListener(new AdventureListener() {
 adventure.command("go west");
 ```
 
+## Commands
+
+There a several commands which are supported by **epic**:
+
+* go [west — east — north — south]
+* attack creature name
+* take [item name — all]
+* drop item name — all]
+* use item name
+* open [door name — chest name]
+
+
 
