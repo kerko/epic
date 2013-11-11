@@ -72,5 +72,15 @@ public class SharedResourceManager implements ResourceManager {
     public <Type> Type get(String ID, Class<Type> typeClass) {
         return (Type) resources.get(ID);
     }
+
+    @Override
+    public boolean isEmpty() {
+        return resources.isEmpty();
+    }
+
+    @Override
+    public int size() {
+        return resources.size();
+    }
     
 }

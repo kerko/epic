@@ -53,17 +53,39 @@ public class SharedResourceManagerTest {
     
     @Test
     public void testAdd() {
-        
+        assertTrue("Size of ManagerA should be empty", managerA.isEmpty());
+        managerA.add("Hallo", "Hallo");
+        managerA.add("Welt", "Welt");
+        assertFalse("Size of ManagerA shouldn't be empty", managerA.isEmpty());
+        assertTrue("Size of ManagerA should be 2", managerA.size() == 2);
     }
     
     @Test
     public void testRemove() {
-        
+        managerA.add("Hallo", "Hallo");
+        managerA.add("Welt", "Welt");
+        assertFalse("Size of ManagerA shouldn't be empty", managerA.isEmpty());
+        assertTrue("Size of ManagerA should be 2", managerA.size() == 2);
+        managerA.remove("Welt");
+        assertTrue("Size of ManagerA should be 1", managerA.size() == 1);
+        managerA.remove("Hallo");
+        assertTrue("Size of ManagerA shouldn't be empty", managerA.isEmpty());
+        assertTrue("Size of ManagerA should smaller than 1", managerA.size() < 1);
     }
     
     @Test
     public void testGet() {
+        managerA.add("Hallo", "Hallo");
+        managerA.add("Welt", "Welt");
         
+        String hello = managerA.get("Hallo", String.class);
+        String world = managerA.get("Welt", String.class);
+        
+        assertFalse("First element should not be null", hello == null);
+        assertFalse("Second element should not be null", world == null);
+        
+        assertTrue("First element should be 'Hallo'", hello.equals("Hallo"));
+        assertTrue("Second element should be 'Welt'", world.equals("Welt"));
     }
    
 }

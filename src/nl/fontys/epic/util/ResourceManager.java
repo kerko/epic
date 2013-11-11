@@ -58,6 +58,17 @@ public interface ResourceManager {
      */
     <Type> Type get(final String ID, Class<Type> typeClass);
     
+    /**
+     * Determines if the resource manager is empty
+     * 
+     * @return 
+     */
+    boolean isEmpty();
     
-    
+    /**
+     * Determines the size of this manager
+     * 
+     * @return 
+     */
+    int size();
 }
