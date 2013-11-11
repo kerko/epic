@@ -17,5 +17,5 @@ public interface Command {
      * @param commandString
      * @param adventure 
      */
-    void handle(String commandString, TextAdventure adventure);
+    void handle(String[] args, TextAdventure adventure) throws CommandException;
 }

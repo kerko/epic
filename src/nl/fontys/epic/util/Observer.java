@@ -1,5 +1,7 @@
 package nl.fontys.epic.util;
 
+import java.util.Collection;
+
 /**
  *
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
@@ -13,5 +15,5 @@ public interface Observer<Type> {
 
     public boolean hasListener(Type t);
 
-    public Type[] getListeners();
+    public Collection<Type> getListeners();
 }
