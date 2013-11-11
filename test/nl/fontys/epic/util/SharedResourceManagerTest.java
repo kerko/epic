@@ -1,5 +1,3 @@
-package nl.fontys.epic.util;
-
 /* The MIT License (MIT)
  * 
  * Copyright (c) 2013 Jan Kerkenhoff, Miguel Gonzalez
@@ -22,22 +20,50 @@ package nl.fontys.epic.util;
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import nl.fontys.epic.TextAdventure;
+package nl.fontys.epic.util;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.*; 
 
 /**
- * Represents a single command which can be applied to a {@see CommandHandler}
+ * Test case for {@see SharedResourceManager}
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public interface Command {
+public class SharedResourceManagerTest {
     
-    /**
-     * Handles the command in the {@see TextAdventure} context
-     * 
-     * @param commandString
-     * @param adventure 
-     */
-    void handle(String[] args, TextAdventure adventure) throws CommandException;
+    SharedResourceManager managerA, managerB;
+    
+    @Before
+    public void setUp() {
+        managerA = SharedResourceManager.getInstance("A");
+        managerB = SharedResourceManager.getInstance("B");
+    }
+    
+    @Test
+    public void testGetInstance() {
+        assertTrue("ManagerA should not be null", managerA != null);
+        assertTrue("ManagerB should not be null", managerB != null);
+        assertTrue("ManagerA should be differently than ManagerB", !managerA.equals(managerB));
+    }
+    
+    @Test
+    public void testAdd() {
+        
+    }
+    
+    @Test
+    public void testRemove() {
+        
+    }
+    
+    @Test
+    public void testGet() {
+        
+    }
+   
 }
