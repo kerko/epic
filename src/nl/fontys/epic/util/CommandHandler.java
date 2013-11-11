@@ -15,5 +15,19 @@ public interface CommandHandler extends Command {
      * @param identifier command identifier
      * @param command command to add
      */
-    void register(String identifier, Command command);    
+    void register(String identifier, Command command);   
+    
+    /**
+     * Determines the amount of commands in the handler
+     * 
+     * @return 
+     */
+    int size();
+    
+    /**
+     * Determines if the handler is currently empty
+     * 
+     * @return 
+     */
+    boolean isEmpty();
 }
