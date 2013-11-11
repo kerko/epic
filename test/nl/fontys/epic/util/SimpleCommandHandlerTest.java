@@ -1,5 +1,7 @@
 package nl.fontys.epic.util;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import nl.fontys.epic.TextAdventure;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +21,7 @@ public class SimpleCommandHandlerTest {
     
     String command = "Hello World";
     String subcommand = "World";
-    String key = "World";
+    String key = "Hello";
     
     @Before
     public void setUp() {
@@ -29,7 +31,11 @@ public class SimpleCommandHandlerTest {
     
     @Test
     public void testHandle() {
-        handler.handle(command, null);
+        try {
+            handler.handle(command, null);
+        } catch (CommandException ex) {
+            fail(ex.getMessage());
+        }
     }
     
     @Test
@@ -46,8 +52,8 @@ public class SimpleCommandHandlerTest {
     class CommandMock implements Command {
 
         @Override
-        public void handle(String commandString, TextAdventure adventure) {
-            assertTrue("Command needs to be " + subcommand, commandString.equals(subcommand));
+        public void handle(String[] args, TextAdventure adventure) {
+            assertTrue("Command needs to be " + subcommand, subcommand.equals(args[0]));
         }
         
     }

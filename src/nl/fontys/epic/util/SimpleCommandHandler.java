@@ -1,5 +1,6 @@
 package nl.fontys.epic.util;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import nl.fontys.epic.TextAdventure;
@@ -13,7 +14,7 @@ import nl.fontys.epic.TextAdventure;
  */
 public class SimpleCommandHandler implements CommandHandler {
     
-    private Map<String, Command> commands;
+    private final Map<String, Command> commands;
     
     public SimpleCommandHandler() {
         commands = new HashMap<>();
@@ -25,7 +26,22 @@ public class SimpleCommandHandler implements CommandHandler {
     }
 
     @Override
-    public void handle(String commandString, TextAdventure adventure) {
+    public void handle(String commandString, TextAdventure adventure) throws CommandException {
+        
+        String[] args = commandString.split(" ");
+        
+        if (args.length == 0) {
+            throw new CommandException("Command should not be empty");
+        }
+        
+        Command command = commands.get(args[0]);
+        
+        if (command != null) {
+            command.handle(reduceArgs(args), adventure);
+        } else {
+            throw new CommandException("Command '" + args[0] + "' not found.");
+        }
+        
         
     }
 
@@ -37,6 +53,14 @@ public class SimpleCommandHandler implements CommandHandler {
     @Override
     public boolean isEmpty() {
         return commands.isEmpty();
+    }
+    
+    
+    static String[] reduceArgs(String[] args) {
+        if (args.length <= 1)
+            return new String[0];
+        
+        return Arrays.copyOfRange(args, 1, args.length);
     }
     
 }
