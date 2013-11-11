@@ -32,7 +32,7 @@ public class SimpleObserverTest {
     @Test
     public void testAddListener() {
         int size = observer.getListeners().size();
-        assertTrue("Observer size has to be 4 instead of " + size, size == 4);
+        assertTrue("Observer size has to be 3 instead of " + size, size == 3);
     }
     
     @Test
