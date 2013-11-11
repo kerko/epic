@@ -6,5 +6,10 @@ package nl.fontys.epic.core;
  */
 public interface AdventureListener {
 
-    public void onAction(AdventureEvent event);
+    /**
+     * 
+     * 
+     * @param event 
+     */
+    void onAction(AdventureEvent event);
 }

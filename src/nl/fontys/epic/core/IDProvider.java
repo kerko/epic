@@ -6,5 +6,10 @@ package nl.fontys.epic.core;
  */
 public interface IDProvider {
 
-    public String getID();
+    /**
+     * 
+     * 
+     * @return 
+     */
+    String getID();
 }

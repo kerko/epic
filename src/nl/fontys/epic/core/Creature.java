@@ -6,13 +6,38 @@ package nl.fontys.epic.core;
  */
 public interface Creature extends GameObject {
 
-    public String getName();
+    /**
+     * 
+     * 
+     * @return 
+     */
+    String getName();
 
-    public int getPower();
+    /**
+     * 
+     * 
+     * @return 
+     */
+    int getPower();
 
-    public int getDefense();
+    /**
+     * 
+     * 
+     * @return 
+     */
+    int getDefense();
 
-    public int getLife();
+    /**
+     * 
+     * 
+     * @return 
+     */
+    int getLife();
 
-    public Inventory getInventory();
+    /**
+     * 
+     * 
+     * @return 
+     */
+    Inventory getInventory();
 }

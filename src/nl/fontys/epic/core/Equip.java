@@ -6,14 +6,39 @@ package nl.fontys.epic.core;
  */
 public interface Equip {
 
-    public void add(Item item);
+    /**
+     * 
+     * 
+     * @param item 
+     */
+    void add(Item item);
 
-    public void remove(Item item);
+    /**
+     * 
+     * 
+     * @param item 
+     */
+    void remove(Item item);
 
-    public int getLifeBonus();
+    /**
+     * 
+     * 
+     * @return 
+     */
+    int getLifeBonus();
 
-    public int getPowerBonus();
+    /**
+     * 
+     * 
+     * @return 
+     */
+    int getPowerBonus();
 
-    public int getDefenseBonus();
+    /**
+     * 
+     * 
+     * @return 
+     */
+    int getDefenseBonus();
 
 }

@@ -6,5 +6,10 @@ package nl.fontys.epic.core;
  */
 public interface Player extends Creature {
 
-    public Equip getEquip();
+    /**
+     * 
+     * 
+     * @return 
+     */
+    Equip getEquip();
 }

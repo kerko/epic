@@ -1,41 +1,34 @@
 package nl.fontys.epic;
 
-import nl.fontys.epic.core.Player;
-import nl.fontys.epic.core.Room;
+import nl.fontys.epic.core.AdventureListener;
 import nl.fontys.epic.util.Observer;
 
 /**
  *
  * @author Jan
  */
-public class TextAdventure implements Observer {
+public class TextAdventure implements Observer<AdventureListener> {
 
     @Override
-    public void addListener(Object t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void removeListener(Object t) {
+    public void addListener(AdventureListener t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean hasListener(Object t) {
+    public void removeListener(AdventureListener t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Object[] getListeners() {
+    public boolean hasListener(AdventureListener t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Player getPlayer() {
+    @Override
+    public AdventureListener[] getListeners() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Room getCurrentRoom() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
 }

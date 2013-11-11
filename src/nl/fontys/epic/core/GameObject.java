@@ -6,14 +6,39 @@ package nl.fontys.epic.core;
  */
 public interface GameObject extends IDProvider {
 
-    public Room getRoom();
+    /**
+     * 
+     * 
+     * @return 
+     */
+    Room getRoom();
 
-    public Location getFirstLocation();
+    /**
+     * 
+     * 
+     * @return 
+     */
+    Location getFirstLocation();
 
-    public Location getSecondLocation();
+    /**
+     * 
+     * 
+     * @return 
+     */
+    Location getSecondLocation();
 
-    public void setFirstLocation(Location l);
+    /**
+     * 
+     * 
+     * @param l 
+     */
+    void setFirstLocation(Location l);
 
-    public void setSecondLocation(Location l);
+    /**
+     * 
+     * 
+     * @param l 
+     */
+    void setSecondLocation(Location l);
 
 }

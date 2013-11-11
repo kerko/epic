@@ -6,5 +6,10 @@ package nl.fontys.epic.core;
  */
 public interface AdventureEvent {
 
-    public String getText();
+    /**
+     * 
+     * 
+     * @return 
+     */
+    String getText();
 }

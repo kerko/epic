@@ -6,10 +6,29 @@ package nl.fontys.epic.core;
  */
 public interface Room extends IDProvider {
 
-    public GameObject getObject(Location first, Location second);
+    /**
+     * 
+     * 
+     * @param first
+     * @param second
+     * @return 
+     */
+    GameObject getObject(Location first, Location second);
 
-    public boolean hasObject(Location first, Location second);
+    /**
+     * 
+     * 
+     * @param first
+     * @param second
+     * @return 
+     */
+    boolean hasObject(Location first, Location second);
 
-    public String getName();
+    /**
+     * 
+     * 
+     * @return 
+     */
+    String getName();
 
 }

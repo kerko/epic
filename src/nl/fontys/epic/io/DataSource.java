@@ -8,6 +8,11 @@ import org.w3c.dom.NodeList;
  */
 public interface DataSource {
 
+    /**
+     * 
+     * 
+     * @return 
+     */
     public NodeList parse();
 
 }
