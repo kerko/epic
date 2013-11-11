@@ -1,7 +1,7 @@
 
 package nl.fotnys.epic.core.triggers;
 
-import nl.fontys.epic.core.TextAdventure;
+import nl.fontys.epic.TextAdventure;
 
 /**
  *

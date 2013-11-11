@@ -1,5 +1,7 @@
-package nl.fontys.epic.core;
+package nl.fontys.epic;
 
+import nl.fontys.epic.core.Player;
+import nl.fontys.epic.core.Room;
 import nl.fontys.epic.util.Observer;
 
 /**
