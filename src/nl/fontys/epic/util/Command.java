@@ -39,5 +39,5 @@ public interface Command {
      * @param commandString
      * @param adventure 
      */
-    void handle(String[] args, TextAdventure adventure) throws CommandException;
+    CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException;
 }

@@ -22,8 +22,16 @@
 
 package nl.fontys.epic;
 
+import nl.fontys.epic.core.AdventureEvent;
 import nl.fontys.epic.core.AdventureListener;
+import nl.fontys.epic.core.Player;
+import nl.fontys.epic.core.Room;
+import nl.fontys.epic.util.AdventureEventAdapter;
+import nl.fontys.epic.util.Command;
+import nl.fontys.epic.util.CommandHandler;
+import nl.fontys.epic.util.CommandResponse;
 import nl.fontys.epic.util.Observer;
+import nl.fontys.epic.util.SimpleCommandHandler;
 import nl.fontys.epic.util.SimpleObserver;
 
 /**
@@ -31,6 +39,34 @@ import nl.fontys.epic.util.SimpleObserver;
  * @author Jan
  */
 public class TextAdventure extends SimpleObserver<AdventureListener> implements Observer<AdventureListener> {
-
     
+    private final CommandHandler commandHandler;
+    
+    public TextAdventure() {
+        commandHandler = new SimpleCommandHandler();
+    }
+
+    public void registerCommand(String identifier, Command command) {
+        commandHandler.register(identifier, command);
+    }
+    
+    public Player getPlayer() {
+        // TODO
+        return null;
+    }
+    
+    public Room getCurrentRoom() {
+        // TODO
+        return null;
+    }
+    
+    public void command(String command) {
+        
+         CommandResponse response = commandHandler.handle(command, this);
+         
+         for (AdventureListener l : getListeners()) {
+             AdventureEvent event = new AdventureEventAdapter(response);
+             l.onAction(event);
+         }
+    }
 }

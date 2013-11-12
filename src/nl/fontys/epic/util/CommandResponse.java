@@ -1,4 +1,3 @@
-package nl.fontys.epic.util;
 /* The MIT License (MIT)
  * 
  * Copyright (c) 2013 Jan Kerkenhoff, Miguel Gonzalez
@@ -21,45 +20,28 @@ package nl.fontys.epic.util;
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import nl.fontys.epic.TextAdventure;
+package nl.fontys.epic.util;
 
 /**
- * Handles {@see Command} objects and delegates commands to them.
+ * Response of a single command chain
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public interface CommandHandler {
+public interface CommandResponse {
     
     /**
-     * Registers a new command
      * 
-     * @param identifier command identifier
-     * @param command command to add
-     */
-    void register(String identifier, Command command);   
-    
-    /**
-     * Handles all commands
-     * 
-     * @param commandString
-     * @param adventure 
-     * @return response
-     */
-    CommandResponse handle(String commandString, TextAdventure adventure);
-    
-    /**
-     * Determines the amount of commands in the handler
      * 
      * @return 
      */
-    int size();
+    String getMessage();
     
     /**
-     * Determines if the handler is currently empty
+     * 
      * 
      * @return 
      */
-    boolean isEmpty();
+    long getTimestamp();
 }
