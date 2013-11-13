@@ -64,6 +64,10 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
         return null;
     }
     
+    public String getName() {
+        return "";
+    }
+    
     public void command(String command) {
         
          CommandResponse response = commandHandler.handle(command, this);
