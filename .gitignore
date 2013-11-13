@@ -10,3 +10,5 @@
 *~
 ~*
 *.swp
+/epic/nbproject/private/
+/build/
