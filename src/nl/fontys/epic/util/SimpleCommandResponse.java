@@ -34,10 +34,13 @@ public class SimpleCommandResponse implements CommandResponse {
     private long timestamp;
     
     private String message;
+    
+    private ResponseType type;
 
-    public SimpleCommandResponse(String message) {
+    public SimpleCommandResponse(String message, ResponseType type) {
         this.timestamp = System.currentTimeMillis();
         this.message = message;
+        this.type = type;
     }
 
     @Override
@@ -48,6 +51,11 @@ public class SimpleCommandResponse implements CommandResponse {
     @Override
     public long getTimestamp() {
         return timestamp;
+    }
+
+    @Override
+    public ResponseType getType() {
+        return type;
     }
     
     

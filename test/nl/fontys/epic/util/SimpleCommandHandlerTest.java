@@ -51,11 +51,7 @@ public class SimpleCommandHandlerTest {
     
     @Test
     public void testHandle() {
-        try {
-            handler.handle(command, null);
-        } catch (CommandException ex) {
-            fail(ex.getMessage());
-        }
+        handler.handle(command, null);
     }
     
     @Test
@@ -72,9 +68,11 @@ public class SimpleCommandHandlerTest {
     class CommandMock implements Command {
 
         @Override
-        public void handle(String[] args, TextAdventure adventure) {
+        public CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException {            
             assertTrue("Command needs to be " + subcommand, subcommand.equals(args[0]));
+            return null;
         }
+
         
     }
    

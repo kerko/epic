@@ -32,16 +32,33 @@ package nl.fontys.epic.util;
 public interface CommandResponse {
     
     /**
-     * 
+     * Returns the message
      * 
      * @return 
      */
     String getMessage();
     
     /**
-     * 
+     * Returns the current timestamp
      * 
      * @return 
      */
     long getTimestamp();
+    
+    
+    /**
+     * Returns the type of the response
+     * 
+     * @return 
+     */
+    ResponseType getType();
+    
+    
+    /**
+     * Type enumeration for command responds
+     */
+    public static enum ResponseType {
+        
+        INFO, ERROR;
+    }
 }

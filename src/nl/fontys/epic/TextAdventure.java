@@ -22,11 +22,9 @@
 
 package nl.fontys.epic;
 
-import nl.fontys.epic.core.AdventureEvent;
 import nl.fontys.epic.core.AdventureListener;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Room;
-import nl.fontys.epic.util.AdventureEventAdapter;
 import nl.fontys.epic.util.Command;
 import nl.fontys.epic.util.CommandHandler;
 import nl.fontys.epic.util.CommandResponse;
@@ -65,8 +63,7 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
          CommandResponse response = commandHandler.handle(command, this);
          
          for (AdventureListener l : getListeners()) {
-             AdventureEvent event = new AdventureEventAdapter(response);
-             l.onAction(event);
+             l.onAction(response);
          }
     }
 }

@@ -25,9 +25,8 @@ package nl.fontys.epic.util;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.util.CommandResponse.ResponseType;
 
 /**
  * Simple implementation of {@see CommandHandler}
@@ -55,7 +54,7 @@ public class SimpleCommandHandler implements CommandHandler {
         String[] args = commandString.split(" ");
         
         if (args.length == 0) {
-            return new SimpleCommandResponse("Command should not be empty");
+            return new SimpleCommandResponse("Command should not be empty", ResponseType.ERROR);
         }
         
         Command command = commands.get(args[0]);
@@ -64,10 +63,10 @@ public class SimpleCommandHandler implements CommandHandler {
             try {
                 return command.handle(reduceArgs(args), adventure);
             } catch (CommandException ex) {
-                return new SimpleCommandResponse(ex.getMessage());
+                return new SimpleCommandResponse(ex.getMessage(), ResponseType.ERROR);
             }
         } else {
-            return new SimpleCommandResponse("Command '" + args[0] + "' not found.");
+            return new SimpleCommandResponse("Command '" + args[0] + "' not found.", ResponseType.ERROR);
         }        
     }
 
