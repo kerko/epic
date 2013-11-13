@@ -58,8 +58,8 @@ AdventureEvent
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1208</x>
-      <y>672</y>
+      <x>1344</x>
+      <y>664</y>
       <w>168</w>
       <h>104</h>
     </coordinates>
@@ -306,18 +306,18 @@ DataSource
     <coordinates>
       <x>720</x>
       <y>712</y>
-      <w>504</w>
+      <w>640</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>488;24;24;24</additional_attributes>
+    <additional_attributes>624;24;24;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.Systemborder</type>
     <coordinates>
       <x>1168</x>
       <y>416</y>
-      <w>496</w>
+      <w>704</w>
       <h>368</h>
     </coordinates>
     <panel_attributes>topcenter:epic.util</panel_attributes>
@@ -684,8 +684,8 @@ SharedTriggerManager</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1400</x>
-      <y>688</y>
+      <x>1560</x>
+      <y>680</y>
       <w>232</w>
       <h>80</h>
     </coordinates>
@@ -702,8 +702,8 @@ ResourceManager
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1480</x>
-      <y>608</y>
+      <x>1640</x>
+      <y>600</y>
       <w>152</w>
       <h>40</h>
     </coordinates>
@@ -714,8 +714,8 @@ SharedResourceManager</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1544</x>
-      <y>624</y>
+      <x>1704</x>
+      <y>616</y>
       <w>40</w>
       <h>80</h>
     </coordinates>
@@ -725,40 +725,90 @@ SharedResourceManager</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1336</x>
-      <y>448</y>
-      <w>296</w>
+      <x>1408</x>
+      <y>440</y>
+      <w>440</w>
       <h>64</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 CommandHandler
 --
-+ register(Command)</panel_attributes>
++ register(key : String, Command) : boolean
++ handle(command : String, context: TextAdventure) : CommandResponse</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1336</x>
-      <y>536</y>
-      <w>296</w>
+      <x>1216</x>
+      <y>528</y>
+      <w>576</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Command
 --
-+ handle(commandString : String, TextAdventure)</panel_attributes>
++ handle(commandString : String, TextAdventure) : CommandResponse {throws CommandException]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1472</x>
-      <y>488</y>
+      <x>1568</x>
+      <y>480</y>
       <w>40</w>
       <h>64</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>24;48;24;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1432</x>
+      <y>616</y>
+      <w>192</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>CommandException</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1216</x>
+      <y>424</y>
+      <w>168</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+CommandResponse
+--
++ getMessage() : String
++ getTimestamp() : long
++ getType() : ResponseType</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1360</x>
+      <y>448</y>
+      <w>64</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>24;24;48;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1512</x>
+      <y>552</y>
+      <w>40</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>24;64;24;24</additional_attributes>
   </element>
 </diagram>
