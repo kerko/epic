@@ -22,6 +22,11 @@
 
 package nl.fontys.epic;
 
+import nl.fontys.epic.commands.AttackCommand;
+import nl.fontys.epic.commands.DropCommand;
+import nl.fontys.epic.commands.GoCommand;
+import nl.fontys.epic.commands.OpenCommand;
+import nl.fontys.epic.commands.UseCommand;
 import nl.fontys.epic.core.AdventureListener;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Room;
@@ -42,6 +47,7 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
     
     public TextAdventure() {
         commandHandler = new SimpleCommandHandler();
+        initDefaults();
     }
 
     public void registerCommand(String identifier, Command command) {
@@ -65,5 +71,14 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
          for (AdventureListener l : getListeners()) {
              l.onAction(response);
          }
+    }
+    
+    
+    private void initDefaults() {
+        registerCommand("attack", new AttackCommand());
+        registerCommand("drop", new DropCommand());
+        registerCommand("go", new GoCommand());
+        registerCommand("open", new OpenCommand());
+        registerCommand("use", new UseCommand());
     }
 }
