@@ -34,7 +34,7 @@ public interface Creature extends GameObject {
      * 
      * @param damage 
      */
-    boolean damage(int damage);
+    void damage(int damage);
     
     /**
      * 

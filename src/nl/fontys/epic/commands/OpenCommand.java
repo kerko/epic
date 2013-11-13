@@ -26,6 +26,8 @@ import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.util.Command;
 import nl.fontys.epic.util.CommandException;
 import nl.fontys.epic.util.CommandResponse;
+import nl.fontys.epic.util.ResourceManager;
+import nl.fontys.epic.util.SharedResourceManager;
 
 /**
  * Implementation in order to open things like doors and chests
@@ -39,12 +41,14 @@ public class OpenCommand implements Command {
     @Override
     public CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException {
         
-        if (args.length == 0) {
+        if (args.length == 0 || args[0].trim().isEmpty()) {
             throw new CommandException("You have to select something to open.");
+        } else {
+            String id = args[0];
+            ResourceManager r = SharedResourceManager.getInstance(adventure.getName());
+            return null;            
+            
         }
-        
-        
-        return null;
     }
     
 }
