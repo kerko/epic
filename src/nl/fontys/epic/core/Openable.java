@@ -24,58 +24,14 @@ package nl.fontys.epic.core;
 
 /**
  *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public interface Creature extends GameObject {
-    
-    
-    /**
-     * 
-     * 
-     * @param damage 
-     */
-    boolean damage(int damage);
+public interface Openable {
     
     /**
-     * 
-     * 
+     * Open the openable. Returns false when it can't open at the moment
      */
-    void kill();
-    
-    boolean isDead();
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    String getName();
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    int getPower();
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    int getDefense();
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    int getLife();
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    Inventory getInventory();
+    boolean open();
 }

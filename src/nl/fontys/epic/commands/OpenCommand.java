@@ -28,14 +28,23 @@ import nl.fontys.epic.util.CommandException;
 import nl.fontys.epic.util.CommandResponse;
 
 /**
- *
- * @author miguel
+ * Implementation in order to open things like doors and chests
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
 public class OpenCommand implements Command {
 
     @Override
     public CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        if (args.length == 0) {
+            throw new CommandException("You have to select something to open.");
+        }
+        
+        
+        return null;
     }
     
 }
