@@ -23,9 +23,15 @@
 package nl.fontys.epic.commands;
 
 import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.core.Creature;
+import nl.fontys.epic.core.Player;
 import nl.fontys.epic.util.Command;
 import nl.fontys.epic.util.CommandException;
 import nl.fontys.epic.util.CommandResponse;
+import nl.fontys.epic.util.CommandResponse.ResponseType;
+import nl.fontys.epic.util.ResourceManager;
+import nl.fontys.epic.util.SharedResourceManager;
+import nl.fontys.epic.util.SimpleCommandResponse;
 
 /**
  *
@@ -35,7 +41,34 @@ public class AttackCommand implements Command {
 
     @Override
     public CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ResourceManager manager =  SharedResourceManager.getInstance(adventure.getName());
+        if(args.length==0){
+            throw new CommandException("You have to select a Target");
+        }
+         Creature creature = manager.get(args[0], Creature.class);
+         if(creature == null){
+             throw new CommandException("You have to select a Creature");
+         }
+        Player player = adventure.getPlayer();
+        int creatureHealth = creature.getLife();
+        int playerHealth = creature.getLife();
+        
+        if(attack(player,creature)){
+            return new SimpleCommandResponse("Creature died,",ResponseType.INFO);
+        }
+        if(attack(creature,player)){
+            return new SimpleCommandResponse("Player died.", ResponseType.INFO);
+        }
+       
+        
+        return new SimpleCommandResponse("You hit "+ creature.getName() +"for "+ (creatureHealth-creature.getLife()) +". You took"+(playerHealth-player.getLife())+"Damage from"+creature.getName()+".",ResponseType.INFO);
+        
+    }
+    
+    private boolean attack(Creature cr1,Creature cr2){
+         int damage = cr1.getPower();
+         cr2.damage(damage);
+         return cr2.isDead();
     }
     
 }
