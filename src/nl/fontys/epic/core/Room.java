@@ -61,5 +61,14 @@ public interface Room extends IDProvider {
      * @param y 
      */
     void moveObject(GameObject object, int x, int y);
+    
+    /**
+     * 
+     * 
+     * @param x
+     * @param y
+     * @return 
+     */
+    boolean contains(int x, int y);
 
 }

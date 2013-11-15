@@ -19,34 +19,31 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package nl.fontys.epic.commands;
 
-import nl.fontys.epic.TextAdventure;
-import nl.fontys.epic.core.Player;
-import nl.fontys.epic.util.Command;
-import nl.fontys.epic.util.CommandException;
-import nl.fontys.epic.util.CommandResponse;
+package nl.fontys.epic.util;
 
 /**
- *
- * @author miguel
+ * Represents a direction
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public class GoCommand implements Command {
-
-    @Override
-    public CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException {
-        if (args.length < 1 || args[0].trim().isEmpty()) {
-            throw new CommandException("You have to specify a direction where to go!");
-        } else {            
-            String direction = args[0];
-            return movePlayer(direction, adventure.getPlayer());
+public enum Direction {
+    
+    NORTH, SOUTH, EAST, WEST, NONE;
+    
+    
+    public Direction translate(String direction) {
+        
+        direction = direction.toUpperCase();
+        
+        for (Direction d : values()) {
+            if (d.name().equalsIgnoreCase(direction)) {
+                return d;
+            }
         }
+        
+        return NONE;
     }
-    
-    private CommandResponse movePlayer(String direction, Player player) {
-        
-        
-        
-    }
-    
- }
+}
