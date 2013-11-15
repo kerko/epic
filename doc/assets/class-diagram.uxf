@@ -148,10 +148,10 @@ IDProvider
       <x>544</x>
       <y>320</y>
       <w>40</w>
-      <h>112</h>
+      <h>136</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>24;24;24;96</additional_attributes>
+    <additional_attributes>24;24;24;120</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -168,18 +168,16 @@ IDProvider
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>496</x>
-      <y>416</y>
+      <y>440</y>
       <w>200</w>
-      <h>104</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 GameObject
 --
 + getRoom() : Room
-+ getFirstLocation() : Location
-+ getSecondLocation() : Location
-+ setFirstLocation(Location)
-+ setSecondLocation(Location)
++ getPosition() : Position
++ setPosition(x : int, y : int)
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -197,50 +195,21 @@ GameObject
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>760</x>
+      <x>136</x>
       <y>288</y>
-      <w>72</w>
-      <h>104</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;enum&gt;&gt;
-Location
---
-NORTH,
-SOUTH,
-WEST,
-EAST,
-CENTER</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>72</x>
-      <y>288</y>
-      <w>328</w>
-      <h>96</h>
+      <w>264</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Room
 --
-+ getObject(Location first, Location second) : GameObject
-+ hasObject(Location first, Location second) : boolean
-+ removeObject(Location first, Location second) : boolean
-+ getName() : String
-
-</panel_attributes>
++ getObject(x : int, y : int) : GameObject
++ hasObject(x : int, y : int) : boolean
++ removeObject(x : int, y : int) : GameObject
++ getWidth() : int
++ getHeight() : int
++ moveObject(GameObject, x : int, y : int)</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>632</x>
-      <y>344</y>
-      <w>144</w>
-      <h>88</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>128;24;24;24;24;72</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -267,9 +236,9 @@ Room
   <element>
     <type>com.umlet.element.custom.Systemborder</type>
     <coordinates>
-      <x>208</x>
+      <x>408</x>
       <y>824</y>
-      <w>728</w>
+      <w>336</w>
       <h>232</h>
     </coordinates>
     <panel_attributes>topcenter:epic.io
@@ -810,5 +779,33 @@ CommandResponse
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>24;64;24;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>664</x>
+      <y>288</y>
+      <w>144</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Position
+--
++ x : int
++ y : int
+--
++ Position(x : int, y : int)
++ distance(Position) : int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>664</x>
+      <y>344</y>
+      <w>40</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>24;24;24;96</additional_attributes>
   </element>
 </diagram>
