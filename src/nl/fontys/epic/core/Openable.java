@@ -22,6 +22,8 @@
 
 package nl.fontys.epic.core;
 
+import nl.fontys.epic.TextAdventure;
+
 /**
  *
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
@@ -33,5 +35,5 @@ public interface Openable {
     /**
      * Open the openable. Returns false when it can't open at the moment
      */
-    boolean open();
+    boolean open(TextAdventure adventure);
 }
