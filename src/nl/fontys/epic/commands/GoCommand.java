@@ -26,6 +26,10 @@ import nl.fontys.epic.core.Player;
 import nl.fontys.epic.util.Command;
 import nl.fontys.epic.util.CommandException;
 import nl.fontys.epic.util.CommandResponse;
+import nl.fontys.epic.util.CommandResponse.ResponseType;
+import nl.fontys.epic.util.Direction;
+import nl.fontys.epic.util.Position;
+import nl.fontys.epic.util.SimpleCommandResponse;
 
 /**
  *
@@ -45,8 +49,20 @@ public class GoCommand implements Command {
     
     private CommandResponse movePlayer(String direction, Player player) {
         
+        Position pos = player.getPosition();
+        Direction dir = Direction.translate(direction);
         
+        if (dir.equals(Direction.NONE)) {
+            return new SimpleCommandResponse(direction + "? What is that? A direction?", ResponseType.ERROR);
+        }
         
+        player.move(dir);
+        
+        if (player.getPosition().equals(pos)) {
+            return new SimpleCommandResponse("Can't move " + direction, ResponseType.ERROR);
+        } else {
+            return new SimpleCommandResponse("Moved " + direction, ResponseType.INFO);
+        }
     }
     
  }

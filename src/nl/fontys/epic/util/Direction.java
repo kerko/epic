@@ -34,7 +34,7 @@ public enum Direction {
     NORTH, SOUTH, EAST, WEST, NONE;
     
     
-    public Direction translate(String direction) {
+    public static Direction translate(String direction) {
         
         direction = direction.toUpperCase();
         
