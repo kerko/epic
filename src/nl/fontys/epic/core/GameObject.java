@@ -22,6 +22,8 @@
 
 package nl.fontys.epic.core;
 
+import nl.fontys.epic.util.Position;
+
 /**
  *
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
@@ -33,34 +35,22 @@ public interface GameObject extends IDProvider {
      * 
      * @return 
      */
-    Room getRoom();
-
+    Position getPosition();
+    
     /**
      * 
      * 
+     * @param x
+     * @param y 
+     */
+    void setPosition(int x, int y);
+    
+    /**
+     * 
+     * 
+     * @param object
      * @return 
      */
-    Location getFirstLocation();
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    Location getSecondLocation();
-
-    /**
-     * 
-     * 
-     * @param l 
-     */
-    void setFirstLocation(Location l);
-
-    /**
-     * 
-     * 
-     * @param l 
-     */
-    void setSecondLocation(Location l);
+    boolean isInfrontOf(GameObject object);
 
 }

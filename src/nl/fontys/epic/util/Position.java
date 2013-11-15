@@ -20,36 +20,15 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core;
+package nl.fontys.epic.util;
 
 /**
- *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * Represents a position in a room
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public enum Location {
-
-    /**
-     * North direction (UP)
-     */
-    NORTH,
+public class Position {
     
-    /**
-     * South direction (DOWN)
-     */
-    SOUTH,
-    
-    /**
-     * West direction (LEFT)
-     */
-    WEST,
-    
-    /**
-     * East direction (RIGHT)
-     */
-    EAST,
-    
-    /**
-     * Center location (NONE)
-     */
-    CENTER;
 }

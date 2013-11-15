@@ -35,7 +35,7 @@ public interface Room extends IDProvider {
      * @param second
      * @return 
      */
-    GameObject getObject(Location first, Location second);
+    GameObject getObject(int x, int y);
 
     /**
      * 
@@ -44,7 +44,7 @@ public interface Room extends IDProvider {
      * @param second
      * @return 
      */
-    boolean hasObject(Location first, Location second);
+    boolean hasObject(int x, int y);
 
     /**
      * 
@@ -52,5 +52,14 @@ public interface Room extends IDProvider {
      * @return 
      */
     String getName();
+    
+    /**
+     * 
+     * 
+     * @param object
+     * @param x
+     * @param y 
+     */
+    void moveObject(GameObject object, int x, int y);
 
 }
