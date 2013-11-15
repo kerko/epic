@@ -20,37 +20,30 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core;
-
-import nl.fontys.epic.util.Position;
+package nl.fontys.epic.util;
 
 /**
- *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * Represents a direction
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public interface GameObject extends IDProvider {
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    Position getPosition();
+public enum Direction {
     
-    /**
-     * 
-     * 
-     * @param x
-     * @param y 
-     */
-    void setPosition(int x, int y);
+    NORTH, SOUTH, EAST, WEST, NONE;
     
-    /**
-     * 
-     * 
-     * @param object
-     * @return 
-     */
-    boolean isInfrontOf(GameObject object);
-
+    
+    public static Direction translate(String direction) {
+        
+        direction = direction.toUpperCase();
+        
+        for (Direction d : values()) {
+            if (d.name().equalsIgnoreCase(direction)) {
+                return d;
+            }
+        }
+        
+        return NONE;
+    }
 }

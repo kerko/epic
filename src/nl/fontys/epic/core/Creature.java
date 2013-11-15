@@ -22,6 +22,8 @@
 
 package nl.fontys.epic.core;
 
+import nl.fontys.epic.util.Direction;
+
 /**
  *
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
@@ -32,9 +34,17 @@ public interface Creature extends GameObject {
     /**
      * 
      * 
+     * @param direction 
+     */
+    void move(Direction direction);
+    
+    
+    /**
+     * 
+     * 
      * @param damage 
      */
-    boolean damage(int damage);
+    void damage(int damage);
     
     /**
      * 

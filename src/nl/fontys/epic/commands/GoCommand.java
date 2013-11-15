@@ -19,13 +19,17 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package nl.fontys.epic.commands;
 
 import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.core.Player;
 import nl.fontys.epic.util.Command;
 import nl.fontys.epic.util.CommandException;
 import nl.fontys.epic.util.CommandResponse;
+import nl.fontys.epic.util.CommandResponse.ResponseType;
+import nl.fontys.epic.util.Direction;
+import nl.fontys.epic.util.Position;
+import nl.fontys.epic.util.SimpleCommandResponse;
 
 /**
  *
@@ -35,7 +39,30 @@ public class GoCommand implements Command {
 
     @Override
     public CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (args.length < 1 || args[0].trim().isEmpty()) {
+            throw new CommandException("You have to specify a direction where to go!");
+        } else {            
+            String direction = args[0];
+            return movePlayer(direction, adventure.getPlayer());
+        }
     }
     
-}
+    private CommandResponse movePlayer(String direction, Player player) {
+        
+        Position pos = player.getPosition();
+        Direction dir = Direction.translate(direction);
+        
+        if (dir.equals(Direction.NONE)) {
+            return new SimpleCommandResponse(direction + "? What is that? A direction?", ResponseType.ERROR);
+        }
+        
+        player.move(dir);
+        
+        if (player.getPosition().equals(pos)) {
+            return new SimpleCommandResponse("Can't move " + direction, ResponseType.ERROR);
+        } else {
+            return new SimpleCommandResponse("Moved " + direction, ResponseType.INFO);
+        }
+    }
+    
+ }
