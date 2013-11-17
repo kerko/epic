@@ -24,7 +24,7 @@ package nl.fontys.epic.commands;
 
 import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.GameObject;
-import nl.fontys.epic.core.Openable;
+import nl.fontys.epic.util.Openable;
 import nl.fontys.epic.util.Command;
 import nl.fontys.epic.util.CommandException;
 import nl.fontys.epic.util.CommandResponse;

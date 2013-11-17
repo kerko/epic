@@ -22,14 +22,18 @@
 
 package nl.fontys.epic.util;
 
+import nl.fontys.epic.TextAdventure;
+
 /**
- * Represents a position in a room
- * 
+ *
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public class Position {
+public interface Openable {
     
-    public int x, y;
+    /**
+     * Open the openable. Returns false when it can't open at the moment
+     */
+    boolean open(TextAdventure adventure);
 }

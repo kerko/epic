@@ -23,7 +23,9 @@ package nl.fontys.epic.commands;
 
 import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.Inventory;
+import nl.fontys.epic.core.Item;
 import nl.fontys.epic.core.Player;
+import nl.fontys.epic.core.Room;
 import nl.fontys.epic.util.Command;
 import nl.fontys.epic.util.CommandException;
 import nl.fontys.epic.util.CommandResponse;
@@ -39,13 +41,16 @@ public class DropCommand implements Command {
     @Override
     public CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException {
         if (args.length < 1 || args[0].trim().isEmpty()) {
-            throw new CommandException("You have to specify a direction where to go!");
+            throw new CommandException("You have to specify something to drop");
         } else {
             String itemId = args[0];
             Player player = adventure.getPlayer();
             Inventory inventory = player.getInventory();
-
-            if (inventory.remove(itemId)) {
+            Item item = inventory.fetch(itemId);
+            if (item != null) {                
+                Room room = adventure.getCurrentRoom();
+                Inventory items = room.getItems(player.getPosition().x, player.getPosition().y);
+                items.add(item);
                 return new SimpleCommandResponse("You dropped " + itemId);
             } else {
                 return new SimpleCommandResponse("Unable to drop " + itemId, ResponseType.ERROR);

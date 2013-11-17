@@ -19,23 +19,49 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package nl.fontys.epic.commands;
 
 import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.core.Inventory;
+import nl.fontys.epic.core.Item;
 import nl.fontys.epic.util.Command;
 import nl.fontys.epic.util.CommandException;
 import nl.fontys.epic.util.CommandResponse;
+import nl.fontys.epic.util.CommandResponse.ResponseType;
+import nl.fontys.epic.util.SimpleCommandResponse;
+import nl.fontys.epic.util.Useable;
 
 /**
+ * Uses an item and throws it away
  *
- * @author miguel
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
 public class UseCommand implements Command {
 
     @Override
     public CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (args.length == 0 || args[0].trim().isEmpty()) {
+            throw new CommandException("You have to select something to use");
+        } else {
+            String itemId = args[0];
+            Inventory inventory = adventure.getPlayer().getInventory();
+            
+            if (inventory.contains(itemId)) {
+                Item item = inventory.get(itemId);
+                
+                if (item instanceof Useable) {
+                    ((Useable)item).use(adventure);
+                    inventory.remove(itemId);
+                    return new SimpleCommandResponse("You successfully used " + itemId);
+                } else {
+                    return new SimpleCommandResponse("You can't use " + itemId, ResponseType.ERROR);
+                }
+            } else {
+                return new SimpleCommandResponse("You don't have any item called " + itemId, ResponseType.ERROR);
+            }            
+        }
     }
-    
+
 }

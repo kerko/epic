@@ -19,23 +19,46 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package nl.fontys.epic.commands;
 
 import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.core.Inventory;
+import nl.fontys.epic.core.Item;
+import nl.fontys.epic.core.Player;
+import nl.fontys.epic.core.Room;
 import nl.fontys.epic.util.Command;
 import nl.fontys.epic.util.CommandException;
 import nl.fontys.epic.util.CommandResponse;
+import nl.fontys.epic.util.CommandResponse.ResponseType;
+import nl.fontys.epic.util.SimpleCommandResponse;
 
 /**
+ * Takes an item from the ground and add it to the inventory
  *
- * @author miguel
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
 public class TakeCommand implements Command {
 
     @Override
     public CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (args.length == 0 || args[0].trim().isEmpty()) {
+            throw new CommandException("You have to select something to take");
+        } else {
+            String itemId = args[0];
+            Player player = adventure.getPlayer();
+            Room room = adventure.getCurrentRoom();
+            Inventory items = room.getItems(player.getPosition().x, player.getPosition().y);
+
+            if (items.contains(itemId)) {
+                Item item = items.fetch(itemId);
+                player.getInventory().add(item);
+                return new SimpleCommandResponse("You took " + itemId + " from the ground");
+            } else {
+                return new SimpleCommandResponse("There is no item '" + itemId + "' on the ground", ResponseType.ERROR);
+            }
+        }
     }
-    
+
 }

@@ -25,7 +25,8 @@ package nl.fontys.epic.core;
 import java.util.Collection;
 
 /**
- *
+ * Item container
+ * 
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
  */
 public interface Inventory {
@@ -37,6 +38,21 @@ public interface Inventory {
      * @return 
      */
     boolean remove(String itemId);
+    
+    /**
+     * 
+     * @param itemId
+     * @return 
+     */
+    Item fetch(String itemId);
+    
+    /**
+     * 
+     * 
+     * @param itemId
+     * @return 
+     */
+    Item get(String itemId);
     
     /**
      * 
@@ -58,5 +74,15 @@ public interface Inventory {
      * @return 
      */
     Collection<Item> getItems();
+    
+    
+    /**
+     * 
+     * 
+     * @param item
+     * @return 
+     */
+    boolean contains(Item item);
+    boolean contains(String itemId);
 
 }

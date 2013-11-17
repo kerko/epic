@@ -20,20 +20,18 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core;
+package nl.fontys.epic.util;
 
 import nl.fontys.epic.TextAdventure;
 
 /**
- *
+ * Indicates something that can be used
+ * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public interface Openable {
+public interface Useable {
     
-    /**
-     * Open the openable. Returns false when it can't open at the moment
-     */
-    boolean open(TextAdventure adventure);
+    void use(TextAdventure adventure);
 }

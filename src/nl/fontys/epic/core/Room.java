@@ -45,6 +45,15 @@ public interface Room extends IDProvider {
      * @return 
      */
     boolean hasObject(int x, int y);
+    
+    /**
+     * 
+     * 
+     * @param x
+     * @param y
+     * @return 
+     */
+    Inventory getItems(int x, int y);
 
     /**
      * 
