@@ -22,10 +22,41 @@
 
 package nl.fontys.epic.core;
 
+import java.util.Collection;
+
 /**
  *
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
  */
 public interface Inventory {
+    
+    /**
+     * 
+     * 
+     * @param itemId
+     * @return 
+     */
+    boolean remove(String itemId);
+    
+    /**
+     * 
+     * 
+     * @param item 
+     */
+    void add(Item item);
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    int size();
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    Collection<Item> getItems();
 
 }

@@ -42,6 +42,10 @@ public class SimpleCommandResponse implements CommandResponse {
         this.message = message;
         this.type = type;
     }
+    
+    public SimpleCommandResponse(String message) {
+        this(message, ResponseType.INFO);
+    }
 
     @Override
     public String getMessage() {

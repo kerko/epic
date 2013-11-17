@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/miguel/git/epic/src/nl/fontys/epic/core/Creature.java</file>
+            <file>file:/home/miguel/git/epic/src/nl/fontys/epic/commands/GoCommand.java</file>
+            <file>file:/home/miguel/git/epic/src/nl/fontys/epic/core/Openable.java</file>
+            <file>file:/home/miguel/git/epic/src/nl/fontys/epic/util/Direction.java</file>
+            <file>file:/home/miguel/git/epic/src/nl/fontys/epic/core/Room.java</file>
+            <file>file:/home/miguel/git/epic/src/nl/fontys/epic/core/GameObject.java</file>
+            <file>file:/home/miguel/git/epic/src/nl/fontys/epic/commands/OpenCommand.java</file>
+            <file>file:/home/miguel/git/epic/src/nl/fontys/epic/util/CommandResponse.java</file>
+            <file>file:/home/miguel/git/epic/src/nl/fontys/epic/commands/TakeCommand.java</file>
+            <file>file:/home/miguel/git/epic/src/nl/fontys/epic/core/Item.java</file>
+            <file>file:/home/miguel/git/epic/src/nl/fontys/epic/core/Player.java</file>
+            <file>file:/home/miguel/git/epic/src/nl/fontys/epic/util/Position.java</file>
+            <file>file:/home/miguel/git/epic/src/nl/fontys/epic/commands/AttackCommand.java</file>
+            <file>file:/home/miguel/git/epic/src/nl/fontys/epic/commands/DropCommand.java</file>
+            <file>file:/home/miguel/git/epic/src/nl/fontys/epic/core/IDProvider.java</file>
+            <file>file:/home/miguel/git/epic/src/nl/fontys/epic/commands/UseCommand.java</file>
+        </group>
+    </open-files>
+</project-private>

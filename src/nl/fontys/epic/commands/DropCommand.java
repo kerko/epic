@@ -19,13 +19,16 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package nl.fontys.epic.commands;
 
 import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.core.Inventory;
+import nl.fontys.epic.core.Player;
 import nl.fontys.epic.util.Command;
 import nl.fontys.epic.util.CommandException;
 import nl.fontys.epic.util.CommandResponse;
+import nl.fontys.epic.util.CommandResponse.ResponseType;
+import nl.fontys.epic.util.SimpleCommandResponse;
 
 /**
  *
@@ -35,7 +38,19 @@ public class DropCommand implements Command {
 
     @Override
     public CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (args.length < 1 || args[0].trim().isEmpty()) {
+            throw new CommandException("You have to specify a direction where to go!");
+        } else {
+            String itemId = args[0];
+            Player player = adventure.getPlayer();
+            Inventory inventory = player.getInventory();
+
+            if (inventory.remove(itemId)) {
+                return new SimpleCommandResponse("You dropped " + itemId);
+            } else {
+                return new SimpleCommandResponse("Unable to drop " + itemId, ResponseType.ERROR);
+            }
+        }
     }
-    
+
 }

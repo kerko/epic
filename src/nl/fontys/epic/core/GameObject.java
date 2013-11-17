@@ -40,6 +40,13 @@ public interface GameObject extends IDProvider {
     /**
      * 
      * 
+     * @return 
+     */
+    Room getRoom();
+    
+    /**
+     * 
+     * 
      * @param x
      * @param y 
      */
