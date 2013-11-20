@@ -64,6 +64,13 @@ public interface Inventory {
     /**
      * 
      * 
+     * @param inventory 
+     */
+    void add(Inventory inventory);
+    
+    /**
+     * 
+     * 
      * @return 
      */
     int size();

@@ -22,6 +22,10 @@
 
 package nl.fontys.epic.util;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 /**
  * Simple implementation of {@see CommandResponse}
  * 
@@ -36,10 +40,13 @@ public class SimpleCommandResponse implements CommandResponse {
     private String message;
     
     private ResponseType type;
+    
+    private List<String> entries;
 
     public SimpleCommandResponse(String message, ResponseType type) {
         this.timestamp = System.currentTimeMillis();
         this.message = message;
+        entries = new ArrayList<>();
         this.type = type;
     }
     
@@ -60,6 +67,16 @@ public class SimpleCommandResponse implements CommandResponse {
     @Override
     public ResponseType getType() {
         return type;
+    }
+
+    @Override
+    public Collection<String> getEntries() {
+        return entries;
+    }
+
+    @Override
+    public void addEntry(String entry) {
+        entries.add(entry);
     }
     
     

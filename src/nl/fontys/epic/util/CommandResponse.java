@@ -22,6 +22,8 @@
 
 package nl.fontys.epic.util;
 
+import java.util.Collection;
+
 /**
  * Response of a single command chain
  * 
@@ -53,6 +55,19 @@ public interface CommandResponse {
      */
     ResponseType getType();
     
+    /**
+     * 
+     * 
+     * @return 
+     */
+    Collection<String> getEntries();
+    
+    /**
+     * 
+     * 
+     * @param entry 
+     */
+    void addEntry(String entry);
     
     /**
      * Type enumeration for command responds
