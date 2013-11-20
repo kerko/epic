@@ -19,12 +19,14 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package nl.fontys.epic.commands;
 
 import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.Creature;
+import nl.fontys.epic.core.Inventory;
+import nl.fontys.epic.core.Item;
 import nl.fontys.epic.core.Player;
+import nl.fontys.epic.core.Room;
 import nl.fontys.epic.util.Command;
 import nl.fontys.epic.util.CommandException;
 import nl.fontys.epic.util.CommandResponse;
@@ -41,34 +43,61 @@ public class AttackCommand implements Command {
 
     @Override
     public CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException {
-        ResourceManager manager =  SharedResourceManager.getInstance(adventure.getName());
-        if(args.length==0){
+        ResourceManager manager = SharedResourceManager.getInstance(adventure.getName());
+        if (args.length == 0) {
             throw new CommandException("You have to select a Target");
         }
-         Creature creature = manager.get(args[0], Creature.class);
-         if(creature == null){
-             throw new CommandException("You have to select a Creature");
-         }
+        Creature creature = manager.get(args[0], Creature.class);
+        if (creature == null) {
+            throw new CommandException("You have to select a Creature");
+        }
         Player player = adventure.getPlayer();
         int creatureHealth = creature.getLife();
         int playerHealth = creature.getLife();
-        
-        if(attack(player,creature)){
-            return new SimpleCommandResponse("Creature died,",ResponseType.INFO);
+
+        if (attack(player, creature)) {
+            return this.processDeath(creature, adventure);           
         }
-        if(attack(creature,player)){
-            return new SimpleCommandResponse("Player died.", ResponseType.INFO);
+        if (attack(creature, player)) {
+            return this.processDeath(player, adventure);
         }
-       
-        
-        return new SimpleCommandResponse("You hit "+ creature.getName() +"for "+ (creatureHealth-creature.getLife()) +". You took"+(playerHealth-player.getLife())+"Damage from"+creature.getName()+".",ResponseType.INFO);
-        
+
+        return new SimpleCommandResponse("You hit " + creature.getName() + "for " + (creatureHealth - creature.getLife())
+                + ". You took" + (playerHealth - player.getLife()) + 
+                "Damage from" + creature.getName() + ".", ResponseType.INFO);
+
     }
-    
-    private boolean attack(Creature cr1,Creature cr2){
-         int damage = cr1.getPower();
-         cr2.damage(damage);
-         return cr2.isDead();
+
+    private boolean attack(Creature cr1, Creature cr2) {
+        int damage = cr1.getPower();
+        cr2.damage(damage);
+        return cr2.isDead();
     }
-    
+
+    private SimpleCommandResponse processDeath(Creature cr, TextAdventure adventure) {
+        SimpleCommandResponse response = new SimpleCommandResponse(cr.getName() + " died,", ResponseType.INFO);
+        response = drop(cr, adventure, response);
+        cr.kill();
+        return response;
+    }
+
+    private SimpleCommandResponse drop(Creature cr, TextAdventure adventure, SimpleCommandResponse response) {
+        Room room = adventure.getCurrentRoom();
+
+        Inventory items = cr.getInventory();
+        if (!items.isEmpty()) {
+
+            Inventory roomInventory = room.getItems(cr.getPosition().x, cr.getPosition().y);
+            response.addEntry(cr.getName() + "dropped:");
+            for (Item item : items.getItems()) {
+                roomInventory.add(item);
+                response.addEntry(item.getName());
+
+            }
+
+        }
+        return response;
+
+    }
+
 }
