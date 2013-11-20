@@ -80,6 +80,13 @@ public interface Inventory {
      * 
      * @return 
      */
+    boolean isEmpty();
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
     Collection<Item> getItems();
     
     
