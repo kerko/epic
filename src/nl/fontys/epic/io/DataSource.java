@@ -35,6 +35,15 @@ public interface DataSource {
      * 
      * @return 
      */
-    public NodeList parse();
-
+    NodeList parse();
+    
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    String getPath();
+    
+    
 }

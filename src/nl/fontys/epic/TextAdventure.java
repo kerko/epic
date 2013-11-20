@@ -22,6 +22,7 @@
 
 package nl.fontys.epic;
 
+import java.util.Collection;
 import nl.fontys.epic.commands.AttackCommand;
 import nl.fontys.epic.commands.DropCommand;
 import nl.fontys.epic.commands.GoCommand;
@@ -30,12 +31,15 @@ import nl.fontys.epic.commands.UseCommand;
 import nl.fontys.epic.core.AdventureListener;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Room;
+import nl.fontys.epic.io.DataSource;
 import nl.fontys.epic.util.Command;
 import nl.fontys.epic.util.CommandHandler;
 import nl.fontys.epic.util.CommandResponse;
 import nl.fontys.epic.util.Observer;
 import nl.fontys.epic.util.SimpleCommandHandler;
 import nl.fontys.epic.util.SimpleObserver;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -45,8 +49,11 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
     
     private final CommandHandler commandHandler;
     
-    public TextAdventure() {
+    private DataSource source;
+    
+    public TextAdventure(DataSource source) {
         commandHandler = new SimpleCommandHandler();
+        this.source = source;
         initDefaults();
     }
 
@@ -64,8 +71,27 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
         return null;
     }
     
+    public Collection<Room> getRooms() {
+        // TODO
+        return null;
+    }
+    
     public String getName() {
-        return "";
+        return source.getPath();
+    }
+    
+    public void start() {
+        
+        NodeList list = source.parse();
+        
+        for (int i = 0; i < list.getLength(); ++i) {
+            
+            Node node = list.item(i);
+            
+            // TODO
+            // Check for content            
+            // Create factories
+        }
     }
     
     public void command(String command) {
