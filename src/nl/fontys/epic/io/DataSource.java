@@ -35,7 +35,7 @@ public interface DataSource {
      * 
      * @return 
      */
-    NodeList parse();
+    NodeList parse() throws DataSourceException;
     
     
     /**

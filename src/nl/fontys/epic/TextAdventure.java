@@ -32,6 +32,7 @@ import nl.fontys.epic.core.AdventureListener;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Room;
 import nl.fontys.epic.io.DataSource;
+import nl.fontys.epic.io.DataSourceException;
 import nl.fontys.epic.util.Command;
 import nl.fontys.epic.util.CommandHandler;
 import nl.fontys.epic.util.CommandResponse;
@@ -80,7 +81,11 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
         return source.getPath();
     }
     
-    public void start() {
+    public void start() throws DataSourceException {
+        
+        if (source == null) {
+            throw new DataSourceException("No data source defined.");
+        }
         
         NodeList list = source.parse();
         

@@ -20,37 +20,28 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.demo;
-
-import java.io.IOException;
-import nl.fontys.epic.TextAdventure;
-import nl.fontys.epic.io.DataSourceException;
+package nl.fontys.epic.io;
 
 /**
- * Simple demo game in on order to display the text adventure.
+ * Is thrown when something is wrong within a data source
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public class DemoGame {
-    
-    public static void main(String[] args) throws DataSourceException {
-        // TODO: Add datasource (XML format)
-        TextAdventure adventure = new TextAdventure(null);
-        ConsoleInput scanner = new ConsoleInput();
-        ConsoleOutput output = new ConsoleOutput();
-        adventure.addListener(new OutputAdapter(output));
-        adventure.start();
-        
-        while (adventure.isRunning()) {
-            try {
-                String command = scanner.read();
-                adventure.command(command);
-            } catch (IOException ex) {
-                output.error(ex.getMessage());
-            }
-        }
-        
+public class DataSourceException extends Exception {
+
+    public DataSourceException(String message) {
+        super(message);
     }
+
+    public DataSourceException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public DataSourceException(Throwable cause) {
+        super(cause);
+    }
+    
+    
 }
