@@ -111,4 +111,8 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
         registerCommand("open", new OpenCommand());
         registerCommand("use", new UseCommand());
     }
+
+    public boolean isRunning() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
