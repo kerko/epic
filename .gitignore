@@ -9,6 +9,5 @@
 
 *~
 ~*
-/epic/nbproject/private/
-/build/
-nbproject/private/private.xml
+build/
+nbproject/private/*
