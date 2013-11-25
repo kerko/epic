@@ -20,64 +20,29 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.util;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+package nl.fontys.epic.demo;
 
 /**
- * Simple implementation of {@see CommandResponse}
+ * Provides simple output
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public class SimpleCommandResponse implements CommandResponse {
+public interface Output {
     
-    private long timestamp;
+    /**
+     * Outputs a text
+     * 
+     * @param text text to output
+     */
+    void out(String text);
     
-    private String message;
-    
-    private ResponseType type;
-    
-    private List<String> entries;
-
-    public SimpleCommandResponse(String message, ResponseType type) {
-        this.timestamp = System.currentTimeMillis();
-        this.message = message;
-        entries = new ArrayList<>();
-        this.type = type;
-    }
-    
-    public SimpleCommandResponse(String message) {
-        this(message, ResponseType.INFO);
-    }
-
-    @Override
-    public String getMessage() {
-        return message;
-    }
-
-    @Override
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    @Override
-    public ResponseType getType() {
-        return type;
-    }
-
-    @Override
-    public Collection<String> getEntries() {
-        return entries;
-    }
-
-    @Override
-    public void addEntry(String entry) {
-        entries.add(entry);
-    }
-    
+    /**
+     * Shows an error message
+     * 
+     * @param text error text
+     */
+    void error(String text);
     
 }

@@ -22,6 +22,8 @@
 
 package nl.fontys.epic.core;
 
+import nl.fontys.epic.util.CommandResponse;
+
 /**
  *
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
@@ -33,5 +35,5 @@ public interface AdventureListener {
      * 
      * @param event 
      */
-    void onAction(AdventureEvent event);
+    void onAction(CommandResponse event);
 }

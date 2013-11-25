@@ -9,6 +9,8 @@
 
 *~
 ~*
+
 *.swp
-/epic/nbproject/private/
-/build/
+build/
+nbproject/private/*
+/dist/

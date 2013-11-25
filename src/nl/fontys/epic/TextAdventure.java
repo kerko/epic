@@ -22,17 +22,25 @@
 
 package nl.fontys.epic;
 
-import nl.fontys.epic.core.AdventureEvent;
+import java.util.Collection;
+import nl.fontys.epic.commands.AttackCommand;
+import nl.fontys.epic.commands.DropCommand;
+import nl.fontys.epic.commands.GoCommand;
+import nl.fontys.epic.commands.OpenCommand;
+import nl.fontys.epic.commands.UseCommand;
 import nl.fontys.epic.core.AdventureListener;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Room;
-import nl.fontys.epic.util.AdventureEventAdapter;
+import nl.fontys.epic.io.DataSource;
+import nl.fontys.epic.io.DataSourceException;
 import nl.fontys.epic.util.Command;
 import nl.fontys.epic.util.CommandHandler;
 import nl.fontys.epic.util.CommandResponse;
 import nl.fontys.epic.util.Observer;
 import nl.fontys.epic.util.SimpleCommandHandler;
 import nl.fontys.epic.util.SimpleObserver;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -42,8 +50,12 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
     
     private final CommandHandler commandHandler;
     
-    public TextAdventure() {
+    private DataSource source;
+    
+    public TextAdventure(DataSource source) {
         commandHandler = new SimpleCommandHandler();
+        this.source = source;
+        initDefaults();
     }
 
     public void registerCommand(String identifier, Command command) {
@@ -60,13 +72,52 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
         return null;
     }
     
+    public Collection<Room> getRooms() {
+        // TODO
+        return null;
+    }
+    
+    public String getName() {
+        return source.getPath();
+    }
+    
+    public void start() throws DataSourceException {
+        
+        if (source == null) {
+            throw new DataSourceException("No data source defined.");
+        }
+        
+        NodeList list = source.parse();
+        
+        for (int i = 0; i < list.getLength(); ++i) {
+            
+            Node node = list.item(i);
+            
+            // TODO
+            // Check for content            
+            // Create factories
+        }
+    }
+    
     public void command(String command) {
         
          CommandResponse response = commandHandler.handle(command, this);
          
          for (AdventureListener l : getListeners()) {
-             AdventureEvent event = new AdventureEventAdapter(response);
-             l.onAction(event);
+             l.onAction(response);
          }
+    }
+    
+    
+    private void initDefaults() {
+        registerCommand("attack", new AttackCommand());
+        registerCommand("drop", new DropCommand());
+        registerCommand("go", new GoCommand());
+        registerCommand("open", new OpenCommand());
+        registerCommand("use", new UseCommand());
+    }
+
+    public boolean isRunning() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

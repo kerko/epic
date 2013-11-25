@@ -20,63 +20,27 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.util;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+package nl.fontys.epic.io;
 
 /**
- * Simple implementation of {@see CommandResponse}
+ * Is thrown when something is wrong within a data source
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public class SimpleCommandResponse implements CommandResponse {
-    
-    private long timestamp;
-    
-    private String message;
-    
-    private ResponseType type;
-    
-    private List<String> entries;
+public class DataSourceException extends Exception {
 
-    public SimpleCommandResponse(String message, ResponseType type) {
-        this.timestamp = System.currentTimeMillis();
-        this.message = message;
-        entries = new ArrayList<>();
-        this.type = type;
-    }
-    
-    public SimpleCommandResponse(String message) {
-        this(message, ResponseType.INFO);
+    public DataSourceException(String message) {
+        super(message);
     }
 
-    @Override
-    public String getMessage() {
-        return message;
+    public DataSourceException(String message, Throwable cause) {
+        super(message, cause);
     }
 
-    @Override
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    @Override
-    public ResponseType getType() {
-        return type;
-    }
-
-    @Override
-    public Collection<String> getEntries() {
-        return entries;
-    }
-
-    @Override
-    public void addEntry(String entry) {
-        entries.add(entry);
+    public DataSourceException(Throwable cause) {
+        super(cause);
     }
     
     

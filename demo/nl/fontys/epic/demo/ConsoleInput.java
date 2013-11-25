@@ -20,64 +20,24 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.util;
+package nl.fontys.epic.demo;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
- * Simple implementation of {@see CommandResponse}
+ * Scans the users input.
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public class SimpleCommandResponse implements CommandResponse {
+public class ConsoleInput implements Input {
     
-    private long timestamp;
-    
-    private String message;
-    
-    private ResponseType type;
-    
-    private List<String> entries;
-
-    public SimpleCommandResponse(String message, ResponseType type) {
-        this.timestamp = System.currentTimeMillis();
-        this.message = message;
-        entries = new ArrayList<>();
-        this.type = type;
-    }
-    
-    public SimpleCommandResponse(String message) {
-        this(message, ResponseType.INFO);
-    }
-
     @Override
-    public String getMessage() {
-        return message;
+    public String read() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        return reader.readLine();
     }
-
-    @Override
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    @Override
-    public ResponseType getType() {
-        return type;
-    }
-
-    @Override
-    public Collection<String> getEntries() {
-        return entries;
-    }
-
-    @Override
-    public void addEntry(String entry) {
-        entries.add(entry);
-    }
-    
-    
 }

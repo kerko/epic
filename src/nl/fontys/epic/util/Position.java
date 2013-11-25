@@ -22,62 +22,14 @@
 
 package nl.fontys.epic.util;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 /**
- * Simple implementation of {@see CommandResponse}
+ * Represents a position in a room
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public class SimpleCommandResponse implements CommandResponse {
+public class Position {
     
-    private long timestamp;
-    
-    private String message;
-    
-    private ResponseType type;
-    
-    private List<String> entries;
-
-    public SimpleCommandResponse(String message, ResponseType type) {
-        this.timestamp = System.currentTimeMillis();
-        this.message = message;
-        entries = new ArrayList<>();
-        this.type = type;
-    }
-    
-    public SimpleCommandResponse(String message) {
-        this(message, ResponseType.INFO);
-    }
-
-    @Override
-    public String getMessage() {
-        return message;
-    }
-
-    @Override
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    @Override
-    public ResponseType getType() {
-        return type;
-    }
-
-    @Override
-    public Collection<String> getEntries() {
-        return entries;
-    }
-
-    @Override
-    public void addEntry(String entry) {
-        entries.add(entry);
-    }
-    
-    
+    public int x, y;
 }
