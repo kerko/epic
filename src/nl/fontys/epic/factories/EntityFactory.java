@@ -20,40 +20,25 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core;
+package nl.fontys.epic.factories;
+
+import org.w3c.dom.Node;
 
 /**
- *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * Factory to create entities from DOM nodes
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public interface Equip {
-
+public interface EntityFactory<Type> {
+    
     /**
+     * Creates a new object of the given type from a DOM node. 
      * 
-     * 
-     * @param item 
+     * @param node node to create object from
+     * @return new object
+     * @throws FactoryException is thrown when information in the node are missing
      */
-    void add(Item item,EquipType type);
-
-    /**
-     * 
-     * 
-     * @param item 
-     */
-    void remove(Item item);
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    int getLifeBonus();
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    Stats getStats();
-
+    Type create(Node node) throws FactoryException;
 }

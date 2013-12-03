@@ -19,10 +19,12 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package nl.fontys.epic;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import nl.fontys.epic.commands.AttackCommand;
 import nl.fontys.epic.commands.DropCommand;
 import nl.fontys.epic.commands.GoCommand;
@@ -36,7 +38,11 @@ import nl.fontys.epic.io.DataSourceException;
 import nl.fontys.epic.util.Command;
 import nl.fontys.epic.util.CommandHandler;
 import nl.fontys.epic.util.CommandResponse;
+import nl.fontys.epic.util.DeferredEntityLoader;
+import nl.fontys.epic.util.DeferredStorage;
 import nl.fontys.epic.util.Observer;
+import nl.fontys.epic.util.ResourceManager;
+import nl.fontys.epic.util.SharedResourceManager;
 import nl.fontys.epic.util.SimpleCommandHandler;
 import nl.fontys.epic.util.SimpleObserver;
 import org.w3c.dom.Node;
@@ -47,11 +53,13 @@ import org.w3c.dom.NodeList;
  * @author Jan
  */
 public class TextAdventure extends SimpleObserver<AdventureListener> implements Observer<AdventureListener> {
-    
+
     private final CommandHandler commandHandler;
-    
+    private boolean started;
     private DataSource source;
-    
+    private Player player;
+    private HashMap<String, Room> rooms;
+
     public TextAdventure(DataSource source) {
         commandHandler = new SimpleCommandHandler();
         this.source = source;
@@ -61,54 +69,66 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
     public void registerCommand(String identifier, Command command) {
         commandHandler.register(identifier, command);
     }
-    
+
     public Player getPlayer() {
-        // TODO
-        return null;
+        return player;
     }
-    
+
     public Room getCurrentRoom() {
-        // TODO
-        return null;
+        return player.getRoom();
     }
-    
+
     public Collection<Room> getRooms() {
-        // TODO
-        return null;
+        return rooms.values();
     }
-    
+
+    public Room getRoom(String ID) {
+        return rooms.get(ID);
+    }
+
     public String getName() {
         return source.getPath();
     }
-    
+
     public void start() throws DataSourceException {
         
+        started = true;
+        ResourceManager resourceManager = SharedResourceManager.getInstance(getName());
+        DeferredStorage storage = DeferredStorage.getInstance();
+        DeferredEntityLoader entityLoader = new DeferredEntityLoader(resourceManager, storage);
+
         if (source == null) {
             throw new DataSourceException("No data source defined.");
         }
-        
+
         NodeList list = source.parse();
-        
+
         for (int i = 0; i < list.getLength(); ++i) {
-            
+
             Node node = list.item(i);
-            
+
             // TODO
             // Check for content            
             // Create factories
         }
-    }
-    
-    public void command(String command) {
         
-         CommandResponse response = commandHandler.handle(command, this);
-         
-         for (AdventureListener l : getListeners()) {
-             l.onAction(response);
-         }
+        // Fill all entities with data
+        try {
+            entityLoader.load(this);
+        } catch (DeferredEntityLoader.LoadingException ex) {
+            throw new DataSourceException(ex);
+        }
     }
-    
-    
+
+    public void command(String command) {
+
+        CommandResponse response = commandHandler.handle(command, this);
+
+        for (AdventureListener l : getListeners()) {
+            l.onAction(response);
+        }
+    }
+
     private void initDefaults() {
         registerCommand("attack", new AttackCommand());
         registerCommand("drop", new DropCommand());
@@ -118,6 +138,6 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
     }
 
     public boolean isRunning() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return started;
     }
 }

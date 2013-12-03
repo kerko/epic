@@ -20,40 +20,28 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core;
+package nl.fontys.epic.factories;
 
 /**
- *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * Is thrown when a factory is not able to create an object
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public interface Equip {
+public class FactoryException extends Exception {
 
-    /**
-     * 
-     * 
-     * @param item 
-     */
-    void add(Item item,EquipType type);
+    public FactoryException(String message) {
+        super(message);
+    }
 
-    /**
-     * 
-     * 
-     * @param item 
-     */
-    void remove(Item item);
+    public FactoryException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-    /**
-     * 
-     * 
-     * @return 
-     */
-    int getLifeBonus();
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    Stats getStats();
-
+    public FactoryException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
+    
+    
 }

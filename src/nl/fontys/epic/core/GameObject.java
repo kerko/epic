@@ -22,6 +22,7 @@
 
 package nl.fontys.epic.core;
 
+import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.util.Position;
 
 /**
@@ -59,5 +60,7 @@ public interface GameObject extends IDProvider {
      * @return 
      */
     boolean isInfrontOf(GameObject object);
+    
+    TextAdventure getAdventure();
 
 }

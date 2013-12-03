@@ -69,7 +69,7 @@ public interface Room extends IDProvider {
      * @param x
      * @param y 
      */
-    void moveObject(GameObject object, int x, int y);
+    void moveObject(GameObject object, int x, int y) throws RoomException;
     
     /**
      * 
@@ -79,5 +79,40 @@ public interface Room extends IDProvider {
      * @return 
      */
     boolean contains(int x, int y);
+    
+    /**
+     * 
+     * 
+     * @param object 
+     */
+    void addObject(GameObject object);
+    
+    /**
+     * 
+     * 
+     * @param x
+     * @param y 
+     */
+    void removeObject(int x, int y);
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    int getWidth();
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    int getHeight();
+    
+    /**
+     * 
+     * @return 
+     */
+    String getWelcomeMessage();
 
 }

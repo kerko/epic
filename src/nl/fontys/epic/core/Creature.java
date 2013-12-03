@@ -35,8 +35,9 @@ public interface Creature extends GameObject {
      * 
      * 
      * @param direction 
+     * @throws nl.fontys.epic.core.RoomException 
      */
-    void move(Direction direction);
+    void move(Direction direction) throws RoomException;
     
     
     /**
@@ -66,21 +67,16 @@ public interface Creature extends GameObject {
      * 
      * @return 
      */
-    int getPower();
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    int getDefense();
-
-    /**
+    Stats getStats();
+    
+        /**
      * 
      * 
      * @return 
      */
     int getLife();
+     int getMaxLife();
+    void addlife(int ammount);
 
     /**
      * 

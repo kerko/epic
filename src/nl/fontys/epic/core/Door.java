@@ -19,41 +19,16 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package nl.fontys.epic.core;
 
 /**
+ * A one-way door to another room, magic!
  *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public interface Equip {
-
-    /**
-     * 
-     * 
-     * @param item 
-     */
-    void add(Item item,EquipType type);
-
-    /**
-     * 
-     * 
-     * @param item 
-     */
-    void remove(Item item);
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    int getLifeBonus();
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    Stats getStats();
-
+public interface Door extends GameObject {
+    
+    String getTargetId();
 }
