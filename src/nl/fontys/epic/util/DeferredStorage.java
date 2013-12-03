@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import nl.fontys.epic.core.IDProvider;
 
 /**
  * Stores entities to load them later on
@@ -34,21 +35,21 @@ import java.util.Objects;
  * @since 1.0
  * @version 1.0
  */
-public class DeferredEntityStorage {
+public class DeferredStorage {
 
-    public static enum EntityType {
+    public static enum StorageType {
 
         CREATURE,
         ITEM
     }
     
-    public static class DeferredData {
+    public static class StorageData {
              
         public String id;        
-        public EntityType type;
+        public StorageType type;
         public Position pos;
         
-        public DeferredData(String id, EntityType type, int x, int y) {
+        public StorageData(String id, StorageType type, int x, int y) {
             this.id = id;
             this.type = type;
             this.pos = new Position(x, y);
@@ -71,45 +72,42 @@ public class DeferredEntityStorage {
             if (getClass() != obj.getClass()) {
                 return false;
             }
-            final DeferredData other = (DeferredData) obj;
+            final StorageData other = (StorageData) obj;
             if (!Objects.equals(this.id, other.id)) {
                 return false;
             }
             if (this.type != other.type) {
                 return false;
             }
-            if (!Objects.equals(this.pos, other.pos)) {
-                return false;
-            }
-            return true;
+            return Objects.equals(this.pos, other.pos);
         }
         
         
     }
 
-    private static final DeferredEntityStorage instance;
+    private static final DeferredStorage instance;
     
-    private final Map<String, List<DeferredData> > data;
+    private final Map<String, List<StorageData> > data;
 
     static {
-        instance = new DeferredEntityStorage();
+        instance = new DeferredStorage();
     }
 
-    private DeferredEntityStorage() {
+    private DeferredStorage() {
         data = new HashMap< >();
     }
 
-    public static DeferredEntityStorage getInstance() {
+    public static DeferredStorage getInstance() {
         return instance;
     }
 
-    public void add(String parent, String id, EntityType type, int x, int y) {
-        DeferredData element = new DeferredData(id, type, x, y);        
-        List<DeferredData> dataList = data.get(parent);
+    public void add(IDProvider parent, String id, StorageType type, int x, int y) {
+        StorageData element = new StorageData(id, type, x, y);        
+        List<StorageData> dataList = data.get(parent);
         
         if (dataList == null) {
             dataList = new ArrayList< >();
-            data.put(parent, dataList);
+            data.put(parent.getID(), dataList);
         }        
         
         if (!dataList.contains(element)) {
@@ -117,21 +115,21 @@ public class DeferredEntityStorage {
         }
     }
 
-    public void add(String parent, String id, EntityType type) {
+    public void add(IDProvider parent, String id, StorageType type) {
         add(parent, id, type, -1, -1);
     }
     
-    public DeferredData fetch(String parent) {
-        List<DeferredData> list = data.get(parent);        
-        DeferredData element = list.remove(0);
+    public StorageData fetch(IDProvider parent) {
+        List<StorageData> list = data.get(parent.getID());        
+        StorageData element = list.remove(0);
         if (list.isEmpty()) {
-            data.remove(parent);
+            data.remove(parent.getID());
         }
         
         return element;
     }
     
-    public boolean hasNext(String parent) {
-        return data.get(parent) != null;
+    public boolean hasNext(IDProvider parent) {
+        return data.get(parent.getID()) != null;
     }
 }

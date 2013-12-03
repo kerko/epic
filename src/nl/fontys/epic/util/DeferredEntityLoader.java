@@ -23,6 +23,12 @@
 package nl.fontys.epic.util;
 
 import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.core.Creature;
+import nl.fontys.epic.core.Inventory;
+import nl.fontys.epic.core.Item;
+import nl.fontys.epic.core.Room;
+import nl.fontys.epic.util.DeferredStorage.StorageData;
+import nl.fontys.epic.util.DeferredStorage.StorageType;
 
 /**
  * Loaders deferred data into the entities
@@ -33,15 +39,46 @@ import nl.fontys.epic.TextAdventure;
  */
 public class DeferredEntityLoader {
     
+    private ResourceManager resourceManager;
+    
+    private DeferredStorage entityStorage;
+    
+    public DeferredEntityLoader(ResourceManager resourceManager, DeferredStorage entityStorage) {
+        this.resourceManager = resourceManager;
+        this.entityStorage = entityStorage;
+    }
+    
     public void load(TextAdventure adventure) throws LoadingException {
         
-        ResourceManager resourceManager = SharedResourceManager.getInstance(adventure.getName());
-        DeferredEntityStorage storage =   DeferredEntityStorage.getInstance();
-        
         // Fill up all rooms
-        //for (Room room : adventure.getRooms()) {
+        for (Room room : adventure.getRooms()) {
+            loadRoomData(room);            
+        }
+    }
+    
+    private void loadRoomData(Room room) throws LoadingException {
+        
+        while (entityStorage.hasNext(room)) {
+            StorageData data = entityStorage.fetch(room);
             
-       // }
+            // Creatures
+            if (data.type.equals(StorageType.CREATURE)) {
+                Creature creature = resourceManager.get(data.id, Creature.class);
+                
+                if (creature != null) {
+                    creature.setPosition(data.pos.x, data.pos.y);
+                } else {
+                    throw new LoadingException("No creature found with id=" + data.id + " in room with id=" + room.getID());
+                }
+            }
+            
+            // Items
+            if (data.type.equals(StorageType.ITEM)) {
+                Item item = resourceManager.get(data.id, Item.class);
+                Inventory items = room.getItems(data.pos.x, data.pos.y);
+                items.add(item);
+            }
+        }
     }
     
     public static class LoadingException extends Exception {
