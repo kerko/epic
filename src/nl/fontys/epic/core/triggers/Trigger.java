@@ -20,18 +20,15 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core;
+package nl.fontys.epic.core.triggers;
+
+import nl.fontys.epic.TextAdventure;
 
 /**
  *
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
  */
-public interface Player extends Creature {
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    Equip getEquip();
+public interface Trigger {
+    public void action(TextAdventure adventure, Triggerable source,Object[] attributes);
+    public String getName();
 }

@@ -20,18 +20,24 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core;
+package nl.fontys.epic.demo;
 
 /**
- *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * Console implementation of {@see Output}
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public interface Player extends Creature {
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    Equip getEquip();
+public class ConsoleOutput implements Output {
+    
+    @Override
+    public void out(String text) {
+        System.out.println(text);
+    }
+    
+    @Override
+    public void error(String text) {
+        System.err.println(text);
+    }
 }

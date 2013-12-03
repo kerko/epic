@@ -20,18 +20,24 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core;
+package nl.fontys.epic.demo;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
- *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * Scans the users input.
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public interface Player extends Creature {
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    Equip getEquip();
+public class ConsoleInput implements Input {
+    
+    @Override
+    public String read() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        return reader.readLine();
+    }
 }

@@ -20,18 +20,29 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core;
+package nl.fontys.epic.demo;
 
 /**
- *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * Provides simple output
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public interface Player extends Creature {
-
+public interface Output {
+    
     /**
+     * Outputs a text
      * 
-     * 
-     * @return 
+     * @param text text to output
      */
-    Equip getEquip();
+    void out(String text);
+    
+    /**
+     * Shows an error message
+     * 
+     * @param text error text
+     */
+    void error(String text);
+    
 }

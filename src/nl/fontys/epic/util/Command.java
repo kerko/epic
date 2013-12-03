@@ -1,3 +1,5 @@
+package nl.fontys.epic.util;
+
 /* The MIT License (MIT)
  * 
  * Copyright (c) 2013 Jan Kerkenhoff, Miguel Gonzalez
@@ -20,18 +22,22 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core;
+import nl.fontys.epic.TextAdventure;
 
 /**
- *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * Represents a single command which can be applied to a {@see CommandHandler}
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public interface Player extends Creature {
-
+public interface Command {
+    
     /**
+     * Handles the command in the {@see TextAdventure} context
      * 
-     * 
-     * @return 
+     * @param commandString
+     * @param adventure 
      */
-    Equip getEquip();
+    CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException;
 }

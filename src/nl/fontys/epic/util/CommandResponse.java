@@ -20,18 +20,60 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core;
+package nl.fontys.epic.util;
+
+import java.util.Collection;
 
 /**
- *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * Response of a single command chain
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public interface Player extends Creature {
-
+public interface CommandResponse {
+    
+    /**
+     * Returns the message
+     * 
+     * @return 
+     */
+    String getMessage();
+    
+    /**
+     * Returns the current timestamp
+     * 
+     * @return 
+     */
+    long getTimestamp();
+    
+    
+    /**
+     * Returns the type of the response
+     * 
+     * @return 
+     */
+    ResponseType getType();
+    
     /**
      * 
      * 
      * @return 
      */
-    Equip getEquip();
+    Collection<String> getEntries();
+    
+    /**
+     * 
+     * 
+     * @param entry 
+     */
+    void addEntry(String entry);
+    
+    /**
+     * Type enumeration for command responds
+     */
+    public static enum ResponseType {
+        
+        INFO, ERROR;
+    }
 }

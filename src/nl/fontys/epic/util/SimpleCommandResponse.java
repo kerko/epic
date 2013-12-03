@@ -20,24 +20,64 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.io;
+package nl.fontys.epic.util;
 
-import org.w3c.dom.NodeList;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
- *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * Simple implementation of {@see CommandResponse}
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public class XMLSource implements DataSource {
+public class SimpleCommandResponse implements CommandResponse {
+    
+    private long timestamp;
+    
+    private String message;
+    
+    private ResponseType type;
+    
+    private List<String> entries;
 
-    @Override
-    public NodeList parse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public SimpleCommandResponse(String message, ResponseType type) {
+        this.timestamp = System.currentTimeMillis();
+        this.message = message;
+        entries = new ArrayList<>();
+        this.type = type;
+    }
+    
+    public SimpleCommandResponse(String message) {
+        this(message, ResponseType.INFO);
     }
 
     @Override
-    public String getPath() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getMessage() {
+        return message;
     }
+
+    @Override
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    @Override
+    public ResponseType getType() {
+        return type;
+    }
+
+    @Override
+    public Collection<String> getEntries() {
+        return entries;
+    }
+
+    @Override
+    public void addEntry(String entry) {
+        entries.add(entry);
+    }
+    
     
 }

@@ -20,18 +20,24 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core;
+package nl.fontys.epic.util;
 
 /**
- *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * Is thrown when a command is corrupt or an error occurred
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public interface Player extends Creature {
+public class CommandException extends Exception {
 
-    /**
-     * 
-     * 
-     * @return 
-     */
-    Equip getEquip();
+    public CommandException(String message) {
+        super(message);
+    }
+
+    public CommandException(Throwable cause) {
+        super(cause);
+    }
+    
+    
 }

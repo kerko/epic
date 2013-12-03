@@ -20,18 +20,12 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core;
+package nl.fontys.epic.core.triggers;
 
 /**
  *
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
  */
-public interface Player extends Creature {
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    Equip getEquip();
+public class PowerTrigger {
+    
 }

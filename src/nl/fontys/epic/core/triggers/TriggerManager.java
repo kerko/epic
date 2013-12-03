@@ -20,18 +20,14 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core;
+package nl.fontys.epic.core.triggers;
 
 /**
  *
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
  */
-public interface Player extends Creature {
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    Equip getEquip();
+public interface TriggerManager {
+    <Type extends Trigger> void register(Class<Type> triggerClass);
+    <Type extends Trigger> void unregister(Class<Type> triggerClass);
+    void handle(Triggerable t) throws TriggerException;
 }

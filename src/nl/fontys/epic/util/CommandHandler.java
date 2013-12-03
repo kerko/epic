@@ -1,3 +1,4 @@
+package nl.fontys.epic.util;
 /* The MIT License (MIT)
  * 
  * Copyright (c) 2013 Jan Kerkenhoff, Miguel Gonzalez
@@ -20,18 +21,45 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core;
+import nl.fontys.epic.TextAdventure;
 
 /**
- *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * Handles {@see Command} objects and delegates commands to them.
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public interface Player extends Creature {
-
+public interface CommandHandler {
+    
     /**
+     * Registers a new command
      * 
+     * @param identifier command identifier
+     * @param command command to add
+     */
+    void register(String identifier, Command command);   
+    
+    /**
+     * Handles all commands
+     * 
+     * @param commandString
+     * @param adventure 
+     * @return response
+     */
+    CommandResponse handle(String commandString, TextAdventure adventure);
+    
+    /**
+     * Determines the amount of commands in the handler
      * 
      * @return 
      */
-    Equip getEquip();
+    int size();
+    
+    /**
+     * Determines if the handler is currently empty
+     * 
+     * @return 
+     */
+    boolean isEmpty();
 }

@@ -20,18 +20,41 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core;
+package nl.fontys.epic.demo;
+
+import nl.fontys.epic.core.AdventureListener;
+import nl.fontys.epic.util.CommandResponse;
+import nl.fontys.epic.util.CommandResponse.ResponseType;
 
 /**
- *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * Adapts output for a text adventure
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public interface Player extends Creature {
+public class OutputAdapter implements AdventureListener {
+    
+    private final Output output;
+    
+    public OutputAdapter(Output output) {
+        this.output = output;
+    }
 
-    /**
-     * 
-     * 
-     * @return 
-     */
-    Equip getEquip();
+    @Override
+    public void onAction(CommandResponse event) {
+        ResponseType type = event.getType();
+        String message = event.getMessage();
+        
+        if (type.equals(ResponseType.ERROR)) {
+            output.error(message);
+        } else {
+            output.out(message);
+        }
+        
+        for (String line : event.getEntries()) {
+            output.out(line);
+        }
+    }
+    
 }

@@ -20,18 +20,28 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core;
+package nl.fontys.epic.io;
 
 /**
- *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * Is thrown when something is wrong within a data source
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public interface Player extends Creature {
+public class DataSourceException extends Exception {
 
-    /**
-     * 
-     * 
-     * @return 
-     */
-    Equip getEquip();
+    public DataSourceException(String message) {
+        super(message);
+    }
+
+    public DataSourceException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public DataSourceException(Throwable cause) {
+        super(cause);
+    }
+    
+    
 }
