@@ -66,16 +66,9 @@ public interface Creature extends GameObject {
      * 
      * @return 
      */
-    int getPower();
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    int getDefense();
-
-    /**
+    Stats getStats();
+    
+        /**
      * 
      * 
      * @return 

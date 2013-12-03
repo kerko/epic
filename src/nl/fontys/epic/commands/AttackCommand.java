@@ -69,7 +69,7 @@ public class AttackCommand implements Command {
     }
 
     private boolean attack(Creature cr1, Creature cr2) {
-        int damage = cr1.getPower();
+        int damage = cr1.getStats().getPower();
         cr2.damage(damage);
         return cr2.isDead();
     }

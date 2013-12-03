@@ -48,4 +48,6 @@ public interface Item {
      * @return 
      */
     String getName();
+    
+    Stats getStats();
 }

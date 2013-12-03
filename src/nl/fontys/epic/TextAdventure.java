@@ -21,8 +21,6 @@
  */
 package nl.fontys.epic;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import nl.fontys.epic.commands.AttackCommand;
@@ -51,7 +49,7 @@ import org.w3c.dom.NodeList;
 public class TextAdventure extends SimpleObserver<AdventureListener> implements Observer<AdventureListener> {
 
     private final CommandHandler commandHandler;
-
+    private boolean started;
     private DataSource source;
     private Player player;
     private HashMap<String, Room> rooms;
@@ -87,6 +85,7 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
     }
 
     public void start() throws DataSourceException {
+        started = true;
 
         if (source == null) {
             throw new DataSourceException("No data source defined.");
@@ -122,6 +121,6 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
     }
 
     public boolean isRunning() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return started;
     }
 }

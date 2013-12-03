@@ -79,5 +79,8 @@ public interface Room extends IDProvider {
      * @return 
      */
     boolean contains(int x, int y);
+    
+    void addObject(GameObject object, int x, int y);
+    void removeObject(GameObject object, int x, int y);
 
 }
