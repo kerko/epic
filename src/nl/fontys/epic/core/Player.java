@@ -34,4 +34,5 @@ public interface Player extends Creature {
      * @return 
      */
     Equip getEquip();
+   
 }
