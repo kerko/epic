@@ -22,6 +22,7 @@
 
 package nl.fontys.epic;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import nl.fontys.epic.commands.AttackCommand;
 import nl.fontys.epic.commands.DropCommand;
@@ -51,6 +52,9 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
     private final CommandHandler commandHandler;
     
     private DataSource source;
+    private Player player;
+    private ArrayList<Room> rooms;
+   
     
     public TextAdventure(DataSource source) {
         commandHandler = new SimpleCommandHandler();
@@ -63,18 +67,16 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
     }
     
     public Player getPlayer() {
-        // TODO
-        return null;
+        return player;
     }
     
     public Room getCurrentRoom() {
-        // TODO
-        return null;
+        return player.getRoom();
     }
     
-    public Collection<Room> getRooms() {
-        // TODO
-        return null;
+    
+    public Collection<Room> getRooms() { 
+        return rooms;
     }
     
     public String getName() {
