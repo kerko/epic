@@ -21,6 +21,7 @@
  */
 package nl.fontys.epic;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import nl.fontys.epic.commands.AttackCommand;
@@ -72,8 +73,8 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
         return player.getRoom();
     }
 
-    public Map<String, Room> getRooms() {
-        return rooms;
+    public Collection<Room> getRooms() {
+        return rooms.values();
     }
 
     public Room getRoom(String ID) {
