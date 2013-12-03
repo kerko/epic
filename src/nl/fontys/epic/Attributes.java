@@ -22,9 +22,45 @@
 package nl.fontys.epic;
 
 /**
- *
- * @author root
+ * Contains definitions
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
 public class Attributes {
     
+    /* TAGS */
+    
+    public static final String TAG_ADVENTURE = "adventure";
+    public static final String TAG_PLAYER = "player";
+    public static final String TAG_ITEM_EQUIP = "equip-item";
+    public static final String TAG_ITEM_CONSUM = "consum-item";
+    public static final String TAG_ITEM_CONTAINER = "container-item";
+    public static final String TAG_ITEM_COLLECT = "collect-item";
+    public static final String TAG_CREATURE = "creature";
+    public static final String TAG_ROOM = "room";
+    public static final String TAG_DOORS = "doors";
+    public static final String TAG_DOOR = "door";
+    public static final String TAG_CREATURES = "creatures";
+    public static final String TAG_ITEMS = "items";
+    public static final String TAG_ITEM = "item";
+    public static final String TAG_TEXT = "text";
+    
+    /* ATTRIBUTES */
+    
+    public static final String ATTR_ENTRY = "entry";
+    public static final String ATTR_STORY = "story";
+    public static final String ATTR_NAME = "name";
+    public static final String ATTR_LIFE = "life";
+    public static final String ATTR_LOCATION = "location";
+    public static final String ATTR_ID = "id";
+    public static final String ATTR_DESCRIPTION = "description";
+    public static final String ATTR_DAMAGE = "damage";
+    public static final String ATTR_TRIGGER = "trigger";
+    public static final String ATTR_OPEN = "open";
+    public static final String ATTR_TYPE = "type";
+    public static final String ATTR_SOURCE = "src";
+    public static final String ATTR_TARGET = "target";
+    public static final String ATTR_MESSAGE = "message";
 }
