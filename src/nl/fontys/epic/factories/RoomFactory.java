@@ -21,6 +21,7 @@
  */
 package nl.fontys.epic.factories;
 
+import nl.fontys.epic.Attributes;
 import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.Door;
 import nl.fontys.epic.core.Room;
@@ -54,8 +55,8 @@ public class RoomFactory implements EntityFactory<Room> {
 
         Room room = null;
 
-        String id = getValue(node, "id");
-        String name = getValue(node, "name");
+        String id = getValue(node, Attributes.ATTR_ID);
+        String name = getValue(node, Attributes.ATTR_NAME);
         validateId(id);
 
         appendDoorList(room, node);
@@ -104,7 +105,7 @@ public class RoomFactory implements EntityFactory<Room> {
         for (int i = 0; i < children.getLength(); ++i) {
             Node child = children.item(i);
 
-            if (child.getNodeName().equals("doors")) {
+            if (child.getNodeName().equals(Attributes.TAG_DOORS)) {
                 NodeList doors = child.getChildNodes();
                 appendDoors(room, doors);
             }

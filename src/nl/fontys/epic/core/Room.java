@@ -108,5 +108,11 @@ public interface Room extends IDProvider {
      * @return 
      */
     int getHeight();
+    
+    /**
+     * 
+     * @return 
+     */
+    String getWelcomeMessage();
 
 }
