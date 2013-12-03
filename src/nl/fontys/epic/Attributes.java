@@ -53,8 +53,9 @@ public class Attributes {
     public static final String ATTR_STORY = "story";
     public static final String ATTR_NAME = "name";
     public static final String ATTR_LIFE = "life";
-    public static final String ATTR_LOCATION = "location";
     public static final String ATTR_ID = "id";
+    public static final String ATTR_X = "x";
+    public static final String ATTR_Y = "y";
     public static final String ATTR_DESCRIPTION = "description";
     public static final String ATTR_DAMAGE = "damage";
     public static final String ATTR_TRIGGER = "trigger";

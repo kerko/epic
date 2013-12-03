@@ -25,6 +25,7 @@ import nl.fontys.epic.Attributes;
 import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.Door;
 import nl.fontys.epic.core.Room;
+import nl.fontys.epic.util.DeferredStorage;
 import nl.fontys.epic.util.ResourceManager;
 import nl.fontys.epic.util.SharedResourceManager;
 import org.w3c.dom.Element;
@@ -42,12 +43,14 @@ public class RoomFactory implements EntityFactory<Room> {
 
     private final TextAdventure adventure;
     
+    private DeferredStorage storage;    
     
     private final EntityFactory<Door> doorFactory;
 
     public RoomFactory(TextAdventure adventure, EntityFactory<Door> doorFactory) {
         this.adventure = adventure;
         this.doorFactory = doorFactory;
+        storage = DeferredStorage.getInstance();
     }
 
     @Override
@@ -60,7 +63,7 @@ public class RoomFactory implements EntityFactory<Room> {
         String message = getValue(node, Attributes.ATTR_MESSAGE);
         validateId(id);
 
-        appendDoorList(room, node);
+        appendChildren(room, node);
 
         return room;
     }
@@ -99,16 +102,23 @@ public class RoomFactory implements EntityFactory<Room> {
         }
     }
 
-    private void appendDoorList(Room room, Node node) throws FactoryException {
+    private void appendChildren(Room room, Node node) throws FactoryException {
 
         NodeList children = node.getChildNodes();
 
         for (int i = 0; i < children.getLength(); ++i) {
             Node child = children.item(i);
-
-            if (child.getNodeName().equals(Attributes.TAG_DOORS)) {
-                NodeList doors = child.getChildNodes();
-                appendDoors(room, doors);
+            NodeList subchildren = child.getChildNodes();
+            switch (child.getNodeName()) {
+                case Attributes.TAG_DOORS:                    
+                    appendDoors(room, subchildren);
+                    break;
+                case Attributes.TAG_CREATURES:
+                    appendEntities(room, subchildren, DeferredStorage.StorageType.CREATURE);
+                    break;
+                case Attributes.TAG_ITEMS:
+                    appendEntities(room, subchildren, DeferredStorage.StorageType.CREATURE);
+                    break;
             }
         }
     }
@@ -117,6 +127,20 @@ public class RoomFactory implements EntityFactory<Room> {
         for (int y = 0; y < doors.getLength(); ++y) {
             Door door = doorFactory.create(doors.item(y));
             room.addObject(door);
+        }
+    }
+    
+    private void appendEntities(Room room, NodeList creatures, DeferredStorage.StorageType type) throws FactoryException {
+        for (int c = 0; c < creatures.getLength(); ++c) {
+            Node creatureLink = creatures.item(c);
+            
+            String strX = getValue(creatureLink, Attributes.ATTR_X);
+            String strY = getValue(creatureLink, Attributes.ATTR_Y);
+            String id = getValue(creatureLink, Attributes.ATTR_ID);
+            int x = Integer.parseInt(strX);
+            int y = Integer.parseInt(strY);
+            
+            storage.add(room, id, type, x, y);
         }
     }
 }
