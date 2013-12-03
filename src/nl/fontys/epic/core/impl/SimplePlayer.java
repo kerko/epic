@@ -18,10 +18,13 @@ import nl.fontys.epic.util.Position;
  */
 public class SimplePlayer extends SimpleCreature implements Player{
     private Equip equip;
-  
-    public SimplePlayer(int life,int maxLife, String name, Inventory inv, Stats base, TextAdventure adventure, String currentRoomID, int posix, int posiy, String ID) {
-        super(life,maxLife, name, inv, base, adventure, currentRoomID, posix, posiy, ID);
+
+    public SimplePlayer(Equip equip, int life, int maxLife, String name, Inventory inv, Stats base, TextAdventure adventure, int posix, int posiy, String currentRoomID, String ID) {
+        super(life, maxLife, name, inv, base, adventure, posix, posiy, currentRoomID, ID);
+        this.equip = equip;
     }
+  
+   
 
     @Override
     public Equip getEquip() {

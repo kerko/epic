@@ -15,30 +15,23 @@ import nl.fontys.epic.util.Position;
  *
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
  */
-public class SimpleCreature implements Creature {
+public class SimpleCreature extends SimpleGameObject implements Creature {
 
     private int life;
     private int maxLife;
     private final String name;
-    private final String ID;
+
     private final Inventory inv;
-    private Position posi;
     private boolean dead;
     private final Stats base;
-    private final TextAdventure adventure;
-    private String currentRoomID;
 
-    public SimpleCreature(int life,int maxLife, String name, Inventory inv, Stats base, TextAdventure adventure, String currentRoomID, int posix, int posiy, String ID) {
+    public SimpleCreature(int life, int maxLife, String name,  Inventory inv, Stats base, TextAdventure adventure, int posix,int posiy, String currentRoomID, String ID) {
+        super(adventure, posix,posiy, currentRoomID, ID);
         this.life = life;
         this.maxLife = maxLife;
         this.name = name;
         this.inv = inv;
         this.base = base;
-        this.adventure = adventure;
-        this.currentRoomID = currentRoomID;
-        this.posi.x = posix;
-        this.posi.y = posiy;
-        this.ID = ID;
     }
 
     @Override
@@ -106,41 +99,6 @@ public class SimpleCreature implements Creature {
         return this.inv;
     }
 
-    @Override
-    public Position getPosition() {
-        return this.posi;
-    }
-
-    @Override
-    public Room getRoom() {
-        return adventure.getRoom(currentRoomID);
-    }
-
-    @Override
-    public void setPosition(int x, int y) {
-        this.posi.x = x;
-        this.posi.y = y;
-    }
-
-    @Override
-    public boolean isInfrontOf(GameObject object) {
-        Room otherRoom = object.getRoom();
-        if(otherRoom == this.getRoom()){
-            if(Math.abs(object.getPosition().y-this.posi.y) == 1 
-                    && Math.abs(object.getPosition().x-this.posi.x) == 1){
-                return true;
-            }
-                
-        }
-        return false;
-    }
-
-    @Override
-    public String getID() {
-        return this.ID;
-    }
-
-    
 
     @Override
     public int getMaxLife() {
