@@ -18,6 +18,7 @@ import nl.fontys.epic.util.Position;
 public class SimpleCreature implements Creature {
 
     private int life;
+    private int maxLife;
     private final String name;
     private final String ID;
     private final Inventory inv;
@@ -27,8 +28,9 @@ public class SimpleCreature implements Creature {
     private final TextAdventure adventure;
     private String currentRoomID;
 
-    public SimpleCreature(int life, String name, Inventory inv, Stats base, TextAdventure adventure, String currentRoomID, int posix, int posiy, String ID) {
+    public SimpleCreature(int life,int maxLife, String name, Inventory inv, Stats base, TextAdventure adventure, String currentRoomID, int posix, int posiy, String ID) {
         this.life = life;
+        this.maxLife = maxLife;
         this.name = name;
         this.inv = inv;
         this.base = base;
@@ -63,7 +65,7 @@ public class SimpleCreature implements Creature {
 
     @Override
     public void damage(int damage) {
-        life = life - damage;
+        life = life - (damage - getStats().getDefense()/3 );
         if (life <= 0) {
             this.kill();
         }
@@ -90,12 +92,8 @@ public class SimpleCreature implements Creature {
     }
 
     @Override
-    public Stats getStats() {
-        Stats current = base;
-        for (Item item : inv.getItems()) {
-            base.addStats(item.getStats());
-        }
-        return current;
+    public Stats getStats() {      
+        return base;
     }
 
     @Override
@@ -140,6 +138,21 @@ public class SimpleCreature implements Creature {
     @Override
     public String getID() {
         return this.ID;
+    }
+
+    
+
+    @Override
+    public int getMaxLife() {
+       return this.maxLife;
+    }
+
+    @Override
+    public void addlife(int ammount) {
+        this.life = getLife()+ammount;
+        if(life > getMaxLife()){
+            life = getMaxLife();
+        }
     }
 
 }

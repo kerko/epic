@@ -21,8 +21,11 @@
  */
 package nl.fontys.epic.commands;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.Player;
+import nl.fontys.epic.core.RoomException;
 import nl.fontys.epic.util.Command;
 import nl.fontys.epic.util.CommandException;
 import nl.fontys.epic.util.CommandResponse;
@@ -55,14 +58,13 @@ public class GoCommand implements Command {
         if (dir.equals(Direction.NONE)) {
             return new SimpleCommandResponse(direction + "? What is that? A direction?", ResponseType.ERROR);
         }
-        
-        player.move(dir);
-        
-        if (player.getPosition().equals(pos)) {
+        try {
+            player.move(dir);
+        } catch (RoomException ex) {
             return new SimpleCommandResponse("Can't move " + direction, ResponseType.ERROR);
-        } else {
-            return new SimpleCommandResponse("Moved " + direction, ResponseType.INFO);
         }
+         return new SimpleCommandResponse("Moved " + direction, ResponseType.INFO);
+        
     }
     
  }

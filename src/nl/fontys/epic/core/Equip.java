@@ -33,7 +33,7 @@ public interface Equip {
      * 
      * @param item 
      */
-    void add(Item item);
+    void add(Item item,EquipType type);
 
     /**
      * 
@@ -54,13 +54,6 @@ public interface Equip {
      * 
      * @return 
      */
-    int getPowerBonus();
-
-    /**
-     * 
-     * 
-     * @return 
-     */
-    int getDefenseBonus();
+    Stats getStats();
 
 }
