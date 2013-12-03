@@ -1,4 +1,3 @@
-
 package nl.fontys.epic.core.impl;
 
 import nl.fontys.epic.TextAdventure;
@@ -7,6 +6,7 @@ import nl.fontys.epic.core.GameObject;
 import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Item;
 import nl.fontys.epic.core.Room;
+import nl.fontys.epic.core.RoomException;
 import nl.fontys.epic.core.Stats;
 import nl.fontys.epic.util.Direction;
 import nl.fontys.epic.util.Position;
@@ -15,8 +15,8 @@ import nl.fontys.epic.util.Position;
  *
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
  */
-public class SimpleCreature implements Creature{
-    
+public class SimpleCreature implements Creature {
+
     private int life;
     private final String name;
     private final String ID;
@@ -27,7 +27,7 @@ public class SimpleCreature implements Creature{
     private final TextAdventure adventure;
     private String currentRoomID;
 
-    public SimpleCreature(int life, String name, Inventory inv, Stats base, TextAdventure adventure, String currentRoomID,int posix, int posiy,String ID) {
+    public SimpleCreature(int life, String name, Inventory inv, Stats base, TextAdventure adventure, String currentRoomID, int posix, int posiy, String ID) {
         this.life = life;
         this.name = name;
         this.inv = inv;
@@ -38,30 +38,45 @@ public class SimpleCreature implements Creature{
         this.posi.y = posiy;
         this.ID = ID;
     }
-    
-    
+
     @Override
-    public void move(Direction direction) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void move(Direction direction) throws RoomException {
+        Room room = this.getRoom();
+        
+        switch (direction) {
+            case NORTH:
+                room.moveObject(this, posi.x, posi.y++);
+                break;
+            case EAST:
+                room.moveObject(this, posi.x++, posi.y);
+                break;
+            case SOUTH:
+                room.moveObject(this, posi.x, posi.y--);
+                break;
+            case WEST:
+                room.moveObject(this, posi.x--, posi.y);
+                break;
+        }
+        
+
     }
 
     @Override
     public void damage(int damage) {
-        life = life -damage;
-        if(life <=0){
+        life = life - damage;
+        if (life <= 0) {
             this.kill();
         }
     }
 
     @Override
     public void kill() {
-       Room room = adventure.getRoom(currentRoomID);
-       Inventory inv =room.getItems(posi.x, posi.y);
-       inv.add(this.inv);
-       room.removeObject(this, posi.x, posi.y);
-       this.dead = true;
-       
-       
+        Room room = this.getRoom();
+        Inventory inventory = room.getItems(posi.x, posi.y);
+        inventory.add(this.inv);
+        room.removeObject(posi.x, posi.y);
+        this.dead = true;
+
     }
 
     @Override
@@ -95,7 +110,7 @@ public class SimpleCreature implements Creature{
 
     @Override
     public Position getPosition() {
-       return this.posi;
+        return this.posi;
     }
 
     @Override
@@ -105,13 +120,21 @@ public class SimpleCreature implements Creature{
 
     @Override
     public void setPosition(int x, int y) {
-       this.posi.x = x;
-       this.posi.y = y;
+        this.posi.x = x;
+        this.posi.y = y;
     }
 
     @Override
     public boolean isInfrontOf(GameObject object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Room otherRoom = object.getRoom();
+        if(otherRoom == this.getRoom()){
+            if(Math.abs(object.getPosition().y-this.posi.y) == 1 
+                    && Math.abs(object.getPosition().x-this.posi.x) == 1){
+                return true;
+            }
+                
+        }
+        return false;
     }
 
     @Override
@@ -119,6 +142,4 @@ public class SimpleCreature implements Creature{
         return this.ID;
     }
 
-   
-    
 }
