@@ -19,11 +19,12 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package nl.fontys.epic;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import nl.fontys.epic.commands.AttackCommand;
 import nl.fontys.epic.commands.DropCommand;
 import nl.fontys.epic.commands.GoCommand;
@@ -48,14 +49,13 @@ import org.w3c.dom.NodeList;
  * @author Jan
  */
 public class TextAdventure extends SimpleObserver<AdventureListener> implements Observer<AdventureListener> {
-    
+
     private final CommandHandler commandHandler;
-    
+
     private DataSource source;
     private Player player;
-    private ArrayList<Room> rooms;
-   
-    
+    private HashMap<String, Room> rooms;
+
     public TextAdventure(DataSource source) {
         commandHandler = new SimpleCommandHandler();
         this.source = source;
@@ -65,52 +65,54 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
     public void registerCommand(String identifier, Command command) {
         commandHandler.register(identifier, command);
     }
-    
+
     public Player getPlayer() {
         return player;
     }
-    
+
     public Room getCurrentRoom() {
         return player.getRoom();
     }
-    
-    
-    public Collection<Room> getRooms() { 
+
+    public Map<String, Room> getRooms() {
         return rooms;
     }
-    
+
+    public Room getRoom(String ID) {
+        return rooms.get(ID);
+    }
+
     public String getName() {
         return source.getPath();
     }
-    
+
     public void start() throws DataSourceException {
-        
+
         if (source == null) {
             throw new DataSourceException("No data source defined.");
         }
-        
+
         NodeList list = source.parse();
-        
+
         for (int i = 0; i < list.getLength(); ++i) {
-            
+
             Node node = list.item(i);
-            
+
             // TODO
             // Check for content            
             // Create factories
         }
     }
-    
+
     public void command(String command) {
-        
-         CommandResponse response = commandHandler.handle(command, this);
-         
-         for (AdventureListener l : getListeners()) {
-             l.onAction(response);
-         }
+
+        CommandResponse response = commandHandler.handle(command, this);
+
+        for (AdventureListener l : getListeners()) {
+            l.onAction(response);
+        }
     }
-    
-    
+
     private void initDefaults() {
         registerCommand("attack", new AttackCommand());
         registerCommand("drop", new DropCommand());
