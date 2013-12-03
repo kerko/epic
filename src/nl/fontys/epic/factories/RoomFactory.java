@@ -52,7 +52,9 @@ public class RoomFactory implements EntityFactory<Room> {
         
         String id = getValue(attrs, "id");
         String name = getValue(attrs, "name");
-        validateId(id);       
+        validateId(id);
+        
+        
         
         return room;
     }

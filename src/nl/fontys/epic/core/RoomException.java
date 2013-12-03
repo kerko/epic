@@ -23,90 +23,25 @@
 package nl.fontys.epic.core;
 
 /**
- *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * Is thrown when a room got a serious problem
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public interface Room extends IDProvider {
+public class RoomException extends Exception {
 
-    /**
-     * 
-     * 
-     * @param first
-     * @param second
-     * @return 
-     */
-    GameObject getObject(int x, int y);
+    public RoomException(String message) {
+        super(message);
+    }
 
-    /**
-     * 
-     * 
-     * @param first
-     * @param second
-     * @return 
-     */
-    boolean hasObject(int x, int y);
-    
-    /**
-     * 
-     * 
-     * @param x
-     * @param y
-     * @return 
-     */
-    Inventory getItems(int x, int y);
+    public RoomException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-    /**
-     * 
-     * 
-     * @return 
-     */
-    String getName();
+    public RoomException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
     
-    /**
-     * 
-     * 
-     * @param object
-     * @param x
-     * @param y 
-     */
-    void moveObject(GameObject object, int x, int y) throws RoomException;
     
-    /**
-     * 
-     * 
-     * @param x
-     * @param y
-     * @return 
-     */
-    boolean contains(int x, int y);
-    
-    /**
-     * 
-     * 
-     * @param object 
-     */
-    void addObject(GameObject object);
-    
-    /**
-     * 
-     * 
-     * @param x
-     * @param y 
-     */
-    void removeObject(int x, int y);
-    
-    /**
-     * 
-     * 
-     * @return 
-     */
-    int getWidth();
-    
-    /**
-     * 
-     * 
-     * @return 
-     */
-    int getHeight();
-
 }
