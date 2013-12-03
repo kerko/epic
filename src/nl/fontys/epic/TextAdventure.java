@@ -23,7 +23,8 @@ package nl.fontys.epic;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import nl.fontys.epic.commands.AttackCommand;
 import nl.fontys.epic.commands.DropCommand;
 import nl.fontys.epic.commands.GoCommand;
@@ -37,7 +38,11 @@ import nl.fontys.epic.io.DataSourceException;
 import nl.fontys.epic.util.Command;
 import nl.fontys.epic.util.CommandHandler;
 import nl.fontys.epic.util.CommandResponse;
+import nl.fontys.epic.util.DeferredEntityLoader;
+import nl.fontys.epic.util.DeferredStorage;
 import nl.fontys.epic.util.Observer;
+import nl.fontys.epic.util.ResourceManager;
+import nl.fontys.epic.util.SharedResourceManager;
 import nl.fontys.epic.util.SimpleCommandHandler;
 import nl.fontys.epic.util.SimpleObserver;
 import org.w3c.dom.Node;
@@ -86,7 +91,11 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
     }
 
     public void start() throws DataSourceException {
+        
         started = true;
+        ResourceManager resourceManager = SharedResourceManager.getInstance(getName());
+        DeferredStorage storage = DeferredStorage.getInstance();
+        DeferredEntityLoader entityLoader = new DeferredEntityLoader(resourceManager, storage);
 
         if (source == null) {
             throw new DataSourceException("No data source defined.");
@@ -101,6 +110,13 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
             // TODO
             // Check for content            
             // Create factories
+        }
+        
+        // Fill all entities with data
+        try {
+            entityLoader.load(this);
+        } catch (DeferredEntityLoader.LoadingException ex) {
+            throw new DataSourceException(ex);
         }
     }
 
