@@ -57,6 +57,7 @@ public class RoomFactory implements EntityFactory<Room> {
 
         String id = getValue(node, Attributes.ATTR_ID);
         String name = getValue(node, Attributes.ATTR_NAME);
+        String message = getValue(node, Attributes.ATTR_MESSAGE);
         validateId(id);
 
         appendDoorList(room, node);
