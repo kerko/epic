@@ -65,10 +65,12 @@ public class RoomFactory implements EntityFactory<Room> {
         }
     }
     
-    private void validateString(String str) throws FactoryException {
+    private String validateString(String str) throws FactoryException {
         if (str == null || str.isEmpty()) {
             throw new FactoryException("ID for this room should not be empty");
         }
+        
+        return str;
     }
     
     private String getValue(NamedNodeMap attrs, String id) throws FactoryException {
@@ -77,14 +79,11 @@ public class RoomFactory implements EntityFactory<Room> {
         if (node != null) {
             String value = node.getNodeValue();
             
-            if (!value.isEmpty()) {
-                return value;
-            } else {
-                throw new FactoryException("ID of room should not be empty");
-            }
+            return validateString(value);
         } else {
             throw new FactoryException("Can't create room. Attribute `" + id + "` does not exist'");
         }
     }
+    
     
 }

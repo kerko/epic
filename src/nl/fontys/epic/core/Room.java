@@ -94,5 +94,19 @@ public interface Room extends IDProvider {
      * @param y 
      */
     void removeObject(int x, int y);
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    int getWidth();
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    int getHeight();
 
 }
