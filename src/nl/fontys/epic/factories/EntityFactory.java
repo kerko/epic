@@ -41,4 +41,6 @@ public interface EntityFactory<Type> {
      * @throws FactoryException is thrown when information in the node are missing
      */
     Type create(Node node) throws FactoryException;
+    
+    
 }

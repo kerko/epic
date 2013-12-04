@@ -22,6 +22,7 @@
 
 package nl.fontys.epic.factories;
 
+import nl.fontys.epic.Attributes;
 import nl.fontys.epic.core.Item;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -42,10 +43,15 @@ public class ItemFactory implements EntityFactory<Item> {
             throw new FactoryException("Can't create item! Item node needs to be an element node.");
         }
         
+        if (node.getNodeName().equals(Attributes.TAG_ITEM)) {
+            throw new FactoryException("Can't create item! Node needs to be an item.");
+        }
+        
         return createItem((Element)node);
     }
     
     private Item createItem(Element element) {
+        
         
         
         
