@@ -11,6 +11,7 @@ import nl.fontys.epic.core.GameObject;
 import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Room;
 import nl.fontys.epic.core.RoomException;
+import nl.fontys.epic.util.InventoryAdapter;
 import nl.fontys.epic.util.MatrixList;
 import nl.fontys.epic.util.Position;
 
@@ -24,6 +25,7 @@ public class SimpleRoom extends SimpleIDProvider implements Room {
     private int width = 3;
     private int height= 3;
     private final MatrixList<GameObject> objects;
+    private final MatrixList<InventoryAdapter> items;
 
     public SimpleRoom(String name, String welcomeMessage, int width, int height, String ID) {
         this(name,welcomeMessage,ID);
@@ -37,6 +39,7 @@ public class SimpleRoom extends SimpleIDProvider implements Room {
         this.name = name;
         this.welcomeMessage = welcomeMessage;
         this.objects = new MatrixList<>();
+        this.items = new MatrixList<>();
     }
     
 
@@ -58,7 +61,11 @@ public class SimpleRoom extends SimpleIDProvider implements Room {
 
     @Override
     public Inventory getItems(int x, int y) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(items.contains(x, y)){
+            return items.get(x, y);
+        }
+        return null;
+        
     }
 
     @Override

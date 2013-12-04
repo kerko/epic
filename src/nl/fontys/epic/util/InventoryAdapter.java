@@ -11,12 +11,12 @@ import nl.fontys.epic.core.impl.SimpleInventory;
  *
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
  */
-public class IventoryAdapter extends SimpleInventory implements Indexable {
+public class InventoryAdapter extends SimpleInventory implements Indexable {
 
     private int x, y;
     
 
-    public IventoryAdapter(int x, int y) {
+    public InventoryAdapter(int x, int y) {
         this.x = x;
         this.y = y;
     }
