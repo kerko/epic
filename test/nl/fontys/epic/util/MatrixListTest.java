@@ -11,21 +11,20 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Test case for {@see MatrixList}
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
+ */
 public class MatrixListTest {
-        
-        // ===========================================================
-        // Definitions
-        // ===========================================================
         
         MatrixList<Indexable> matrixList;
         
         Indexable indexable;
         
         final int X = 10, Y = 10;
-        
-        // ===========================================================
-        // Setup
-        // ===========================================================
 
         /**
          * @throws java.lang.Exception
@@ -48,9 +47,7 @@ public class MatrixListTest {
                 };
         }
         
-        // ===========================================================
-        // Test cases
-        // ===========================================================
+       
 
         /**
          * Test method for {@link de.myreality.chunx.util.MatrixList#remove(int, int)}.

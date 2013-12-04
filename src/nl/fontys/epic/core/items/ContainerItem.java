@@ -20,27 +20,18 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.factories;
+package nl.fontys.epic.core.items;
 
-import nl.fontys.epic.Attributes;
+import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Item;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+import nl.fontys.epic.util.Indexable;
 
 /**
- * An implementation of {@see EntityFactory} in order to create rooms.
  *
- * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
- * @since 1.0
- * @version 1.0
+ * @author miguel
  */
-public class ItemFactory implements EntityFactory<Item> {
-
-    @Override
-    public Item create(Node node) throws FactoryException {        
-        
-        Item item = null;
-        
-        return item;
-    }
+public interface ContainerItem extends Inventory, Item, Indexable {
+    
+    
+    
 }

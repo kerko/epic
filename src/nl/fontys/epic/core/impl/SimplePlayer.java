@@ -3,14 +3,9 @@ package nl.fontys.epic.core.impl;
 
 import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.Equip;
-import nl.fontys.epic.core.GameObject;
 import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Player;
-import nl.fontys.epic.core.Room;
-import nl.fontys.epic.core.RoomException;
 import nl.fontys.epic.core.Stats;
-import nl.fontys.epic.util.Direction;
-import nl.fontys.epic.util.Position;
 
 /**
  *
