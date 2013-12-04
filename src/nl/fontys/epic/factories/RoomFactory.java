@@ -43,7 +43,7 @@ public class RoomFactory implements EntityFactory<Room> {
 
     private final TextAdventure adventure;
     
-    private DeferredStorage storage;    
+    private final DeferredStorage storage;    
     
     private final EntityFactory<Door> doorFactory;
 
@@ -74,14 +74,6 @@ public class RoomFactory implements EntityFactory<Room> {
         if (mgr.get(id, Room.class) != null) {
             throw new FactoryException("Room with id `" + id + "` does already exist");
         }
-    }
-
-    private String validateString(String str) throws FactoryException {
-        if (str == null || str.isEmpty()) {
-            throw new FactoryException("ID for this room should not be empty");
-        }
-
-        return str;
     }
 
     private String getValue(Node node, String id) throws FactoryException {
