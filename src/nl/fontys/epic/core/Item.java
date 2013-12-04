@@ -49,5 +49,9 @@ public interface Item {
      */
     String getName();
     
+    /**
+     * 
+     * @return 
+     */
     Stats getStats();
 }
