@@ -58,40 +58,14 @@ public class RoomFactory implements EntityFactory<Room> {
 
         Room room = null;
 
-        String id = getValue(node, Attributes.ATTR_ID);
-        String name = getValue(node, Attributes.ATTR_NAME);
-        String message = getValue(node, Attributes.ATTR_MESSAGE);
-        validateId(id);
+        String id = FactoryUtils.getValue(node, Attributes.ATTR_ID);
+        String name = FactoryUtils.getValue(node, Attributes.ATTR_NAME);
+        String message = FactoryUtils.getValue(node, Attributes.ATTR_MESSAGE);
+        FactoryUtils.validateId(id, adventure);
 
         appendChildren(room, node);
 
         return room;
-    }
-
-    private void validateId(String id) throws FactoryException {
-        ResourceManager mgr = SharedResourceManager.getInstance(adventure.getName());
-
-        if (mgr.get(id, Room.class) != null) {
-            throw new FactoryException("Room with id `" + id + "` does already exist");
-        }
-    }
-
-    private String getValue(Node node, String id) throws FactoryException {
-
-        if (node.getNodeType() == Node.ELEMENT_NODE) {
-
-            Element element = (Element) node;
-
-            String value = element.getAttribute(id);
-
-            if (value != null) {
-                return value;
-            } else {
-                throw new FactoryException("Can't create room. Attribute `" + id + "` does not exist'");
-            }
-        } else {
-            throw new FactoryException("Can't create room. No valid node");
-        }
     }
 
     private void appendChildren(Room room, Node node) throws FactoryException {
@@ -126,9 +100,9 @@ public class RoomFactory implements EntityFactory<Room> {
         for (int c = 0; c < creatures.getLength(); ++c) {
             Node creatureLink = creatures.item(c);
             
-            String strX = getValue(creatureLink, Attributes.ATTR_X);
-            String strY = getValue(creatureLink, Attributes.ATTR_Y);
-            String id = getValue(creatureLink, Attributes.ATTR_ID);
+            String strX = FactoryUtils.getValue(creatureLink, Attributes.ATTR_X);
+            String strY = FactoryUtils.getValue(creatureLink, Attributes.ATTR_Y);
+            String id = FactoryUtils.getValue(creatureLink, Attributes.ATTR_ID);
             int x = Integer.parseInt(strX);
             int y = Integer.parseInt(strY);
             

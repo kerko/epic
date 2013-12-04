@@ -49,5 +49,9 @@ public interface Item extends IDProvider{
      */
     String getName();
     
+    /**
+     * 
+     * @return 
+     */
     Stats getStats();
 }
