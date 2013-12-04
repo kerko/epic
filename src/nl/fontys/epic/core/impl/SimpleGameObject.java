@@ -58,5 +58,15 @@ public class SimpleGameObject extends SimpleIDProvider implements GameObject {
     public TextAdventure getAdventure() {
         return adventure;
     }
+
+    @Override
+    public int getX() {
+        return posi.x;
+    }
+
+    @Override
+    public int getY() {
+        return posi.y;
+    }
     
 }

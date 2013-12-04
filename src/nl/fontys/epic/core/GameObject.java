@@ -23,13 +23,14 @@
 package nl.fontys.epic.core;
 
 import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.util.Indexable;
 import nl.fontys.epic.util.Position;
 
 /**
  *
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
  */
-public interface GameObject extends IDProvider {
+public interface GameObject extends IDProvider, Indexable{
 
     /**
      * 

@@ -71,14 +71,7 @@ public interface Room extends IDProvider {
      */
     void moveObject(GameObject object, int x, int y) throws RoomException;
     
-    /**
-     * 
-     * 
-     * @param x
-     * @param y
-     * @return 
-     */
-    boolean contains(int x, int y);
+    
     
     /**
      * 

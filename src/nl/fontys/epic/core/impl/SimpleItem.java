@@ -8,18 +8,20 @@ import nl.fontys.epic.core.Stats;
  *
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
  */
-public class SimpleItem implements Item {
+public class SimpleItem extends SimpleIDProvider implements Item {
 
     private final String name;
     private final String description;
     private final ItemType type;
     private final Stats stats;
 
-    public SimpleItem(String name, String description, ItemType type, Stats stats) {
+    public SimpleItem(String ID,String name, String description, ItemType type, Stats stats) {
+        super(ID);
         this.name = name;
         this.description = description;
         this.type = type;
         this.stats = stats;
+        
     }
 
     @Override

@@ -113,4 +113,6 @@ public class SimpleCreature extends SimpleGameObject implements Creature {
         }
     }
 
+   
+
 }

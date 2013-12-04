@@ -29,7 +29,7 @@ import java.util.Collection;
  * 
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
  */
-public interface Inventory {
+public interface Inventory extends Iterable<Item>{
     
     /**
      * 
