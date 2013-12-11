@@ -20,23 +20,64 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.util;
+package nl.fontys.epic.commands;
+
+import nl.fontys.epic.commands.CommandResponse;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
- * Is thrown when a command is corrupt or an error occurred
+ * Simple implementation of {@see CommandResponse}
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public class CommandException extends Exception {
+public class SimpleCommandResponse implements CommandResponse {
+    
+    private long timestamp;
+    
+    private String message;
+    
+    private ResponseType type;
+    
+    private List<String> entries;
 
-    public CommandException(String message) {
-        super(message);
+    public SimpleCommandResponse(String message, ResponseType type) {
+        this.timestamp = System.currentTimeMillis();
+        this.message = message;
+        entries = new ArrayList<>();
+        this.type = type;
+    }
+    
+    public SimpleCommandResponse(String message) {
+        this(message, ResponseType.INFO);
     }
 
-    public CommandException(Throwable cause) {
-        super(cause);
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    @Override
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    @Override
+    public ResponseType getType() {
+        return type;
+    }
+
+    @Override
+    public Collection<String> getEntries() {
+        return entries;
+    }
+
+    @Override
+    public void addEntry(String entry) {
+        entries.add(entry);
     }
     
     

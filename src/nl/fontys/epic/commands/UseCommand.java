@@ -24,11 +24,7 @@ package nl.fontys.epic.commands;
 import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Item;
-import nl.fontys.epic.util.Command;
-import nl.fontys.epic.util.CommandException;
-import nl.fontys.epic.util.CommandResponse;
-import nl.fontys.epic.util.CommandResponse.ResponseType;
-import nl.fontys.epic.util.SimpleCommandResponse;
+import nl.fontys.epic.commands.CommandResponse.ResponseType;
 import nl.fontys.epic.util.Useable;
 
 /**

@@ -33,14 +33,25 @@ public interface Equip {
      * 
      * @param item 
      */
-    void add(Item item,EquipType type);
-
+    void remove(Equipable equipable);
+    
     /**
+     * Attaches the given item. Returns an item which is currently
+     * equipped at the given slot. If there is no such item, it returns
+     * null.
      * 
-     * 
-     * @param item 
+     * @param equipItem item to equip
+     * @return currently equipped item
      */
-    void remove(Item item);
+    Equipable attach(Equipable equipItem);
+    
+    /**
+     * Detaches the item from the given slot
+     * 
+     * @param type equip type (slot type)
+     * @return target equip
+     */
+    Equipable detach(EquipType type);
 
     /**
      * 

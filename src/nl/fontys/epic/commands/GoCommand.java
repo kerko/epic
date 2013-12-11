@@ -21,22 +21,19 @@
  */
 package nl.fontys.epic.commands;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.RoomException;
-import nl.fontys.epic.util.Command;
-import nl.fontys.epic.util.CommandException;
-import nl.fontys.epic.util.CommandResponse;
-import nl.fontys.epic.util.CommandResponse.ResponseType;
+import nl.fontys.epic.commands.CommandResponse.ResponseType;
 import nl.fontys.epic.util.Direction;
 import nl.fontys.epic.util.Position;
-import nl.fontys.epic.util.SimpleCommandResponse;
 
 /**
+ * Provides character movement with commands
  *
- * @author miguel
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
 public class GoCommand implements Command {
 

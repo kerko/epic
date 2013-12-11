@@ -41,10 +41,5 @@ public enum ItemType {
     /**
      * 
      */
-    COLLECTIBLE,
-    
-    /**
-     * 
-     */
     EQUIP;
 }

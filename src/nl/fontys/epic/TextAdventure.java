@@ -23,8 +23,6 @@ package nl.fontys.epic;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import nl.fontys.epic.commands.AttackCommand;
 import nl.fontys.epic.commands.DropCommand;
 import nl.fontys.epic.commands.GoCommand;
@@ -35,15 +33,16 @@ import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Room;
 import nl.fontys.epic.io.DataSource;
 import nl.fontys.epic.io.DataSourceException;
-import nl.fontys.epic.util.Command;
-import nl.fontys.epic.util.CommandHandler;
-import nl.fontys.epic.util.CommandResponse;
+import nl.fontys.epic.commands.Command;
+import nl.fontys.epic.commands.CommandHandler;
+import nl.fontys.epic.commands.CommandResponse;
+import nl.fontys.epic.commands.EquipCommand;
 import nl.fontys.epic.util.DeferredEntityLoader;
 import nl.fontys.epic.util.DeferredStorage;
 import nl.fontys.epic.util.Observer;
 import nl.fontys.epic.util.ResourceManager;
 import nl.fontys.epic.util.SharedResourceManager;
-import nl.fontys.epic.util.SimpleCommandHandler;
+import nl.fontys.epic.commands.SimpleCommandHandler;
 import nl.fontys.epic.util.SimpleObserver;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -135,6 +134,7 @@ public class TextAdventure extends SimpleObserver<AdventureListener> implements 
         registerCommand("go", new GoCommand());
         registerCommand("open", new OpenCommand());
         registerCommand("use", new UseCommand());
+        registerCommand("equip", new EquipCommand());
     }
 
     public boolean isRunning() {

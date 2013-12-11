@@ -22,6 +22,10 @@
 
 package nl.fontys.epic.util;
 
+import nl.fontys.epic.commands.SimpleCommandHandler;
+import nl.fontys.epic.commands.CommandException;
+import nl.fontys.epic.commands.Command;
+import nl.fontys.epic.commands.CommandResponse;
 import nl.fontys.epic.TextAdventure;
 import org.junit.Before;
 import org.junit.Test;

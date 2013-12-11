@@ -13,15 +13,12 @@ public class SimpleItem extends SimpleIDProvider implements Item {
     private final String name;
     private final String description;
     private final ItemType type;
-    private final Stats stats;
 
-    public SimpleItem(String ID,String name, String description, ItemType type, Stats stats) {
+    public SimpleItem(String ID,String name, String description, ItemType type) {
         super(ID);
         this.name = name;
         this.description = description;
         this.type = type;
-        this.stats = stats;
-        
     }
 
     @Override
@@ -38,10 +35,4 @@ public class SimpleItem extends SimpleIDProvider implements Item {
     public String getName() {
         return this.name;
     }
-
-    @Override
-    public Stats getStats() {
-        return this.stats;
-    }
-
 }

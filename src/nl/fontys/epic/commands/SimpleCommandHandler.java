@@ -20,13 +20,13 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.util;
+package nl.fontys.epic.commands;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import nl.fontys.epic.TextAdventure;
-import nl.fontys.epic.util.CommandResponse.ResponseType;
+import nl.fontys.epic.commands.CommandResponse.ResponseType;
 
 /**
  * Simple implementation of {@see CommandHandler}

@@ -27,13 +27,9 @@ import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Item;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Room;
-import nl.fontys.epic.util.Command;
-import nl.fontys.epic.util.CommandException;
-import nl.fontys.epic.util.CommandResponse;
-import nl.fontys.epic.util.CommandResponse.ResponseType;
+import nl.fontys.epic.commands.CommandResponse.ResponseType;
 import nl.fontys.epic.util.ResourceManager;
 import nl.fontys.epic.util.SharedResourceManager;
-import nl.fontys.epic.util.SimpleCommandResponse;
 
 /**
  *

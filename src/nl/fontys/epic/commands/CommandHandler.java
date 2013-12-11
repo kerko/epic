@@ -1,4 +1,4 @@
-package nl.fontys.epic.util;
+package nl.fontys.epic.commands;
 /* The MIT License (MIT)
  * 
  * Copyright (c) 2013 Jan Kerkenhoff, Miguel Gonzalez

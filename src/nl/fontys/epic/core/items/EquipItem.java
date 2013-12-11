@@ -1,5 +1,3 @@
-package nl.fontys.epic.util;
-
 /* The MIT License (MIT)
  * 
  * Copyright (c) 2013 Jan Kerkenhoff, Miguel Gonzalez
@@ -22,22 +20,17 @@ package nl.fontys.epic.util;
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import nl.fontys.epic.TextAdventure;
+package nl.fontys.epic.core.items;
 
 /**
- * Represents a single command which can be applied to a {@see CommandHandler}
+ * Is thrown when something is wrong within a data source
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public interface Command {
+public interface EquipItem {
     
-    /**
-     * Handles the command in the {@see TextAdventure} context
-     * 
-     * @param commandString
-     * @param adventure 
-     */
-    CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException;
+    
+    
 }

@@ -23,8 +23,8 @@
 package nl.fontys.epic.demo;
 
 import nl.fontys.epic.core.AdventureListener;
-import nl.fontys.epic.util.CommandResponse;
-import nl.fontys.epic.util.CommandResponse.ResponseType;
+import nl.fontys.epic.commands.CommandResponse;
+import nl.fontys.epic.commands.CommandResponse.ResponseType;
 
 /**
  * Adapts output for a text adventure

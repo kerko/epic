@@ -22,7 +22,7 @@
 
 package nl.fontys.epic.core;
 
-import nl.fontys.epic.util.CommandResponse;
+import nl.fontys.epic.commands.CommandResponse;
 
 /**
  *

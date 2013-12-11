@@ -20,18 +20,60 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core.items;
+package nl.fontys.epic.commands;
 
-import nl.fontys.epic.core.Inventory;
-import nl.fontys.epic.core.Item;
-import nl.fontys.epic.util.Indexable;
+import java.util.Collection;
 
 /**
- *
- * @author miguel
+ * Response of a single command chain
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public interface ContainerItem extends Inventory, Item, Indexable {
+public interface CommandResponse {
+    
+    /**
+     * Returns the message
+     * 
+     * @return 
+     */
+    String getMessage();
+    
+    /**
+     * Returns the current timestamp
+     * 
+     * @return 
+     */
+    long getTimestamp();
     
     
+    /**
+     * Returns the type of the response
+     * 
+     * @return 
+     */
+    ResponseType getType();
     
+    /**
+     * 
+     * 
+     * @return 
+     */
+    Collection<String> getEntries();
+    
+    /**
+     * 
+     * 
+     * @param entry 
+     */
+    void addEntry(String entry);
+    
+    /**
+     * Type enumeration for command responds
+     */
+    public static enum ResponseType {
+        
+        INFO, ERROR;
+    }
 }

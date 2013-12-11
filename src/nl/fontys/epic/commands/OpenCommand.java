@@ -25,13 +25,9 @@ package nl.fontys.epic.commands;
 import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.GameObject;
 import nl.fontys.epic.util.Openable;
-import nl.fontys.epic.util.Command;
-import nl.fontys.epic.util.CommandException;
-import nl.fontys.epic.util.CommandResponse;
-import nl.fontys.epic.util.CommandResponse.ResponseType;
+import nl.fontys.epic.commands.CommandResponse.ResponseType;
 import nl.fontys.epic.util.ResourceManager;
 import nl.fontys.epic.util.SharedResourceManager;
-import nl.fontys.epic.util.SimpleCommandResponse;
 
 /**
  * Implementation in order to open things like doors and chests
