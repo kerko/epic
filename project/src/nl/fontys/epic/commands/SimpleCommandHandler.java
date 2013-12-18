@@ -25,7 +25,7 @@ package nl.fontys.epic.commands;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.SimpleTextAdventure;
 import nl.fontys.epic.commands.CommandResponse.ResponseType;
 
 /**
@@ -49,7 +49,7 @@ public class SimpleCommandHandler implements CommandHandler {
     }
 
     @Override
-    public CommandResponse handle(String commandString, TextAdventure adventure) {
+    public CommandResponse handle(String commandString, SimpleTextAdventure adventure) {
         
         String[] args = commandString.split(" ");
         

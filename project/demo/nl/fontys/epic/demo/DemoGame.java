@@ -23,7 +23,7 @@
 package nl.fontys.epic.demo;
 
 import java.io.IOException;
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.SimpleTextAdventure;
 import nl.fontys.epic.io.DataSourceException;
 
 /**
@@ -37,7 +37,7 @@ public class DemoGame {
     
     public static void main(String[] args) throws DataSourceException {
         // TODO: Add datasource (XML format)
-        TextAdventure adventure = new TextAdventure(null);
+        SimpleTextAdventure adventure = null;// new SimpleTextAdventure(null);
         ConsoleInput scanner = new ConsoleInput();
         ConsoleOutput output = new ConsoleOutput();
         adventure.addListener(new OutputAdapter(output));

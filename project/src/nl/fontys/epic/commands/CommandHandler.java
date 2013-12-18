@@ -21,7 +21,7 @@ package nl.fontys.epic.commands;
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.SimpleTextAdventure;
 
 /**
  * Handles {@see Command} objects and delegates commands to them.
@@ -47,7 +47,7 @@ public interface CommandHandler {
      * @param adventure 
      * @return response
      */
-    CommandResponse handle(String commandString, TextAdventure adventure);
+    CommandResponse handle(String commandString, SimpleTextAdventure adventure);
     
     /**
      * Determines the amount of commands in the handler

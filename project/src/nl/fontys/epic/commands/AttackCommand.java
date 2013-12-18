@@ -21,15 +21,15 @@
  */
 package nl.fontys.epic.commands;
 
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.SimpleTextAdventure;
 import nl.fontys.epic.core.Creature;
 import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Item;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Room;
 import nl.fontys.epic.commands.CommandResponse.ResponseType;
-import nl.fontys.epic.util.ResourceManager;
-import nl.fontys.epic.util.SharedResourceManager;
+import nl.fontys.epic.util.GameObjectManager;
+import nl.fontys.epic.util.SharedGameObjectManager;
 
 /**
  *
@@ -38,8 +38,8 @@ import nl.fontys.epic.util.SharedResourceManager;
 public class AttackCommand implements Command {
 
     @Override
-    public CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException {
-        ResourceManager manager = SharedResourceManager.getInstance(adventure.getName());
+    public CommandResponse handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
+        GameObjectManager manager = SharedGameObjectManager.getInstance(adventure.getName());
         if (args.length == 0) {
             throw new CommandException("You have to select a Target");
         }
@@ -70,14 +70,14 @@ public class AttackCommand implements Command {
         return cr2.isDead();
     }
 
-    private SimpleCommandResponse processDeath(Creature cr, TextAdventure adventure) {
+    private SimpleCommandResponse processDeath(Creature cr, SimpleTextAdventure adventure) {
         SimpleCommandResponse response = new SimpleCommandResponse(cr.getName() + " died,", ResponseType.INFO);
         response = drop(cr, adventure, response);
         cr.kill();
         return response;
     }
 
-    private SimpleCommandResponse drop(Creature cr, TextAdventure adventure, SimpleCommandResponse response) {
+    private SimpleCommandResponse drop(Creature cr, SimpleTextAdventure adventure, SimpleCommandResponse response) {
         Room room = adventure.getCurrentRoom();
 
         Inventory items = cr.getInventory();

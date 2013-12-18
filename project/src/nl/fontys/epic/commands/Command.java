@@ -22,7 +22,7 @@ package nl.fontys.epic.commands;
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.SimpleTextAdventure;
 
 /**
  * Represents a single command which can be applied to a {@see CommandHandler}
@@ -39,5 +39,5 @@ public interface Command {
      * @param commandString
      * @param adventure 
      */
-    CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException;
+    CommandResponse handle(String[] args, SimpleTextAdventure adventure) throws CommandException;
 }

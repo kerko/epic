@@ -29,7 +29,7 @@ package nl.fontys.epic.util;
  * @since 1.0
  * @version 1.0
  */
-public interface ResourceManager {
+public interface GameObjectManager {
     
     /**
      * Adds a new element of the given type

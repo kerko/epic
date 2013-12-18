@@ -22,7 +22,7 @@
 package nl.fontys.epic.io;
 
 import nl.fontys.epic.Attributes;
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.SimpleTextAdventure;
 import nl.fontys.epic.core.Door;
 import nl.fontys.epic.core.Room;
 import nl.fontys.epic.util.DeferredStorage;
@@ -38,13 +38,13 @@ import org.w3c.dom.NodeList;
  */
 public class RoomFactory implements EntityFactory<Room> {
 
-    private final TextAdventure adventure;
+    private final SimpleTextAdventure adventure;
     
     private final DeferredStorage storage;    
     
     private final EntityFactory<Door> doorFactory;
 
-    public RoomFactory(TextAdventure adventure, EntityFactory<Door> doorFactory) {
+    public RoomFactory(SimpleTextAdventure adventure, EntityFactory<Door> doorFactory) {
         this.adventure = adventure;
         this.doorFactory = doorFactory;
         storage = DeferredStorage.getInstance();

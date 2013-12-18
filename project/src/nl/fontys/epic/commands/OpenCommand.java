@@ -22,12 +22,12 @@
 
 package nl.fontys.epic.commands;
 
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.SimpleTextAdventure;
 import nl.fontys.epic.core.GameObject;
 import nl.fontys.epic.util.Openable;
 import nl.fontys.epic.commands.CommandResponse.ResponseType;
-import nl.fontys.epic.util.ResourceManager;
-import nl.fontys.epic.util.SharedResourceManager;
+import nl.fontys.epic.util.GameObjectManager;
+import nl.fontys.epic.util.SharedGameObjectManager;
 
 /**
  * Implementation in order to open things like doors and chests
@@ -39,13 +39,13 @@ import nl.fontys.epic.util.SharedResourceManager;
 public class OpenCommand implements Command {
 
     @Override
-    public CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException {
+    public CommandResponse handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
         
         if (args.length == 0 || args[0].trim().isEmpty()) {
             throw new CommandException("You have to select something to open.");
         } else {
             String id = args[0];
-            ResourceManager r = SharedResourceManager.getInstance(adventure.getName());
+            GameObjectManager r = SharedGameObjectManager.getInstance(adventure.getName());
             
             GameObject object = r.get(id, GameObject.class);
             

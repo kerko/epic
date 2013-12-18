@@ -1,7 +1,7 @@
 
 package nl.fontys.epic.core.impl;
 
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.SimpleTextAdventure;
 import nl.fontys.epic.core.IDProvider;
 
 /**

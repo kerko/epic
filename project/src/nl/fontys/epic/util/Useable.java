@@ -22,7 +22,7 @@
 
 package nl.fontys.epic.util;
 
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.SimpleTextAdventure;
 
 /**
  * Indicates something that can be used
@@ -33,5 +33,5 @@ import nl.fontys.epic.TextAdventure;
  */
 public interface Useable {
     
-    void use(TextAdventure adventure);
+    void use(SimpleTextAdventure adventure);
 }

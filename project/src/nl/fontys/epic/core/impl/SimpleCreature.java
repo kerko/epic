@@ -1,6 +1,6 @@
 package nl.fontys.epic.core.impl;
 
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.SimpleTextAdventure;
 import nl.fontys.epic.core.Creature;
 import nl.fontys.epic.core.GameObject;
 import nl.fontys.epic.core.Inventory;
@@ -25,7 +25,7 @@ public class SimpleCreature extends SimpleGameObject implements Creature {
     private boolean dead;
     private final Stats base;
 
-    public SimpleCreature(int life, int maxLife, String name,  Inventory inv, Stats base, TextAdventure adventure, int posix,int posiy, String currentRoomID, String ID) {
+    public SimpleCreature(int life, int maxLife, String name,  Inventory inv, Stats base, SimpleTextAdventure adventure, int posix,int posiy, String currentRoomID, String ID) {
         super(adventure, posix,posiy, currentRoomID, ID);
         this.life = life;
         this.maxLife = maxLife;

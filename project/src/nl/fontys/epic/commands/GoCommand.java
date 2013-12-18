@@ -21,7 +21,7 @@
  */
 package nl.fontys.epic.commands;
 
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.SimpleTextAdventure;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.RoomException;
 import nl.fontys.epic.commands.CommandResponse.ResponseType;
@@ -38,7 +38,7 @@ import nl.fontys.epic.util.Position;
 public class GoCommand implements Command {
 
     @Override
-    public CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException {
+    public CommandResponse handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
         if (args.length < 1 || args[0].trim().isEmpty()) {
             throw new CommandException("You have to specify a direction where to go!");
         } else {            

@@ -1,7 +1,7 @@
 
 package nl.fontys.epic.core.impl;
 
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.SimpleTextAdventure;
 import nl.fontys.epic.core.GameObject;
 import nl.fontys.epic.core.Room;
 import nl.fontys.epic.util.Position;
@@ -11,11 +11,11 @@ import nl.fontys.epic.util.Position;
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
  */
 public class SimpleGameObject extends SimpleIDProvider implements GameObject {
-    private TextAdventure adventure;
+    private SimpleTextAdventure adventure;
     protected Position posi;   
     protected String currentRoomID;
 
-    public SimpleGameObject(TextAdventure adventure, int posix,int posiy, String currentRoomID, String ID) {
+    public SimpleGameObject(SimpleTextAdventure adventure, int posix,int posiy, String currentRoomID, String ID) {
         super(ID);
         this.adventure = adventure;
         this.posi.x = posix;
@@ -55,7 +55,7 @@ public class SimpleGameObject extends SimpleIDProvider implements GameObject {
     }
 
     @Override
-    public TextAdventure getAdventure() {
+    public SimpleTextAdventure getAdventure() {
         return adventure;
     }
 

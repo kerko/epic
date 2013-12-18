@@ -22,13 +22,13 @@
 
 package nl.fontys.epic.core.triggers;
 
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.SimpleTextAdventure;
 
 /**
  *
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
  */
 public interface Trigger {
-    public void action(TextAdventure adventure, Triggerable source,Object[] attributes);
+    public void action(SimpleTextAdventure adventure, Triggerable source,Object[] attributes);
     public String getName();
 }

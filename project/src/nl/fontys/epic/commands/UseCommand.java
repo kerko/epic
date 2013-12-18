@@ -21,7 +21,7 @@
  */
 package nl.fontys.epic.commands;
 
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.SimpleTextAdventure;
 import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Item;
 import nl.fontys.epic.commands.CommandResponse.ResponseType;
@@ -37,7 +37,7 @@ import nl.fontys.epic.util.Useable;
 public class UseCommand implements Command {
 
     @Override
-    public CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException {
+    public CommandResponse handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
         if (args.length == 0 || args[0].trim().isEmpty()) {
             throw new CommandException("You have to select something to use");
         } else {

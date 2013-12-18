@@ -22,7 +22,7 @@
 
 package nl.fontys.epic.util;
 
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.SimpleTextAdventure;
 import nl.fontys.epic.core.Creature;
 import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Item;
@@ -39,16 +39,16 @@ import nl.fontys.epic.util.DeferredStorage.StorageType;
  */
 public class DeferredEntityLoader {
     
-    private ResourceManager resourceManager;
+    private GameObjectManager resourceManager;
     
     private DeferredStorage entityStorage;
     
-    public DeferredEntityLoader(ResourceManager resourceManager, DeferredStorage entityStorage) {
+    public DeferredEntityLoader(GameObjectManager resourceManager, DeferredStorage entityStorage) {
         this.resourceManager = resourceManager;
         this.entityStorage = entityStorage;
     }
     
-    public void load(TextAdventure adventure) throws LoadingException {
+    public void load(SimpleTextAdventure adventure) throws LoadingException {
         
         // Fill up all rooms
         for (Room room : adventure.getRooms()) {

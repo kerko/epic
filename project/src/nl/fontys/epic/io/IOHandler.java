@@ -24,7 +24,7 @@ package nl.fontys.epic.io;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.SimpleTextAdventure;
 
 /**
  * Handles input and output management of text adventures.
@@ -41,7 +41,7 @@ public interface IOHandler {
      * @param inputStream
      * @return 
      */
-    TextAdventure read(InputStream inputStream) throws IOException;
+    SimpleTextAdventure read(InputStream inputStream) throws IOException;
     
     /**
      * 
@@ -49,7 +49,7 @@ public interface IOHandler {
      * @param adventure
      * @param outputStream 
      */
-    void write(TextAdventure adventure, OutputStream outputStream) throws IOException;
+    void write(SimpleTextAdventure adventure, OutputStream outputStream) throws IOException;
 }
 
 

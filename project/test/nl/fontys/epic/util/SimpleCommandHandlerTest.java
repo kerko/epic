@@ -26,7 +26,7 @@ import nl.fontys.epic.commands.SimpleCommandHandler;
 import nl.fontys.epic.commands.CommandException;
 import nl.fontys.epic.commands.Command;
 import nl.fontys.epic.commands.CommandResponse;
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.SimpleTextAdventure;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -72,7 +72,7 @@ public class SimpleCommandHandlerTest {
     class CommandMock implements Command {
 
         @Override
-        public CommandResponse handle(String[] args, TextAdventure adventure) throws CommandException {            
+        public CommandResponse handle(String[] args, SimpleTextAdventure adventure) throws CommandException {            
             assertTrue("Command needs to be " + subcommand, subcommand.equals(args[0]));
             return null;
         }

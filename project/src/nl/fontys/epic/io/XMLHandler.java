@@ -24,7 +24,7 @@ package nl.fontys.epic.io;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.SimpleTextAdventure;
 
 /**
  * XML implementation of {@see IOHandler}
@@ -36,12 +36,12 @@ import nl.fontys.epic.TextAdventure;
 public class XMLHandler implements IOHandler {
 
     @Override
-    public TextAdventure read(InputStream inputStream) throws IOException {
+    public SimpleTextAdventure read(InputStream inputStream) throws IOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void write(TextAdventure adventure, OutputStream outputStream) throws IOException {
+    public void write(SimpleTextAdventure adventure, OutputStream outputStream) throws IOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
