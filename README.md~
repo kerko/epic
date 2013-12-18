@@ -32,5 +32,7 @@ There a several commands which are supported by **epic**:
 * use item name
 * open [door name — chest name]
 
+You can pass them as a parameter to the ```command``` method of the ```TextAdventure``` object.
+
 
 
