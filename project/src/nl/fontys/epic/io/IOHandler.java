@@ -19,29 +19,38 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+package nl.fontys.epic.io;
 
-package nl.fontys.epic.factories;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import nl.fontys.epic.TextAdventure;
 
 /**
- * Is thrown when a factory is not able to create an object
+ * Handles input and output management of text adventures.
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public class FactoryException extends Exception {
-
-    public FactoryException(String message) {
-        super(message);
-    }
-
-    public FactoryException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public FactoryException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
+public interface IOHandler {
     
+    /**
+     * 
+     * 
+     * @param inputStream
+     * @return 
+     */
+    TextAdventure read(InputStream inputStream) throws IOException;
     
+    /**
+     * 
+     * 
+     * @param adventure
+     * @param outputStream 
+     */
+    void write(TextAdventure adventure, OutputStream outputStream) throws IOException;
 }
+
+
+

@@ -19,16 +19,13 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package nl.fontys.epic.factories;
+package nl.fontys.epic.io;
 
 import nl.fontys.epic.Attributes;
 import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.Door;
 import nl.fontys.epic.core.Room;
 import nl.fontys.epic.util.DeferredStorage;
-import nl.fontys.epic.util.ResourceManager;
-import nl.fontys.epic.util.SharedResourceManager;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 

@@ -22,22 +22,25 @@
 
 package nl.fontys.epic.io;
 
-import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
 
 /**
- *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * Factory to create entities from DOM nodes
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public class XMLSource implements DataSource {
-
-    @Override
-    public NodeList parse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getPath() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+public interface EntityFactory<Type> {
+    
+    /**
+     * Creates a new object of the given type from a DOM node. 
+     * 
+     * @param node node to create object from
+     * @return new object
+     * @throws FactoryException is thrown when information in the node are missing
+     */
+    Type create(Node node) throws FactoryException;
+    
     
 }

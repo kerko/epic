@@ -20,27 +20,28 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.factories;
-
-import nl.fontys.epic.Attributes;
-import nl.fontys.epic.core.Item;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+package nl.fontys.epic.io;
 
 /**
- * An implementation of {@see EntityFactory} in order to create rooms.
- *
+ * Is thrown when a factory is not able to create an object
+ * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public class ItemFactory implements EntityFactory<Item> {
+public class FactoryException extends Exception {
 
-    @Override
-    public Item create(Node node) throws FactoryException {        
-        
-        Item item = null;
-        
-        return item;
+    public FactoryException(String message) {
+        super(message);
     }
+
+    public FactoryException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public FactoryException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
+    
+    
 }

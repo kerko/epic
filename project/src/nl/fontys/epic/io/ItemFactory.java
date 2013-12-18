@@ -20,27 +20,25 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.factories;
+package nl.fontys.epic.io;
 
+import nl.fontys.epic.core.Item;
 import org.w3c.dom.Node;
 
 /**
- * Factory to create entities from DOM nodes
- * 
+ * An implementation of {@see EntityFactory} in order to create rooms.
+ *
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public interface EntityFactory<Type> {
-    
-    /**
-     * Creates a new object of the given type from a DOM node. 
-     * 
-     * @param node node to create object from
-     * @return new object
-     * @throws FactoryException is thrown when information in the node are missing
-     */
-    Type create(Node node) throws FactoryException;
-    
-    
+public class ItemFactory implements EntityFactory<Item> {
+
+    @Override
+    public Item create(Node node) throws FactoryException {        
+        
+        Item item = null;
+        
+        return item;
+    }
 }
