@@ -47,13 +47,16 @@ import nl.fontys.epic.util.SimpleObserver;
 public class SimpleTextAdventure extends SimpleObserver<AdventureListener> implements Observer<AdventureListener>, TextAdventure {
 
     private final CommandHandler commandHandler;
-    private boolean started;
-    private Player player;
-    private Map<String, Room> rooms;
+    private final Player player;
+    private final Map<String, Room> rooms;
 
     public SimpleTextAdventure(Collection<Room> rooms, Player player) {
+        
         commandHandler = new SimpleCommandHandler();
+        
         this.rooms = new HashMap< >();
+        this.player = player;
+        
         for (Room room : rooms) {
             this.rooms.put(room.getID(), room);
         }
@@ -92,10 +95,6 @@ public class SimpleTextAdventure extends SimpleObserver<AdventureListener> imple
     }
 
     @Override
-    public void start() {
-    }
-
-    @Override
     public void command(String command) {
 
         CommandResponse response = commandHandler.handle(command, this);
@@ -112,14 +111,5 @@ public class SimpleTextAdventure extends SimpleObserver<AdventureListener> imple
         registerCommand("open", new OpenCommand());
         registerCommand("use", new UseCommand());
         registerCommand("equip", new EquipCommand());
-    }
-
-    public boolean isRunning() {
-       return started;
-    }
-
-    @Override
-    public void close() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

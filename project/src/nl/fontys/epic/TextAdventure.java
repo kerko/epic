@@ -80,16 +80,6 @@ public interface TextAdventure {
     
     /**
      * 
-     */
-    void start();
-    
-    /**
-     * 
-     */
-    void close();
-    
-    /**
-     * 
      * 
      * @param command 
      */
