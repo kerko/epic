@@ -1,4 +1,4 @@
 /**
  * Contains general classes for game creation
  */
-package nl.fontys.epic;
+package nl.fontys.epic.io;
