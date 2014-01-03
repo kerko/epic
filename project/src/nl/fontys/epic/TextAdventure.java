@@ -27,62 +27,64 @@ import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Room;
 
 /**
+ * Text adventure which provides game logic for a custom game.
  *
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
- * 
+ * @version 1.0
  */
 public interface TextAdventure {
-   
+
     /**
-     * 
-     * 
-     * @param identifier
-     * @param command 
+     * Registers a new command to this text adventure.
+     *
+     * @param identifier identifier of the command
+     * @param command command to register
      */
     void registerCommand(String identifier, Command command);
-    
+
     /**
-     * 
-     * 
-     * @return 
+     * Returns the current player of this text adventure
+     *
+     * @return current player instance
      */
     Player getPlayer();
-    
+
     /**
-     * 
-     * 
-     * @return 
+     * Returns the room where the actual player is currently in
+     *
+     * @return current room
      */
     Room getCurrentRoom();
-    
+
     /**
-     * 
-     * 
-     * @return 
+     * Returns all rooms which are indicated by this game
+     *
+     * @return all rooms of this game
      */
     Collection<Room> getRooms();
-    
+
     /**
-     * 
-     * 
-     * @param ID
-     * @return 
+     * Returns the room with the given id. Returns null when no room could not
+     * be found.
+     *
+     * @param ID room ID
+     * @return room instance with the given ID
      */
     Room getRoom(String ID);
-    
+
     /**
-     * 
-     * 
-     * @return 
+     * Returns the name of this game
+     *
+     * @return name
      */
     String getName();
-    
+
     /**
-     * 
-     * 
-     * @param command 
+     * Executes a new command
+     *
+     * @param command command string
      */
     void command(String command);
-    
+
 }
