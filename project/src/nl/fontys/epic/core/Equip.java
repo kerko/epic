@@ -31,7 +31,7 @@ public interface Equip {
     /**
      * 
      * 
-     * @param item 
+     * @param equipable 
      */
     void remove(Equipable equipable);
     
