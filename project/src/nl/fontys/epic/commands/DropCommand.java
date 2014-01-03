@@ -29,8 +29,11 @@ import nl.fontys.epic.core.Room;
 import nl.fontys.epic.commands.CommandResponse.ResponseType;
 
 /**
- *
- * @author miguel
+ * {@see Command} implementation for dropping items.
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
 public class DropCommand implements Command {
 

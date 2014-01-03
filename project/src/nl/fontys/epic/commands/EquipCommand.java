@@ -30,8 +30,8 @@ import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Equipable;
 
 /**
- * Provides item equipment
- *
+ * {@see Command} implementation for equipping items.
+ * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0

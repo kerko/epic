@@ -36,8 +36,10 @@ public interface Command {
     /**
      * Handles the command in the {@see TextAdventure} context
      * 
-     * @param commandString
-     * @param adventure 
+     * @param args command argument array
+     * @param adventure text adventure instance
+     * @return  Returns a response
+     * @throws nl.fontys.epic.commands.CommandException 
      */
     CommandResponse handle(String[] args, SimpleTextAdventure adventure) throws CommandException;
 }

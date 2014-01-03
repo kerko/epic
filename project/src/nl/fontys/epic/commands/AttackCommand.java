@@ -32,8 +32,11 @@ import nl.fontys.epic.util.GameObjectManager;
 import nl.fontys.epic.util.SharedGameObjectManager;
 
 /**
- *
- * @author miguel
+ * {@see Command} implementation for attacking enemies.
+ * 
+ * @author Jan Kerkenhoff <j.kerkenhoff@student.fontys.nl>
+ * @since 1.0
+ * @version 1.0
  */
 public class AttackCommand implements Command {
 
