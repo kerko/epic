@@ -36,12 +36,15 @@ import static org.junit.Assert.*;
  */
 public class SharedResourceManagerTest {
     
-    SharedGameObjectManager managerA, managerB;
+    SharedGameObjectPool managerA, managerB;
     
     @Before
     public void setUp() {
-        managerA = SharedGameObjectManager.getInstance("A");
-        managerB = SharedGameObjectManager.getInstance("B");
+        managerA = SharedGameObjectPool.getInstance("A");
+        managerB = SharedGameObjectPool.getInstance("B");
+        
+        managerA.clear();
+        managerB.clear();
     }
     
     @Test

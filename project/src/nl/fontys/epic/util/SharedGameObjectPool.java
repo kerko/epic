@@ -32,9 +32,9 @@ import java.util.Map;
  * @since 1.0
  * @version 1.0
  */
-public class SharedGameObjectManager implements GameObjectManager {
+public class SharedGameObjectPool implements GameObjectPool {
     
-    private static final Map<String, SharedGameObjectManager> managers;
+    private static final Map<String, SharedGameObjectPool> managers;
     
     private final Map<String, Object> resources;
     
@@ -42,16 +42,16 @@ public class SharedGameObjectManager implements GameObjectManager {
         managers = new HashMap<>();
     }
     
-    private SharedGameObjectManager() { 
+    private SharedGameObjectPool() { 
         resources = new HashMap<>();
     }
     
-    public static SharedGameObjectManager getInstance(final String ID) {
+    public static SharedGameObjectPool getInstance(final String ID) {
         
-        SharedGameObjectManager manager = managers.get(ID);
+        SharedGameObjectPool manager = managers.get(ID);
         
         if (manager == null) {
-            manager = new SharedGameObjectManager();
+            manager = new SharedGameObjectPool();
             managers.put(ID, manager);
         }
         
@@ -81,6 +81,11 @@ public class SharedGameObjectManager implements GameObjectManager {
     @Override
     public int size() {
         return resources.size();
+    }
+
+    @Override
+    public void clear() {
+        resources.clear();
     }
     
 }

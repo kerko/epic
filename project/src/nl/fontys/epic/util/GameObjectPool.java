@@ -20,27 +20,60 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.io;
-
-import org.w3c.dom.Node;
+package nl.fontys.epic.util;
 
 /**
- * Factory to create entities from DOM nodes
+ * Resource manager which stores different resources
  * 
- * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @author Miguel Gonzalez
  * @since 1.0
  * @version 1.0
  */
-public interface EntityFactory<Type> {
+public interface GameObjectPool {
     
     /**
-     * Creates a new object of the given type from a DOM node. 
+     * Adds a new element of the given type
      * 
-     * @param node node to create object from
-     * @return new object
-     * @throws FactoryException is thrown when information in the node are missing
+     * @param <Type>
+     * @param ID
+     * @param element 
      */
-    Type create(Node node) throws FactoryException;
+    <Type> void add(final String ID, Type element);
     
+    /**
+     * Removes the element of the given ID
+     * 
+     * @param <Type>
+     * @param ID 
+     */
+    <Type> void remove(final String ID);
     
+    /**
+     * Returns the element of the given type
+     * 
+     * @param <Type>
+     * @param ID
+     * @param typeClass
+     * @return 
+     */
+    <Type> Type get(final String ID, Class<Type> typeClass);
+    
+    /**
+     * Determines if the resource manager is empty
+     * 
+     * @return 
+     */
+    boolean isEmpty();
+    
+    /**
+     * Determines the size of this manager
+     * 
+     * @return 
+     */
+    int size();
+    
+    /**
+     * Clears all entries in this manager
+     */
+    void clear();
 }

@@ -19,17 +19,20 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package nl.fontys.epic.commands;
+package nl.fontys.epic.commands.impl;
 
-import nl.fontys.epic.SimpleTextAdventure;
+import nl.fontys.epic.commands.Command;
+import nl.fontys.epic.commands.CommandException;
+import nl.fontys.epic.commands.CommandResponse;
+import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.core.Creature;
 import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Item;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Room;
 import nl.fontys.epic.commands.CommandResponse.ResponseType;
-import nl.fontys.epic.util.GameObjectManager;
-import nl.fontys.epic.util.SharedGameObjectManager;
+import nl.fontys.epic.util.GameObjectPool;
+import nl.fontys.epic.util.SharedGameObjectPool;
 
 /**
  * {@see Command} implementation for attacking enemies.
@@ -42,7 +45,7 @@ public class AttackCommand implements Command {
 
     @Override
     public CommandResponse handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
-        GameObjectManager manager = SharedGameObjectManager.getInstance(adventure.getName());
+        GameObjectPool manager = SharedGameObjectPool.getInstance(adventure.getName());
         if (args.length == 0) {
             throw new CommandException("You have to select a Target");
         }

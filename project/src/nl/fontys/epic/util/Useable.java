@@ -22,7 +22,7 @@
 
 package nl.fontys.epic.util;
 
-import nl.fontys.epic.SimpleTextAdventure;
+import nl.fontys.epic.impl.SimpleTextAdventure;
 
 /**
  * Indicates something that can be used

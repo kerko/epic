@@ -19,44 +19,44 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package nl.fontys.epic.commands;
+package nl.fontys.epic.commands.impl;
 
-import nl.fontys.epic.SimpleTextAdventure;
+import nl.fontys.epic.commands.Command;
+import nl.fontys.epic.commands.CommandException;
+import nl.fontys.epic.commands.CommandResponse;
+import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Item;
+import nl.fontys.epic.core.Player;
+import nl.fontys.epic.core.Room;
 import nl.fontys.epic.commands.CommandResponse.ResponseType;
-import nl.fontys.epic.util.Useable;
 
 /**
- * Uses an item and throws it away
+ * Takes an item from the ground and add it to the inventory
  *
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public class UseCommand implements Command {
+public class TakeCommand implements Command {
 
     @Override
     public CommandResponse handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
         if (args.length == 0 || args[0].trim().isEmpty()) {
-            throw new CommandException("You have to select something to use");
+            throw new CommandException("You have to select something to take");
         } else {
             String itemId = args[0];
-            Inventory inventory = adventure.getPlayer().getInventory();
-            
-            if (inventory.contains(itemId)) {
-                Item item = inventory.get(itemId);
-                
-                if (item instanceof Useable) {
-                    ((Useable)item).use(adventure);
-                    inventory.remove(itemId);
-                    return new SimpleCommandResponse("You successfully used " + itemId);
-                } else {
-                    return new SimpleCommandResponse("You can't use " + itemId, ResponseType.ERROR);
-                }
+            Player player = adventure.getPlayer();
+            Room room = adventure.getCurrentRoom();
+            Inventory items = room.getItems(player.getPosition().x, player.getPosition().y);
+
+            if (items.contains(itemId)) {
+                Item item = items.fetch(itemId);
+                player.getInventory().add(item);
+                return new SimpleCommandResponse("You took " + itemId + " from the ground");
             } else {
-                return new SimpleCommandResponse("You don't have any item called " + itemId, ResponseType.ERROR);
-            }            
+                return new SimpleCommandResponse("There is no item '" + itemId + "' on the ground", ResponseType.ERROR);
+            }
         }
     }
 

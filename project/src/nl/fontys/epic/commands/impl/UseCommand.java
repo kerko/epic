@@ -19,55 +19,48 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+package nl.fontys.epic.commands.impl;
 
-package nl.fontys.epic.commands;
-
-import nl.fontys.epic.SimpleTextAdventure;
-import nl.fontys.epic.core.Equip;
+import nl.fontys.epic.commands.Command;
+import nl.fontys.epic.commands.CommandException;
+import nl.fontys.epic.commands.CommandResponse;
+import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Item;
-import nl.fontys.epic.core.Player;
-import nl.fontys.epic.core.Equipable;
+import nl.fontys.epic.commands.CommandResponse.ResponseType;
+import nl.fontys.epic.util.Useable;
 
 /**
- * {@see Command} implementation for equipping items.
- * 
+ * Uses an item and throws it away
+ *
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public class EquipCommand implements Command {
+public class UseCommand implements Command {
 
     @Override
     public CommandResponse handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
-        if (args.length < 1 || args[0].trim().isEmpty()) {
-            throw new CommandException("You have to specify a direction where to go!");
-        }
-        
-        // Initialization
-        String itemId = args[0];
-        Player player = adventure.getPlayer();
-        Inventory inventory = player.getInventory();
-        
-        // Check if it's an equippable item
-        Item item = inventory.get(itemId);
-        
-        if (item instanceof Equipable) {
-            Equipable equipItem = (Equipable)item;
-            Equip equip = player.getEquip();
-            
-            Equipable current = equip.attach(equipItem);
-            
-            if (current != null && current instanceof Item) {
-                inventory.add((Item)current);
-                return new SimpleCommandResponse("You switched " + itemId + " with " + ((Item)current).getID());
-            } else {
-                return new SimpleCommandResponse("You equipped " + itemId);
-                
-            }
+        if (args.length == 0 || args[0].trim().isEmpty()) {
+            throw new CommandException("You have to select something to use");
         } else {
-            throw new CommandException(itemId + " can not be equipped.");
+            String itemId = args[0];
+            Inventory inventory = adventure.getPlayer().getInventory();
+            
+            if (inventory.contains(itemId)) {
+                Item item = inventory.get(itemId);
+                
+                if (item instanceof Useable) {
+                    ((Useable)item).use(adventure);
+                    inventory.remove(itemId);
+                    return new SimpleCommandResponse("You successfully used " + itemId);
+                } else {
+                    return new SimpleCommandResponse("You can't use " + itemId, ResponseType.ERROR);
+                }
+            } else {
+                return new SimpleCommandResponse("You don't have any item called " + itemId, ResponseType.ERROR);
+            }            
         }
     }
-    
+
 }

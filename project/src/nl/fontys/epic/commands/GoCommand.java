@@ -21,7 +21,8 @@
  */
 package nl.fontys.epic.commands;
 
-import nl.fontys.epic.SimpleTextAdventure;
+import nl.fontys.epic.commands.impl.SimpleCommandResponse;
+import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.RoomException;
 import nl.fontys.epic.commands.CommandResponse.ResponseType;

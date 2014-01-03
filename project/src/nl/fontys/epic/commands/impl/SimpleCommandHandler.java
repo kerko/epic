@@ -20,12 +20,16 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.commands;
+package nl.fontys.epic.commands.impl;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import nl.fontys.epic.SimpleTextAdventure;
+import nl.fontys.epic.commands.Command;
+import nl.fontys.epic.commands.CommandException;
+import nl.fontys.epic.commands.CommandHandler;
+import nl.fontys.epic.commands.CommandResponse;
+import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.commands.CommandResponse.ResponseType;
 
 /**

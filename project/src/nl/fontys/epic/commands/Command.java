@@ -22,7 +22,7 @@ package nl.fontys.epic.commands;
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import nl.fontys.epic.SimpleTextAdventure;
+import nl.fontys.epic.impl.SimpleTextAdventure;
 
 /**
  * Represents a single command which can be applied to a {@see CommandHandler}

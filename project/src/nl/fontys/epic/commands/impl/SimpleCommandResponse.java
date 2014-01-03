@@ -19,30 +19,67 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package nl.fontys.epic.io;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import nl.fontys.epic.SimpleTextAdventure;
+package nl.fontys.epic.commands.impl;
+
+import nl.fontys.epic.commands.CommandResponse;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import nl.fontys.epic.commands.CommandResponse;
 
 /**
- * XML implementation of {@see IOHandler}
+ * Simple implementation of {@see CommandResponse}
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public class XMLHandler implements IOHandler {
+public class SimpleCommandResponse implements CommandResponse {
+    
+    private long timestamp;
+    
+    private String message;
+    
+    private ResponseType type;
+    
+    private List<String> entries;
 
-    @Override
-    public SimpleTextAdventure read(InputStream inputStream) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public SimpleCommandResponse(String message, ResponseType type) {
+        this.timestamp = System.currentTimeMillis();
+        this.message = message;
+        entries = new ArrayList<>();
+        this.type = type;
+    }
+    
+    public SimpleCommandResponse(String message) {
+        this(message, ResponseType.INFO);
     }
 
     @Override
-    public void write(SimpleTextAdventure adventure, OutputStream outputStream) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getMessage() {
+        return message;
     }
+
+    @Override
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    @Override
+    public ResponseType getType() {
+        return type;
+    }
+
+    @Override
+    public Collection<String> getEntries() {
+        return entries;
+    }
+
+    @Override
+    public void addEntry(String entry) {
+        entries.add(entry);
+    }
+    
     
 }

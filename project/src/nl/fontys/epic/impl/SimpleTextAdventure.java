@@ -19,25 +19,26 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package nl.fontys.epic;
+package nl.fontys.epic.impl;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import nl.fontys.epic.commands.AttackCommand;
-import nl.fontys.epic.commands.DropCommand;
+import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.commands.impl.AttackCommand;
+import nl.fontys.epic.commands.impl.DropCommand;
 import nl.fontys.epic.commands.GoCommand;
 import nl.fontys.epic.commands.OpenCommand;
-import nl.fontys.epic.commands.UseCommand;
+import nl.fontys.epic.commands.impl.UseCommand;
 import nl.fontys.epic.core.AdventureListener;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Room;
 import nl.fontys.epic.commands.Command;
 import nl.fontys.epic.commands.CommandHandler;
 import nl.fontys.epic.commands.CommandResponse;
-import nl.fontys.epic.commands.EquipCommand;
+import nl.fontys.epic.commands.impl.EquipCommand;
 import nl.fontys.epic.util.Observer;
-import nl.fontys.epic.commands.SimpleCommandHandler;
+import nl.fontys.epic.commands.impl.SimpleCommandHandler;
 import nl.fontys.epic.util.SimpleObserver;
 
 /**

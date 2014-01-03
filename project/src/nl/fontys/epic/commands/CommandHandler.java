@@ -21,7 +21,7 @@ package nl.fontys.epic.commands;
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import nl.fontys.epic.SimpleTextAdventure;
+import nl.fontys.epic.impl.SimpleTextAdventure;
 
 /**
  * Handles {@see Command} objects and delegates commands to them.

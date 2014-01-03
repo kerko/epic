@@ -22,7 +22,7 @@
 
 package nl.fontys.epic.core;
 
-import nl.fontys.epic.SimpleTextAdventure;
+import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.util.Indexable;
 import nl.fontys.epic.util.Position;
 
