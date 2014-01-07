@@ -34,7 +34,7 @@ import org.w3c.dom.Node;
  * @since 1.0
  * @version 1.0
  */
-public class XMLConverter implements IOConverter<Node> {
+public class PlayerConverter implements IOConverter<Node> {
 
     @Override
     public <T> Node toOutput(T source) throws ConvertException {
