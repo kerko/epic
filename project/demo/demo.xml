@@ -3,9 +3,9 @@
 
     <!--Player -->
     <player name="Mike Moore" life="100" xcordinate="1" ycordinate="1">
-        <item ref="knife" />
-        <item ref="lamp" />
-        <item ref="apple" />
+        <item reference="knife" />
+        <item reference="lamp" />
+        <item reference="apple" />
     </player>
 
     <!--Items -->
@@ -40,14 +40,14 @@
     <!--Rooms -->
 
     <room id="dungeon" name="Dark Dungeon" width="3" height="3" message="You are alone. In front of you is a dark dungeon. Suddenly you hear some noise. RUN!">
-        <door x="2" y="2" room="chamber" target="closeddoor" />
-        <creature src="ghost" x="2" y="1" />
-        <item ref="apple" x="1" y="2" />
+        <door xcoordinate="2" ycoordinate="2" room="chamber" target="closeddoor" />
+        <creature-ref reference="ghost" xcoordinate="2" ycoordinate="1" />
+        <item-ref reference="apple" x="1" y="2" />
     </room>
 
     <room id="chamber" name="Chamber of horror" width="3" height="3" message="You are alone. Forever.">
-        <door x="0" y="0" id="closeddoor"/>
-        <creature ref="ghost" x="2" y="1" />
+        <door-ref xcoordinate="0" ycoordinate="0" id="closeddoor"/>
+        <creature-ref reference="ghost" xcoordinate="2" ycoordinate="1" />
     </room>
 
 </adventure>
