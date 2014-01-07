@@ -11,6 +11,6 @@
 ~*
 
 *.swp
-build/
-nbproject/private/*
-/dist/
+**/build/*
+**/nbproject/private/*
+**/dist/
