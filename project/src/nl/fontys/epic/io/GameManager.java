@@ -28,35 +28,29 @@ import java.io.OutputStream;
 import nl.fontys.epic.TextAdventure;
 
 /**
- * Handles input and output processing of game objects
+ * Handles game loading and saving
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public interface IOHandler {
+public interface GameManager {
     
     /**
+     * Saves an existing game.
      * 
-     * 
-     * @param in
-     * @return
-     * @throws IOException 
+     * @param adventure existing game instance
+     * @param out target stream
+     * @throws IOException is thrown when something is wrong with the output
      */
-    Object[] load(InputStream in ) throws IOException;
+    void save(TextAdventure adventure, OutputStream out) throws IOException;
     
     /**
+     * Loads a game from a source. 
      * 
-     * 
-     * @param adventure
-     * @param out 
+     * @param in input source stream
+     * @return A new text adventure object
+     * @throws IOException Is thrown when the input file is corrupted
      */
-    void save(TextAdventure adventure, OutputStream out);
-
-    /**
-     * 
-     * 
-     * @param factory 
-     */
-    void setFactory(ContentFactory factory);
+    TextAdventure load(InputStream in) throws IOException;
 }

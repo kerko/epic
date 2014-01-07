@@ -22,7 +22,10 @@
 
 package nl.fontys.epic.util;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,11 +41,17 @@ public class SharedGameObjectPool implements GameObjectPool {
     
     private final Map<String, Object> resources;
     
+    private final Map<Class<?>, List<Object> > collection;
+    
+    private final Map<String, Class<?> > classes;
+    
     static {
         managers = new HashMap<>();
     }
     
     private SharedGameObjectPool() { 
+        classes = new HashMap< >();
+        collection =  new HashMap< >();
         resources = new HashMap<>();
     }
     
@@ -61,10 +70,32 @@ public class SharedGameObjectPool implements GameObjectPool {
     @Override
     public <Type> void add(String ID, Type element) {
         resources.put(ID, element);
+        classes.put(ID, element.getClass());
+        
+        if (collection.get(element.getClass()) == null) {
+            List<Object> entries = new ArrayList< >();
+            collection.put(element.getClass(), entries);
+        }
+        
+        collection.get(element.getClass()).add(element);
     }
 
     @Override
-    public <Type> void remove(String ID) {
+    public <Type> void remove(String ID) {      
+        
+        Class<?> elementClass = classes.get(ID);
+        List<Object> elements = collection.get(elementClass);
+        
+        if (elementClass != null && elements != null) {
+            Type element = get(ID, (Class<Type>)elementClass);
+            elements.remove(element);
+            
+            if (elements.isEmpty()) {
+                collection.remove(elementClass);                
+            }
+        }
+        
+        classes.remove(ID);
         resources.remove(ID);
     }
 
@@ -86,6 +117,11 @@ public class SharedGameObjectPool implements GameObjectPool {
     @Override
     public void clear() {
         resources.clear();
+    }
+
+    @Override
+    public <Type> Collection<Type> getAll(Class<Type> typeClass) {
+        return (Collection<Type>)collection.get(typeClass);
     }
     
 }

@@ -22,6 +22,8 @@
 
 package nl.fontys.epic.util;
 
+import java.util.Collection;
+
 /**
  * Resource manager which stores different resources
  * 
@@ -57,6 +59,15 @@ public interface GameObjectPool {
      * @return 
      */
     <Type> Type get(final String ID, Class<Type> typeClass);
+    
+    /**
+     * Returns all elements of the given type
+     * 
+     * @param <Type>
+     * @param typeClass
+     * @return 
+     */
+    <Type> Collection<Type> getAll(Class<Type> typeClass);
     
     /**
      * Determines if the resource manager is empty

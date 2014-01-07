@@ -19,22 +19,37 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+
 package nl.fontys.epic.io;
 
 /**
- * Creates objects for the game
+ * Handles game loading and saving
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @param <OutputType> Target type
  * @since 1.0
  * @version 1.0
  */
-public interface ContentFactory {
+public interface IOConverter<OutputType> {
     
     /**
+     * Converts an input instance to an output type
      * 
-     * 
-     * @return 
+     * @param <T> class type of the input
+     * @param source source of the class type
+     * @return valid output object
+     * @throws ConvertException is thrown when the source is corrupt
      */
-    Object create();
+    <T> OutputType toOutput(T source) throws ConvertException;
     
+    /**
+     * Converts an output instance to an input type
+     * 
+     * @param <T> class type of the output
+     * @param source source instance
+     * @param classType class type to make type checks
+     * @return valid input object
+     * @throws ConvertException is thrown when the source is corrupt
+     */
+    <T> T toInput(OutputType source, Class<T> classType) throws ConvertException;    
 }

@@ -20,38 +20,43 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.io;
+package nl.fontys.epic.io.xml;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.io.GameManager;
+import nl.fontys.epic.util.GameObjectPool;
 
 /**
- * Handles loading and reading of game files.
+ * XML implementation of {@see GameManager}
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public interface GameFileManager {
+public class XMLGameManager implements GameManager {
     
-    /**
-     * 
-     * 
-     * @param adventure
-     * @param out
-     * @throws IOException 
-     */
-    void save(TextAdventure adventure, OutputStream out) throws IOException;
+    private final XMLConverter converter;
     
-    /**
-     * 
-     * 
-     * @param in
-     * @return
-     * @throws IOException 
-     */
-    TextAdventure load(InputStream in) throws IOException;
+    private final GameObjectPool pool;
+    
+    public XMLGameManager(GameObjectPool pool) {
+        converter = new XMLConverter();
+        this.pool = pool;
+    }
+
+    @Override
+    public void save(TextAdventure adventure, OutputStream out) throws IOException {
+        
+        // Save items
+                       
+    }
+
+    @Override
+    public TextAdventure load(InputStream in) throws IOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
