@@ -120,6 +120,7 @@ public class XMLGameManager implements GameManager {
 
         Document document = documentFactory.create(in);
         IOConverter<Node> converter = createConverter();
+        DeferredStorage storage = DeferredStorage.getInstance();
         NodeList nodes = document.getChildNodes();
         Node root = nodes.item(0);
 
@@ -133,6 +134,7 @@ public class XMLGameManager implements GameManager {
         Player player = null;
         String name = null;
         String story = null;
+        String entryID = null;
 
         GameObjectPool pool = SharedGameObjectPool.getInstance(name);
 
@@ -145,7 +147,7 @@ public class XMLGameManager implements GameManager {
                     switch (node.getNodeName()) {
                         case Attributes.TAG_PLAYER:
                             player = converter.toInput(node, Player.class);
-                            pool.add(player.getID(), player);
+                            pool.add(player.getID(), player);                            
                             break;
                         case Attributes.TAG_CREATURE:
                             Creature creature = converter.toInput(node, Creature.class);
@@ -164,11 +166,14 @@ public class XMLGameManager implements GameManager {
             }
 
             // Fill rooms with content (magic part goes here)
-            DeferredEntityLoader entityLoader = new DeferredEntityLoader(pool, DeferredStorage.getInstance());
+            DeferredEntityLoader entityLoader = new DeferredEntityLoader(pool, storage);
 
             for (Room room : rooms) {
                 entityLoader.load(room);
             }
+            
+            // Set the room of the player
+            player.setRoom(pool.get(entryID, Room.class));
 
         } catch (ConvertException | DeferredEntityLoader.LoadingException e) {
             throw new IOException(e);

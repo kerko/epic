@@ -101,13 +101,13 @@ public class DeferredStorage {
         return instance;
     }
 
-    public void add(IDProvider parent, String id, StorageType type, int x, int y) {
+    public void add(String parent, String id, StorageType type, int x, int y) {
         StorageData element = new StorageData(id, type, x, y);        
-        List<StorageData> dataList = data.get(parent.getID());
+        List<StorageData> dataList = data.get(parent);
         
         if (dataList == null) {
             dataList = new ArrayList< >();
-            data.put(parent.getID(), dataList);
+            data.put(parent, dataList);
         }        
         
         if (!dataList.contains(element)) {
@@ -115,7 +115,7 @@ public class DeferredStorage {
         }
     }
 
-    public void add(IDProvider parent, String id, StorageType type) {
+    public void add(String parent, String id, StorageType type) {
         add(parent, id, type, -1, -1);
     }
     

@@ -56,12 +56,12 @@ public class SimpleIOConverter<Type> implements IOConverter<Type> {
     @Override
     public <T> T toInput(Type source, Class<T> classType) throws ConvertException {
         
-        ContentConverter<Type, T> converter = (ContentConverter<Type, T>) converters.get(source.getClass());
+        ContentConverter<Type, T> converter = (ContentConverter<Type, T>) converters.get(classType);
         
         if (converter != null) {
             return converter.toInput(source);
         } else {
-            throw new ConvertException("No converter was found for type " + source.getClass());
+            throw new ConvertException("No converter was found for type " + classType);
         }
     }
 
