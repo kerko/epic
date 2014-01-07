@@ -19,21 +19,17 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package nl.fontys.epic.demo;
 
-import nl.fontys.epic.io.GameManager;
-import nl.fontys.epic.io.xml.XMLGameManager;
+package nl.fontys.epic.util;
 
 /**
- * Simple demo game in on order to display the text adventure.
- *
+ * Provides an id
+ * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public class DemoGame {
-
-    public static void main(String[] args) {
-        GameManager manager = new XMLGameManager();
-    }
+public interface IDProvider {
+    
+    String getID();
 }

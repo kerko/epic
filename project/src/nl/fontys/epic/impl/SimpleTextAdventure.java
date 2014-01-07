@@ -50,11 +50,12 @@ public class SimpleTextAdventure extends SimpleObserver<AdventureListener> imple
     private final CommandHandler commandHandler;
     private final Player player;
     private final Map<String, Room> rooms;
+    private final String name;
 
-    public SimpleTextAdventure(Collection<Room> rooms, Player player) {
+    public SimpleTextAdventure(String name, Collection<Room> rooms, Player player) {
         
         commandHandler = new SimpleCommandHandler();
-        
+        this.name = name;
         this.rooms = new HashMap< >();
         this.player = player;
         
@@ -92,7 +93,7 @@ public class SimpleTextAdventure extends SimpleObserver<AdventureListener> imple
 
     @Override
     public String getName() {
-        return "";
+        return name;
     }
 
     @Override
@@ -112,5 +113,10 @@ public class SimpleTextAdventure extends SimpleObserver<AdventureListener> imple
         registerCommand("open", new OpenCommand());
         registerCommand("use", new UseCommand());
         registerCommand("equip", new EquipCommand());
+    }
+
+    @Override
+    public String getID() {
+        return getName();
     }
 }

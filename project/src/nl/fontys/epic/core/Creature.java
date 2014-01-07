@@ -75,7 +75,9 @@ public interface Creature extends GameObject {
      * @return 
      */
     int getLife();
-     int getMaxLife();
+    
+    int getMaxLife();
+    
     void addlife(int ammount);
 
     /**

@@ -38,6 +38,7 @@ import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.io.ConvertException;
 import nl.fontys.epic.io.GameManager;
 import nl.fontys.epic.util.GameObjectPool;
+import nl.fontys.epic.util.SharedGameObjectPool;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -52,15 +53,23 @@ public class XMLGameManager implements GameManager {
     
     private final SimpleIOConverter<Node> converter;
     
-    private final GameObjectPool pool;
-    
-    public XMLGameManager(GameObjectPool pool) {
+    public XMLGameManager() {
         converter = new SimpleIOConverter< >();
-        this.pool = pool;
+        
+        converter.addContentConverter(new PlayerConverter(), Player.class);
+        converter.addContentConverter(new ItemConverter(), Item.class);
+        converter.addContentConverter(new CreatureConverter(), Creature.class);
+        converter.addContentConverter(new RoomConverter(), Room.class);
     }
 
     @Override
     public void save(TextAdventure adventure, OutputStream out) throws IOException {
+        
+        GameObjectPool pool = SharedGameObjectPool.getInstance(adventure.getID());
+        
+        if (pool == null) {
+            throw new IOException("Invalid adventure index: " + adventure.getID());
+        }
         
         try {
             
@@ -110,8 +119,9 @@ public class XMLGameManager implements GameManager {
         
         List<Room> rooms = new ArrayList< >(); // TODO
         Player player = null; // TODO
+        String name = null; // TODO
         
-        return new SimpleTextAdventure(rooms, player);
+        return new SimpleTextAdventure(name, rooms, player);
     }
     
 }
