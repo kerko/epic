@@ -25,9 +25,6 @@ package nl.fontys.epic.io;
 
 import java.util.HashMap;
 import java.util.Map;
-import nl.fontys.epic.io.ContentConverter;
-import nl.fontys.epic.io.ConvertException;
-import nl.fontys.epic.io.IOConverter;
 
 /**
  * XML implementation of {@see GameManager}

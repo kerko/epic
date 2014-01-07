@@ -45,13 +45,13 @@
        
     <!--Rooms -->
 
-    <room id="dungeon" name="Dark Dungeon" message="You are alone. In front of you is a dark dungeon. Suddenly you hear some noise. RUN!">
+    <room id="dungeon" name="Dark Dungeon" width="3" height="3" message="You are alone. In front of you is a dark dungeon. Suddenly you hear some noise. RUN!">
         <door x="2" y="2" target="chamber" dst="closeddoor" />
         <creature src="ghost" x="2" y="1" />
         <item src="apple" x="1" y="2" />
     </room>
 
-    <room id="chamber" name="Chamber of horror" message="You are alone. Forever.">
+    <room id="chamber" name="Chamber of horror" width="3" height="3" message="You are alone. Forever.">
         <door x="0" y="0" id="closeddoor"/>
         <creature src="ghost" x="2" y="1" />
     </room>
