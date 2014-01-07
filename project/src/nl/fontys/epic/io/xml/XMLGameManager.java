@@ -19,7 +19,6 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package nl.fontys.epic.io.xml;
 
 import nl.fontys.epic.io.SimpleIOConverter;
@@ -29,6 +28,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import nl.fontys.epic.Attributes;
 import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.Creature;
@@ -39,6 +40,8 @@ import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.io.ConvertException;
 import nl.fontys.epic.io.GameManager;
 import nl.fontys.epic.io.IOConverter;
+import nl.fontys.epic.util.DeferredEntityLoader;
+import nl.fontys.epic.util.DeferredStorage;
 import nl.fontys.epic.util.GameObjectPool;
 import nl.fontys.epic.util.SharedGameObjectPool;
 import org.w3c.dom.Document;
@@ -46,18 +49,20 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * XML implementation of {@see GameManager}
- * 
+ * XML implementation of {
+ *
+ * @see GameManager}
+ *
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
 public class XMLGameManager implements GameManager {
-    
+
     private final DocumentWriter documentWriter;
-    
+
     private final DocumentFactory documentFactory;
-    
+
     public XMLGameManager() {
         documentWriter = new SimpleDocumentWriter();
         documentFactory = new SimpleDocumentFactory();
@@ -65,72 +70,72 @@ public class XMLGameManager implements GameManager {
 
     @Override
     public void save(TextAdventure adventure, OutputStream out) throws IOException {
-        
+
         GameObjectPool pool = SharedGameObjectPool.getInstance(adventure.getID());
-        
+
         if (pool == null) {
             throw new IOException("Invalid adventure index: " + adventure.getID());
         }
-        
+
         Document document = documentFactory.create();
         IOConverter<Node> converter = createConverter();
-        
+
         try {
-            
+
             Node root = converter.toOutput(adventure);
-            
+
             // Add player
             Node player = converter.toOutput(adventure.getPlayer());
             root.appendChild(player);
-            
+
             // Add Items
             Collection<Item> items = pool.getAll(Item.class);
-            
+
             for (Item item : items) {
                 root.appendChild(converter.toOutput(item));
             }
-            
+
             // Add creatures
             Collection<Creature> creatures = pool.getAll(Creature.class);
-            
+
             for (Creature creature : creatures) {
                 root.appendChild(converter.toOutput(creature));
             }
-            
+
             // Add rooms
             Collection<Room> rooms = pool.getAll(Room.class);
-            
+
             for (Room room : rooms) {
                 root.appendChild(converter.toOutput(room));
             }
         } catch (ConvertException e) {
             throw new IOException(e);
         }
-        
+
         documentWriter.write(document, out);
     }
 
     @Override
     public TextAdventure load(InputStream in) throws IOException {
-        
+
         Document document = documentFactory.create(in);
         IOConverter<Node> converter = createConverter();
         NodeList nodes = document.getChildNodes();
         Node root = nodes.item(0);
-        
+
         if (root == null) {
             throw new IOException("Document has no root element.");
-        } else {            
+        } else {
             nodes = root.getChildNodes();
         }
-       
-        List<Room> rooms = new ArrayList< >();
+
+        List<Room> rooms = new ArrayList<>();
         Player player = null;
         String name = null;
-        String story = null;        
-        
+        String story = null;
+
         GameObjectPool pool = SharedGameObjectPool.getInstance(name);
-        
+
         try {
             for (int i = 0; i < nodes.getLength(); ++i) {
                 Node node = nodes.item(i);
@@ -147,29 +152,41 @@ public class XMLGameManager implements GameManager {
                             pool.add(creature.getID(), creature);
                             break;
                         case Attributes.TAG_ITEM:
-                            Item item = converter.toInput(node, Item.class); 
+                            Item item = converter.toInput(node, Item.class);
                             pool.add(item.getID(), item);
+                            break;
+                        case Attributes.TAG_ROOM:
+                            Room room = converter.toInput(node, Room.class);
+                            pool.add(room.getID(), room);
                             break;
                     }
                 }
             }
-        } catch (ConvertException e) {
+
+            // Fill rooms with content (magic part goes here)
+            DeferredEntityLoader entityLoader = new DeferredEntityLoader(pool, DeferredStorage.getInstance());
+
+            for (Room room : rooms) {
+                entityLoader.load(room);
+            }
+
+        } catch (ConvertException | DeferredEntityLoader.LoadingException e) {
             throw new IOException(e);
         }
-        
+
         return new SimpleTextAdventure(name, story, rooms, player);
     }
-    
+
     private IOConverter<Node> createConverter() {
-        IOConverter converter = new SimpleIOConverter< >();
-        
+        IOConverter converter = new SimpleIOConverter<>();
+
         converter.addContentConverter(new AdventureConverter(), TextAdventure.class);
         converter.addContentConverter(new PlayerConverter(), Player.class);
         converter.addContentConverter(new ItemConverter(), Item.class);
         converter.addContentConverter(new CreatureConverter(), Creature.class);
         converter.addContentConverter(new RoomConverter(), Room.class);
-        
+
         return converter;
     }
-    
+
 }

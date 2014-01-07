@@ -22,7 +22,6 @@
 
 package nl.fontys.epic.util;
 
-import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.core.Creature;
 import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Item;
@@ -48,16 +47,7 @@ public class DeferredEntityLoader {
         this.entityStorage = entityStorage;
     }
     
-    public void load(SimpleTextAdventure adventure) throws LoadingException {
-        
-        // Fill up all rooms
-        for (Room room : adventure.getRooms()) {
-            loadRoomData(room);            
-        }
-    }
-    
-    private void loadRoomData(Room room) throws LoadingException {
-        
+    public void load(Room room) throws LoadingException {
         while (entityStorage.hasNext(room)) {
             StorageData data = entityStorage.fetch(room);
             

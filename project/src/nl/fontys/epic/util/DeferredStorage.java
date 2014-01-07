@@ -103,7 +103,7 @@ public class DeferredStorage {
 
     public void add(IDProvider parent, String id, StorageType type, int x, int y) {
         StorageData element = new StorageData(id, type, x, y);        
-        List<StorageData> dataList = data.get(parent);
+        List<StorageData> dataList = data.get(parent.getID());
         
         if (dataList == null) {
             dataList = new ArrayList< >();
