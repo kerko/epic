@@ -29,6 +29,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import nl.fontys.epic.Attributes;
 import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.Creature;
 import nl.fontys.epic.core.Item;
@@ -72,7 +73,7 @@ public class XMLGameManager implements GameManager {
         }
         
         Document document = documentFactory.create();
-        IOConverter<Node> converter = createConverter(document);
+        IOConverter<Node> converter = createConverter();
         
         try {
             
@@ -105,30 +106,61 @@ public class XMLGameManager implements GameManager {
         } catch (ConvertException e) {
             throw new IOException(e);
         }
+        
+        documentWriter.write(document, out);
     }
 
     @Override
     public TextAdventure load(InputStream in) throws IOException {
         
         Document document = documentFactory.create(in);
-        
+        IOConverter<Node> converter = createConverter();
         NodeList nodes = document.getChildNodes();
+        Node root = nodes.item(0);
         
-        for (int i = 0; i < nodes.getLength(); ++i) {
-            
-            Node node = nodes.item(i);
-            
-            // TODO
-        }        
+        if (root == null) {
+            throw new IOException("Document has no root element.");
+        } else {            
+            nodes = root.getChildNodes();
+        }
+       
+        List<Room> rooms = new ArrayList< >();
+        Player player = null;
+        String name = null;
+        String story = null;        
         
-        List<Room> rooms = new ArrayList< >(); // TODO
-        Player player = null; // TODO
-        String name = null; // TODO
+        GameObjectPool pool = SharedGameObjectPool.getInstance(name);
         
-        return new SimpleTextAdventure(name, rooms, player);
+        try {
+            for (int i = 0; i < nodes.getLength(); ++i) {
+                Node node = nodes.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+
+                    switch (node.getNodeName()) {
+                        case Attributes.TAG_PLAYER:
+                            player = converter.toInput(node, Player.class);
+                            pool.add(player.getID(), player);
+                            break;
+                        case Attributes.TAG_CREATURE:
+                            Creature creature = converter.toInput(node, Creature.class);
+                            pool.add(creature.getID(), creature);
+                            break;
+                        case Attributes.TAG_ITEM:
+                            Item item = converter.toInput(node, Item.class); 
+                            pool.add(item.getID(), item);
+                            break;
+                    }
+                }
+            }
+        } catch (ConvertException e) {
+            throw new IOException(e);
+        }
+        
+        return new SimpleTextAdventure(name, story, rooms, player);
     }
     
-    private IOConverter<Node> createConverter(Document document) {
+    private IOConverter<Node> createConverter() {
         IOConverter converter = new SimpleIOConverter< >();
         
         converter.addContentConverter(new AdventureConverter(), TextAdventure.class);

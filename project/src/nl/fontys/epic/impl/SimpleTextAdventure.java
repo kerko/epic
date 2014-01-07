@@ -55,18 +55,22 @@ public class SimpleTextAdventure extends SimpleObserver<AdventureListener> imple
     private final String name;
     private final String story;
     private boolean running;
+    
+    public SimpleTextAdventure(String name, Collection<Room> rooms, Player player) {
+        this(name, null, rooms, player);
+    }
 
     public SimpleTextAdventure(String name, String story, Collection<Room> rooms, Player player) {
-        
+
         this.story = story;
         commandHandler = new SimpleCommandHandler();
         this.name = name;
-        this.rooms = new HashMap< >();
+        this.rooms = new HashMap<>();
         this.player = player;
         for (Room room : rooms) {
             this.rooms.put(room.getID(), room);
         }
-        
+
         initDefaults();
     }
 
@@ -126,16 +130,16 @@ public class SimpleTextAdventure extends SimpleObserver<AdventureListener> imple
 
     @Override
     public void start() {
-        
-        if (!isRunning()) {
-            
+
+        if (!isRunning() && story != null) {
+
             Event response = new SimpleEvent(story, EventType.INFO);
-            
+
             for (AdventureListener l : getListeners()) {
-            l.onAction(response);
+                l.onAction(response);
+            }
         }
-        }
-        
+
         running = true;
     }
 
