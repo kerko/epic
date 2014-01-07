@@ -2,7 +2,7 @@
 <adventure name="Dark trinity" entry="dungeon" story="You are alone. In front of you is a dark dungeon. Suddenly you hear some noise. RUN!">
 
     <!--Player -->
-    <player name="Mike Moore" life="100" x="1" y="1">
+    <player name="Mike Moore" life="100" xcordinate="1" ycordinate="1">
         <item ref="knife" />
         <item ref="lamp" />
         <item ref="apple" />
