@@ -9,6 +9,8 @@
 
 *~
 ~*
-**/build/
+
+*.swp
+**/build/*
 **/nbproject/private/*
 **/dist/
