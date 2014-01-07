@@ -23,9 +23,11 @@ package nl.fontys.epic;
 
 import java.util.Collection;
 import nl.fontys.epic.commands.Command;
+import nl.fontys.epic.core.AdventureListener;
 import nl.fontys.epic.core.IDProvider;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Room;
+import nl.fontys.epic.util.Observer;
 
 /**
  * Text adventure which provides game logic for a custom game.
@@ -34,7 +36,7 @@ import nl.fontys.epic.core.Room;
  * @since 1.0
  * @version 1.0
  */
-public interface TextAdventure extends IDProvider {
+public interface TextAdventure extends IDProvider, Observer<AdventureListener> {
 
     /**
      * Registers a new command to this text adventure.
@@ -88,4 +90,11 @@ public interface TextAdventure extends IDProvider {
      */
     void command(String command);
 
+    void start();
+    
+    void close();
+    
+    boolean isRunning();
+    
+    
 }

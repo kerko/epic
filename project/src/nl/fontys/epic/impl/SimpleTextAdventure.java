@@ -51,6 +51,7 @@ public class SimpleTextAdventure extends SimpleObserver<AdventureListener> imple
     private final Player player;
     private final Map<String, Room> rooms;
     private final String name;
+    private boolean running;
 
     public SimpleTextAdventure(String name, Collection<Room> rooms, Player player) {
         
@@ -118,5 +119,20 @@ public class SimpleTextAdventure extends SimpleObserver<AdventureListener> imple
     @Override
     public String getID() {
         return getName();
+    }
+
+    @Override
+    public void start() {
+        running = true;
+    }
+
+    @Override
+    public void close() {
+        running = false;
+    }
+
+    @Override
+    public boolean isRunning() {
+        return running;
     }
 }

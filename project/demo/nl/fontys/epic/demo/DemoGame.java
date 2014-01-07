@@ -21,6 +21,10 @@
  */
 package nl.fontys.epic.demo;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.io.GameManager;
 import nl.fontys.epic.io.xml.XMLGameManager;
 
@@ -33,7 +37,19 @@ import nl.fontys.epic.io.xml.XMLGameManager;
  */
 public class DemoGame {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         GameManager manager = new XMLGameManager();
+        TextAdventure game = manager.load(new FileInputStream(new File("demo/demo.xml")));
+        Input input = new ConsoleInput();
+        
+        Output output = new ConsoleOutput();
+        game.addListener(new OutputAdapter(output));        
+        
+        game.start();
+        
+        while (game.isRunning()) {
+            String command = input.read();
+            game.command(command);
+        }        
     }
 }
