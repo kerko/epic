@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <!-- Definiton of Types-->   
+    <xs:simpleType name="idtype">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([a-z])*[0-9]"/>
+        </xs:restriction>
+    </xs:simpleType>     
+    <xs:simpleType name="gameString">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([a-zA-Z])*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- Definiton of simple Elements-->
+    <xs:attribute name="name" type="gameString" use="required"/>
+    <xs:attribute name="id" type="gameString" use="required"/>
+    <xs:attribute name="description" type="xs:string"/>
+    <xs:attribute name="message" type="xs:string"/>
+    <xs:attribute name="life" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="maxlife" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="target" type="gameString" use="required"/>
+    <xs:attribute name="destination" type="gameString" use="required" default="closeddoor"/>
+    
+    <xs:attributeGroup name="position">
+        <xs:attribute name="xcordinate" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="ycordinate" type="xs:positiveInteger" use="required"/>
+    </xs:attributeGroup>
+    
+    <xs:attribute name="lifestat" type="xs:integer"/>
+    <xs:attributeGroup name="stats">
+        <xs:attribute name="power" type="xs:integer"/>
+        <xs:attribute name="defense" type="xs:integer"/>
+    </xs:attributeGroup>
+    
+    <xs:attributeGroup name="size">
+        <xs:attribute name="width" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="hight" type="xs:positiveInteger" use="required"/>
+    </xs:attributeGroup>
+    
+
+    <!-- Definition of complex Elements -->
+    
+    <!-- Items -->
+     
+    <xs:complexType name="item">
+        <xs:attribute ref="id"/>
+        <xs:attribute ref="name"/>
+        <xs:attribute ref="description"/>                
+    </xs:complexType>
+
+    
+    <xs:element name="equip-item">
+        <xs:complexType>
+            <xs:exentension base="item">
+                <xs:attribute ref="lifestat"/>
+                <xs:attributeGroup ref="stats">
+            </xs:exentension>               
+        </xs:complexType>
+    </xs:element>
+        
+    <xs:element name="consum-item" type="item">
+            
+    </xs:element>
+        
+    <xs:element name="collect-item" type="item">
+            
+    </xs:element>
+    
+    <xs:element name="player">
+        <xs:complexType>        
+                
+            <xs:attribute ref="name"/>
+            <xs:attribute ref="life"/>
+            <xs:attributeGroup ref="position"/>    
+                   
+            <xs:element ref="item" maxOccurs="unbound"/>
+        </xs:complexType>
+    </xs:element>
+    
+  
+    
+    <xs:element name="inventory">
+        <xs:complexType>           
+            <xs:element name="item" type="item" minOccurs="1" maxOccurs="unbounded"/>         
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="creature">
+        <xs:complexType>      
+            <xs:attribute ref="id"/> 
+            <xs:attribute ref="description"/>
+            <xs:attribute ref="name"/>
+            <xs:attribute ref="life"/>
+            <xs:attributeGroup ref="stats"/>
+            <xs:attributeGroup ref="position"/>    
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="room">
+        <xs:complexType>
+            <xs:attribute ref="id"/> 
+            <xs:attribute ref="name"/>
+            <xs:attribute ref="message"/>
+            <xs:attributeGroup ref="size"/>
+            <xs:element ref="door" maxOccurs="unbounded" />
+            <xs:element ref="creature" maxOccurs="unbounded" />
+            <xs:element ref="item" maxOccurs="unbounded" />
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="door">
+        <xs:complexType>
+            <xs:attribute ref="target"/>
+            <xs:attribute ref="destination"/>
+            <xs:attributeGroup ref="position"/>    
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="adventure">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="player" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="item" maxOccurs="unbound"/> 
+                <xs:element ref="room" minOccurs="1" maxOccurs="unbound"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
