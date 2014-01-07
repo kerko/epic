@@ -23,7 +23,6 @@
 package nl.fontys.epic.io.xml;
 
 import nl.fontys.epic.TextAdventure;
-import nl.fontys.epic.core.Creature;
 import nl.fontys.epic.io.ContentConverter;
 import nl.fontys.epic.io.ConvertException;
 import org.w3c.dom.Node;

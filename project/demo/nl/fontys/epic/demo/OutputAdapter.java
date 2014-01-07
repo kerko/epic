@@ -23,8 +23,8 @@
 package nl.fontys.epic.demo;
 
 import nl.fontys.epic.core.AdventureListener;
-import nl.fontys.epic.commands.CommandResponse;
-import nl.fontys.epic.commands.CommandResponse.ResponseType;
+import nl.fontys.epic.commands.Event;
+import nl.fontys.epic.commands.Event.EventType;
 
 /**
  * Adapts output for a text adventure
@@ -42,11 +42,11 @@ public class OutputAdapter implements AdventureListener {
     }
 
     @Override
-    public void onAction(CommandResponse event) {
-        ResponseType type = event.getType();
+    public void onAction(Event event) {
+        EventType type = event.getType();
         String message = event.getMessage();
         
-        if (type.equals(ResponseType.ERROR)) {
+        if (type.equals(EventType.ERROR)) {
             output.error(message);
         } else {
             output.out(message);

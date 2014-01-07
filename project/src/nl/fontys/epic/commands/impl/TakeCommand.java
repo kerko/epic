@@ -23,13 +23,13 @@ package nl.fontys.epic.commands.impl;
 
 import nl.fontys.epic.commands.Command;
 import nl.fontys.epic.commands.CommandException;
-import nl.fontys.epic.commands.CommandResponse;
+import nl.fontys.epic.commands.Event;
 import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Item;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Room;
-import nl.fontys.epic.commands.CommandResponse.ResponseType;
+import nl.fontys.epic.commands.Event.EventType;
 
 /**
  * Takes an item from the ground and add it to the inventory
@@ -41,7 +41,7 @@ import nl.fontys.epic.commands.CommandResponse.ResponseType;
 public class TakeCommand implements Command {
 
     @Override
-    public CommandResponse handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
+    public Event handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
         if (args.length == 0 || args[0].trim().isEmpty()) {
             throw new CommandException("You have to select something to take");
         } else {
@@ -53,9 +53,9 @@ public class TakeCommand implements Command {
             if (items.contains(itemId)) {
                 Item item = items.fetch(itemId);
                 player.getInventory().add(item);
-                return new SimpleCommandResponse("You took " + itemId + " from the ground");
+                return new SimpleEvent("You took " + itemId + " from the ground");
             } else {
-                return new SimpleCommandResponse("There is no item '" + itemId + "' on the ground", ResponseType.ERROR);
+                return new SimpleEvent("There is no item '" + itemId + "' on the ground", EventType.ERROR);
             }
         }
     }

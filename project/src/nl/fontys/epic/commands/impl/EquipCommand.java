@@ -24,7 +24,7 @@ package nl.fontys.epic.commands.impl;
 
 import nl.fontys.epic.commands.Command;
 import nl.fontys.epic.commands.CommandException;
-import nl.fontys.epic.commands.CommandResponse;
+import nl.fontys.epic.commands.Event;
 import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.core.Equip;
 import nl.fontys.epic.core.Inventory;
@@ -42,7 +42,7 @@ import nl.fontys.epic.core.Equipable;
 public class EquipCommand implements Command {
 
     @Override
-    public CommandResponse handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
+    public Event handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
         if (args.length < 1 || args[0].trim().isEmpty()) {
             throw new CommandException("You have to specify a direction where to go!");
         }
@@ -63,9 +63,9 @@ public class EquipCommand implements Command {
             
             if (current != null && current instanceof Item) {
                 inventory.add((Item)current);
-                return new SimpleCommandResponse("You switched " + itemId + " with " + ((Item)current).getID());
+                return new SimpleEvent("You switched " + itemId + " with " + ((Item)current).getID());
             } else {
-                return new SimpleCommandResponse("You equipped " + itemId);
+                return new SimpleEvent("You equipped " + itemId);
                 
             }
         } else {

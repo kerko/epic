@@ -23,14 +23,14 @@ package nl.fontys.epic.commands.impl;
 
 import nl.fontys.epic.commands.Command;
 import nl.fontys.epic.commands.CommandException;
-import nl.fontys.epic.commands.CommandResponse;
+import nl.fontys.epic.commands.Event;
 import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.core.Creature;
 import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Item;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Room;
-import nl.fontys.epic.commands.CommandResponse.ResponseType;
+import nl.fontys.epic.commands.Event.EventType;
 import nl.fontys.epic.util.GameObjectPool;
 import nl.fontys.epic.util.SharedGameObjectPool;
 
@@ -44,7 +44,7 @@ import nl.fontys.epic.util.SharedGameObjectPool;
 public class AttackCommand implements Command {
 
     @Override
-    public CommandResponse handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
+    public Event handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
         GameObjectPool manager = SharedGameObjectPool.getInstance(adventure.getName());
         if (args.length == 0) {
             throw new CommandException("You have to select a Target");
@@ -64,9 +64,9 @@ public class AttackCommand implements Command {
             return this.processDeath(player, adventure);
         }
 
-        return new SimpleCommandResponse("You hit " + creature.getName() + "for " + (creatureHealth - creature.getLife())
+        return new SimpleEvent("You hit " + creature.getName() + "for " + (creatureHealth - creature.getLife())
                 + ". You took" + (playerHealth - player.getLife()) + 
-                "Damage from" + creature.getName() + ".", ResponseType.INFO);
+                "Damage from" + creature.getName() + ".", EventType.INFO);
 
     }
 
@@ -76,14 +76,14 @@ public class AttackCommand implements Command {
         return cr2.isDead();
     }
 
-    private SimpleCommandResponse processDeath(Creature cr, SimpleTextAdventure adventure) {
-        SimpleCommandResponse response = new SimpleCommandResponse(cr.getName() + " died,", ResponseType.INFO);
+    private SimpleEvent processDeath(Creature cr, SimpleTextAdventure adventure) {
+        SimpleEvent response = new SimpleEvent(cr.getName() + " died,", EventType.INFO);
         response = drop(cr, adventure, response);
         cr.kill();
         return response;
     }
 
-    private SimpleCommandResponse drop(Creature cr, SimpleTextAdventure adventure, SimpleCommandResponse response) {
+    private SimpleEvent drop(Creature cr, SimpleTextAdventure adventure, SimpleEvent response) {
         Room room = adventure.getCurrentRoom();
 
         Inventory items = cr.getInventory();

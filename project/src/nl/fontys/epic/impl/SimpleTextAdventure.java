@@ -35,10 +35,12 @@ import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Room;
 import nl.fontys.epic.commands.Command;
 import nl.fontys.epic.commands.CommandHandler;
-import nl.fontys.epic.commands.CommandResponse;
+import nl.fontys.epic.commands.Event;
+import nl.fontys.epic.commands.Event.EventType;
 import nl.fontys.epic.commands.impl.EquipCommand;
 import nl.fontys.epic.util.Observer;
 import nl.fontys.epic.commands.impl.SimpleCommandHandler;
+import nl.fontys.epic.commands.impl.SimpleEvent;
 import nl.fontys.epic.util.SimpleObserver;
 
 /**
@@ -54,14 +56,13 @@ public class SimpleTextAdventure extends SimpleObserver<AdventureListener> imple
     private final String story;
     private boolean running;
 
-    public SimpleTextAdventure(String name, Room entry, String story, Collection<Room> rooms, Player player) {
+    public SimpleTextAdventure(String name, String story, Collection<Room> rooms, Player player) {
         
         this.story = story;
         commandHandler = new SimpleCommandHandler();
         this.name = name;
         this.rooms = new HashMap< >();
         this.player = player;
-       
         for (Room room : rooms) {
             this.rooms.put(room.getID(), room);
         }
@@ -102,7 +103,7 @@ public class SimpleTextAdventure extends SimpleObserver<AdventureListener> imple
     @Override
     public void command(String command) {
 
-        CommandResponse response = commandHandler.handle(command, this);
+        Event response = commandHandler.handle(command, this);
 
         for (AdventureListener l : getListeners()) {
             l.onAction(response);
@@ -125,6 +126,16 @@ public class SimpleTextAdventure extends SimpleObserver<AdventureListener> imple
 
     @Override
     public void start() {
+        
+        if (!isRunning()) {
+            
+            Event response = new SimpleEvent(story, EventType.INFO);
+            
+            for (AdventureListener l : getListeners()) {
+            l.onAction(response);
+        }
+        }
+        
         running = true;
     }
 

@@ -28,9 +28,9 @@ import java.util.Map;
 import nl.fontys.epic.commands.Command;
 import nl.fontys.epic.commands.CommandException;
 import nl.fontys.epic.commands.CommandHandler;
-import nl.fontys.epic.commands.CommandResponse;
+import nl.fontys.epic.commands.Event;
 import nl.fontys.epic.impl.SimpleTextAdventure;
-import nl.fontys.epic.commands.CommandResponse.ResponseType;
+import nl.fontys.epic.commands.Event.EventType;
 
 /**
  * Simple implementation of {@see CommandHandler}
@@ -53,12 +53,12 @@ public class SimpleCommandHandler implements CommandHandler {
     }
 
     @Override
-    public CommandResponse handle(String commandString, SimpleTextAdventure adventure) {
+    public Event handle(String commandString, SimpleTextAdventure adventure) {
         
         String[] args = commandString.split(" ");
         
         if (args.length == 0) {
-            return new SimpleCommandResponse("Command should not be empty", ResponseType.ERROR);
+            return new SimpleEvent("Command should not be empty", EventType.ERROR);
         }
         
         Command command = commands.get(args[0]);
@@ -67,10 +67,10 @@ public class SimpleCommandHandler implements CommandHandler {
             try {
                 return command.handle(reduceArgs(args), adventure);
             } catch (CommandException ex) {
-                return new SimpleCommandResponse(ex.getMessage(), ResponseType.ERROR);
+                return new SimpleEvent(ex.getMessage(), EventType.ERROR);
             }
         } else {
-            return new SimpleCommandResponse("Command '" + args[0] + "' not found.", ResponseType.ERROR);
+            return new SimpleEvent("Command '" + args[0] + "' not found.", EventType.ERROR);
         }        
     }
 

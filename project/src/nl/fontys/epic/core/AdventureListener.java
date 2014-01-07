@@ -22,7 +22,7 @@
 
 package nl.fontys.epic.core;
 
-import nl.fontys.epic.commands.CommandResponse;
+import nl.fontys.epic.commands.Event;
 
 /**
  *
@@ -35,5 +35,5 @@ public interface AdventureListener {
      * 
      * @param event 
      */
-    void onAction(CommandResponse event);
+    void onAction(Event event);
 }

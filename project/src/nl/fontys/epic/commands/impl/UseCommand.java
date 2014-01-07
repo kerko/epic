@@ -23,11 +23,11 @@ package nl.fontys.epic.commands.impl;
 
 import nl.fontys.epic.commands.Command;
 import nl.fontys.epic.commands.CommandException;
-import nl.fontys.epic.commands.CommandResponse;
+import nl.fontys.epic.commands.Event;
 import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Item;
-import nl.fontys.epic.commands.CommandResponse.ResponseType;
+import nl.fontys.epic.commands.Event.EventType;
 import nl.fontys.epic.util.Consumable;
 
 /**
@@ -40,7 +40,7 @@ import nl.fontys.epic.util.Consumable;
 public class UseCommand implements Command {
 
     @Override
-    public CommandResponse handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
+    public Event handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
         if (args.length == 0 || args[0].trim().isEmpty()) {
             throw new CommandException("You have to select something to use");
         } else {
@@ -53,12 +53,12 @@ public class UseCommand implements Command {
                 if (item instanceof Consumable) {
                     ((Consumable)item).use(adventure);
                     inventory.remove(itemId);
-                    return new SimpleCommandResponse("You successfully used " + itemId);
+                    return new SimpleEvent("You successfully used " + itemId);
                 } else {
-                    return new SimpleCommandResponse("You can't use " + itemId, ResponseType.ERROR);
+                    return new SimpleEvent("You can't use " + itemId, EventType.ERROR);
                 }
             } else {
-                return new SimpleCommandResponse("You don't have any item called " + itemId, ResponseType.ERROR);
+                return new SimpleEvent("You don't have any item called " + itemId, EventType.ERROR);
             }            
         }
     }

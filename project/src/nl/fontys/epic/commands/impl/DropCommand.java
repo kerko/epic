@@ -23,13 +23,13 @@ package nl.fontys.epic.commands.impl;
 
 import nl.fontys.epic.commands.Command;
 import nl.fontys.epic.commands.CommandException;
-import nl.fontys.epic.commands.CommandResponse;
+import nl.fontys.epic.commands.Event;
 import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Item;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Room;
-import nl.fontys.epic.commands.CommandResponse.ResponseType;
+import nl.fontys.epic.commands.Event.EventType;
 
 /**
  * {@see Command} implementation for dropping items.
@@ -41,7 +41,7 @@ import nl.fontys.epic.commands.CommandResponse.ResponseType;
 public class DropCommand implements Command {
 
     @Override
-    public CommandResponse handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
+    public Event handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
         if (args.length < 1 || args[0].trim().isEmpty()) {
             throw new CommandException("You have to specify something to drop");
         } else {
@@ -53,9 +53,9 @@ public class DropCommand implements Command {
                 Room room = adventure.getCurrentRoom();
                 Inventory items = room.getItems(player.getPosition().x, player.getPosition().y);
                 items.add(item);
-                return new SimpleCommandResponse("You dropped " + itemId);
+                return new SimpleEvent("You dropped " + itemId);
             } else {
-                return new SimpleCommandResponse("Unable to drop " + itemId, ResponseType.ERROR);
+                return new SimpleEvent("Unable to drop " + itemId, EventType.ERROR);
             }
         }
     }

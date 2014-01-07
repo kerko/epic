@@ -20,60 +20,66 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.commands;
+package nl.fontys.epic.commands.impl;
 
+import nl.fontys.epic.commands.Event;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import nl.fontys.epic.commands.Event;
 
 /**
- * Response of a single command chain
+ * Simple implementation of {@see CommandResponse}
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public interface CommandResponse {
+public class SimpleEvent implements Event {
     
-    /**
-     * Returns the message
-     * 
-     * @return 
-     */
-    String getMessage();
+    private long timestamp;
     
-    /**
-     * Returns the current timestamp
-     * 
-     * @return 
-     */
-    long getTimestamp();
+    private String message;
     
+    private EventType type;
     
-    /**
-     * Returns the type of the response
-     * 
-     * @return 
-     */
-    ResponseType getType();
-    
-    /**
-     * 
-     * 
-     * @return 
-     */
-    Collection<String> getEntries();
-    
-    /**
-     * 
-     * 
-     * @param entry 
-     */
-    void addEntry(String entry);
-    
-    /**
-     * Type enumeration for command responds
-     */
-    public static enum ResponseType {
-        
-        INFO, ERROR;
+    private List<String> entries;
+
+    public SimpleEvent(String message, EventType type) {
+        this.timestamp = System.currentTimeMillis();
+        this.message = message;
+        entries = new ArrayList<>();
+        this.type = type;
     }
+    
+    public SimpleEvent(String message) {
+        this(message, EventType.INFO);
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    @Override
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    @Override
+    public EventType getType() {
+        return type;
+    }
+
+    @Override
+    public Collection<String> getEntries() {
+        return entries;
+    }
+
+    @Override
+    public void addEntry(String entry) {
+        entries.add(entry);
+    }
+    
+    
 }

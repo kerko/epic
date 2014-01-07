@@ -47,7 +47,7 @@ public interface CommandHandler {
      * @param adventure 
      * @return response
      */
-    CommandResponse handle(String commandString, SimpleTextAdventure adventure);
+    Event handle(String commandString, SimpleTextAdventure adventure);
     
     /**
      * Determines the amount of commands in the handler

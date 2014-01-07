@@ -22,11 +22,11 @@
 
 package nl.fontys.epic.commands;
 
-import nl.fontys.epic.commands.impl.SimpleCommandResponse;
+import nl.fontys.epic.commands.impl.SimpleEvent;
 import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.core.GameObject;
 import nl.fontys.epic.util.Openable;
-import nl.fontys.epic.commands.CommandResponse.ResponseType;
+import nl.fontys.epic.commands.Event.EventType;
 import nl.fontys.epic.util.GameObjectPool;
 import nl.fontys.epic.util.SharedGameObjectPool;
 
@@ -40,7 +40,7 @@ import nl.fontys.epic.util.SharedGameObjectPool;
 public class OpenCommand implements Command {
 
     @Override
-    public CommandResponse handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
+    public Event handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
         
         if (args.length == 0 || args[0].trim().isEmpty()) {
             throw new CommandException("You have to select something to open.");
@@ -52,9 +52,9 @@ public class OpenCommand implements Command {
             
             if (object instanceof Openable) {
                 ((Openable)object).open(adventure);
-                return new SimpleCommandResponse("Opened " + id, ResponseType.INFO);
+                return new SimpleEvent("Opened " + id, EventType.INFO);
             } else {
-                return new SimpleCommandResponse("It is not possible to open " + id, ResponseType.ERROR);
+                return new SimpleEvent("It is not possible to open " + id, EventType.ERROR);
             }            
         }
     }

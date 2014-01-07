@@ -21,11 +21,11 @@
  */
 package nl.fontys.epic.commands;
 
-import nl.fontys.epic.commands.impl.SimpleCommandResponse;
+import nl.fontys.epic.commands.impl.SimpleEvent;
 import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.RoomException;
-import nl.fontys.epic.commands.CommandResponse.ResponseType;
+import nl.fontys.epic.commands.Event.EventType;
 import nl.fontys.epic.util.Direction;
 import nl.fontys.epic.util.Position;
 
@@ -39,7 +39,7 @@ import nl.fontys.epic.util.Position;
 public class GoCommand implements Command {
 
     @Override
-    public CommandResponse handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
+    public Event handle(String[] args, SimpleTextAdventure adventure) throws CommandException {
         if (args.length < 1 || args[0].trim().isEmpty()) {
             throw new CommandException("You have to specify a direction where to go!");
         } else {            
@@ -48,20 +48,20 @@ public class GoCommand implements Command {
         }
     }
     
-    private CommandResponse movePlayer(String direction, Player player) {
+    private Event movePlayer(String direction, Player player) {
         
         Position pos = player.getPosition();
         Direction dir = Direction.translate(direction);
         
         if (dir.equals(Direction.NONE)) {
-            return new SimpleCommandResponse(direction + "? What is that? A direction?", ResponseType.ERROR);
+            return new SimpleEvent(direction + "? What is that? A direction?", EventType.ERROR);
         }
         try {
             player.move(dir);
         } catch (RoomException ex) {
-            return new SimpleCommandResponse("Can't move " + direction, ResponseType.ERROR);
+            return new SimpleEvent("Can't move " + direction, EventType.ERROR);
         }
-         return new SimpleCommandResponse("Moved " + direction, ResponseType.INFO);
+         return new SimpleEvent("Moved " + direction, EventType.INFO);
         
     }
     

@@ -20,66 +20,60 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.commands.impl;
+package nl.fontys.epic.commands;
 
-import nl.fontys.epic.commands.CommandResponse;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import nl.fontys.epic.commands.CommandResponse;
 
 /**
- * Simple implementation of {@see CommandResponse}
+ * Response of a single command chain
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public class SimpleCommandResponse implements CommandResponse {
+public interface Event {
     
-    private long timestamp;
+    /**
+     * Returns the message
+     * 
+     * @return 
+     */
+    String getMessage();
     
-    private String message;
-    
-    private ResponseType type;
-    
-    private List<String> entries;
-
-    public SimpleCommandResponse(String message, ResponseType type) {
-        this.timestamp = System.currentTimeMillis();
-        this.message = message;
-        entries = new ArrayList<>();
-        this.type = type;
-    }
-    
-    public SimpleCommandResponse(String message) {
-        this(message, ResponseType.INFO);
-    }
-
-    @Override
-    public String getMessage() {
-        return message;
-    }
-
-    @Override
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    @Override
-    public ResponseType getType() {
-        return type;
-    }
-
-    @Override
-    public Collection<String> getEntries() {
-        return entries;
-    }
-
-    @Override
-    public void addEntry(String entry) {
-        entries.add(entry);
-    }
+    /**
+     * Returns the current timestamp
+     * 
+     * @return 
+     */
+    long getTimestamp();
     
     
+    /**
+     * Returns the type of the response
+     * 
+     * @return 
+     */
+    EventType getType();
+    
+    /**
+     * 
+     * 
+     * @return 
+     */
+    Collection<String> getEntries();
+    
+    /**
+     * 
+     * 
+     * @param entry 
+     */
+    void addEntry(String entry);
+    
+    /**
+     * Type enumeration for command responds
+     */
+    public static enum EventType {
+        
+        INFO, ERROR;
+    }
 }

@@ -41,5 +41,5 @@ public interface Command {
      * @return  Returns a response
      * @throws nl.fontys.epic.commands.CommandException 
      */
-    CommandResponse handle(String[] args, SimpleTextAdventure adventure) throws CommandException;
+    Event handle(String[] args, SimpleTextAdventure adventure) throws CommandException;
 }
