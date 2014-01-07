@@ -21,11 +21,13 @@
  */
 
 
-package nl.fontys.epic.io.xml;
+package nl.fontys.epic.io;
 
+import java.util.HashMap;
+import java.util.Map;
+import nl.fontys.epic.io.ContentConverter;
 import nl.fontys.epic.io.ConvertException;
 import nl.fontys.epic.io.IOConverter;
-import org.w3c.dom.Node;
 
 /**
  * XML implementation of {@see GameManager}
@@ -34,16 +36,42 @@ import org.w3c.dom.Node;
  * @since 1.0
  * @version 1.0
  */
-public class XMLConverter implements IOConverter<Node> {
-
-    @Override
-    public <T> Node toOutput(T source) throws ConvertException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+public class SimpleIOConverter<Type> implements IOConverter<Type> {
+    
+    private final Map<Class<?>, ContentConverter<Type, ?> > converters;
+    
+    public SimpleIOConverter() {
+        converters = new HashMap< >();
     }
 
     @Override
-    public <T> T toInput(Node source, Class<T> classType) throws ConvertException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public <T> Type toOutput(T source) throws ConvertException {
+        
+        ContentConverter<Type, T> converter = (ContentConverter<Type, T>) converters.get(source.getClass());
+        
+        if (converter != null) {
+            return converter.toOutput(source);
+        } else {
+            throw new ConvertException("No converter was found for type " + source.getClass());
+        }
     }
+
+    @Override
+    public <T> T toInput(Type source, Class<T> classType) throws ConvertException {
+        
+        ContentConverter<Type, T> converter = (ContentConverter<Type, T>) converters.get(source.getClass());
+        
+        if (converter != null) {
+            return converter.toInput(source);
+        } else {
+            throw new ConvertException("No converter was found for type " + source.getClass());
+        }
+    }
+
+    @Override
+    public <T> void addContentConverter(ContentConverter<Type, T> converter, Class<T> converterClass) {
+       converters.put(converterClass, converter);
+    }
+
     
 }

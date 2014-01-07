@@ -20,30 +20,34 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-
-package nl.fontys.epic.io.xml;
-
-import nl.fontys.epic.io.ConvertException;
-import nl.fontys.epic.io.IOConverter;
-import org.w3c.dom.Node;
+package nl.fontys.epic.io;
 
 /**
- * XML implementation of {@see GameManager}
+ * Converts two types of contents
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @param <OutputType> Target type
+ * @param <ContentType> Type of the content
  * @since 1.0
  * @version 1.0
  */
-public class CreatureConverter implements IOConverter<Node> {
-
-    @Override
-    public <T> Node toOutput(T source) throws ConvertException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public <T> T toInput(Node source, Class<T> classType) throws ConvertException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+public interface ContentConverter<OutputType, ContentType> {
     
+    /**
+     * Converts an input instance to an output type
+     * 
+     * @param source source of the class type
+     * @return valid output object
+     * @throws ConvertException is thrown when the source is corrupt
+     */
+    OutputType toOutput(ContentType source) throws ConvertException;
+    
+    /**
+     * Converts an output instance to an input type
+     * 
+     * @param source source instance
+     * @return valid input object
+     * @throws ConvertException is thrown when the source is corrupt
+     */
+    ContentType toInput(OutputType source) throws ConvertException;    
 }

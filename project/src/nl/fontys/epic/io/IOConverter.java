@@ -23,7 +23,7 @@
 package nl.fontys.epic.io;
 
 /**
- * Handles game loading and saving
+ * Converts multiple types to an output type and vise versa.
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @param <OutputType> Target type
@@ -51,5 +51,14 @@ public interface IOConverter<OutputType> {
      * @return valid input object
      * @throws ConvertException is thrown when the source is corrupt
      */
-    <T> T toInput(OutputType source, Class<T> classType) throws ConvertException;    
+    <T> T toInput(OutputType source, Class<T> classType) throws ConvertException;
+    
+    /**
+     * Adds a new content converter
+     * 
+     * @param <T>
+     * @param converter new converter instance
+     * @param converterClass
+     */
+    <T> void addContentConverter(ContentConverter<OutputType, T> converter, Class<T> converterClass);
 }

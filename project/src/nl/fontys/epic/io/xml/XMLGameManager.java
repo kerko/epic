@@ -22,6 +22,7 @@
 
 package nl.fontys.epic.io.xml;
 
+import nl.fontys.epic.io.SimpleIOConverter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -49,12 +50,12 @@ import org.w3c.dom.NodeList;
  */
 public class XMLGameManager implements GameManager {
     
-    private final XMLConverter converter;
+    private final SimpleIOConverter<Node> converter;
     
     private final GameObjectPool pool;
     
     public XMLGameManager(GameObjectPool pool) {
-        converter = new XMLConverter();
+        converter = new SimpleIOConverter< >();
         this.pool = pool;
     }
 
