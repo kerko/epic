@@ -1,12 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="11.3">
-  <zoom_level>8</zoom_level>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.2">
+  <zoom_level>12</zoom_level>
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>184</x>
-      <y>88</y>
-      <w>680</w>
-      <h>352</h>
+      <x>96</x>
+      <y>144</y>
+      <w>1224</w>
+      <h>396</h>
     </coordinates>
     <panel_attributes>nl.fontys.epic.io</panel_attributes>
     <additional_attributes/>
@@ -14,137 +15,129 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>224</x>
-      <y>128</y>
-      <w>240</w>
-      <h>72</h>
+      <x>132</x>
+      <y>204</y>
+      <w>360</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 GameManager
 --
 + save(TextAdventure, OutputStream)
 + load(InputStream) : TextAdventure
-+ setHandler(IOHandler)</panel_attributes>
++ setInputConverter(InputConverter)
++ setOutputConverter(OutputConverter)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>504</x>
+      <y>240</y>
+      <w>396</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>template= Type, ContentType
+&lt;&lt;interface&gt;&gt;
+InputConverter
+--
++ create(source : Type, Class) : ContentType</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>912</x>
+      <y>240</y>
+      <w>396</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>template= Type, ContentType
+&lt;&lt;interface&gt;&gt;
+OutputConverter
+--
++ create(source : Type) : ContentType</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>208</x>
+      <x>132</x>
+      <y>384</y>
+      <w>1140</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>nl.fontys.epic.io</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>156</x>
+      <y>432</y>
+      <w>288</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>XMLGameManager</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>276</x>
       <y>312</y>
-      <w>632</w>
-      <h>112</h>
-    </coordinates>
-    <panel_attributes>nl.fontys.epic.io.xml</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>224</x>
-      <y>360</y>
-      <w>232</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>XMLHandler</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>224</x>
-      <y>224</y>
-      <w>240</w>
-      <h>72</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;interface&gt;&gt;
-IOHandler
---
-+ load(InputStream) : Object[*]
-+ save(TextAdventure, OutputStream)
-+ setFactory(ContentFactory)</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>320</x>
-      <y>272</y>
-      <w>40</w>
-      <h>104</h>
+      <w>60</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>24;24;24;88</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>320</x>
-      <y>176</y>
-      <w>40</w>
-      <h>64</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>24;48;24;24</additional_attributes>
+    <additional_attributes>36;36;36;120</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>496</x>
-      <y>360</y>
-      <w>224</w>
-      <h>40</h>
+      <x>456</x>
+      <y>432</y>
+      <w>468</w>
+      <h>60</h>
     </coordinates>
-    <panel_attributes>XMLContentFactory
+    <panel_attributes>XMLInputConverter
 --
-+ XMLContentFactory(Node)</panel_attributes>
++ create(source : Node, Class&lt;ContentType&gt;) : ContentType</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>496</x>
-      <y>224</y>
-      <w>224</w>
-      <h>56</h>
+      <x>936</x>
+      <y>432</y>
+      <w>312</w>
+      <h>60</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;interface&gt;&gt;
-ContentFactory
+    <panel_attributes>XMLInputConverter
 --
-+ create() : Object</panel_attributes>
++ create(source : Node) : ContentType</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>440</x>
-      <y>240</y>
-      <w>72</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>56;24;24;24</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>584</x>
-      <y>256</y>
-      <w>40</w>
-      <h>120</h>
+      <x>648</x>
+      <y>312</y>
+      <w>60</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>24;24;24;104</additional_attributes>
+    <additional_attributes>36;36;36;120</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>432</x>
-      <y>360</y>
-      <w>80</w>
-      <h>40</h>
+      <x>1056</x>
+      <y>312</y>
+      <w>60</w>
+      <h>144</h>
     </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>64;24;24;24</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>36;36;36;120</additional_attributes>
   </element>
 </diagram>
