@@ -4,9 +4,9 @@
     <!--Player -->
     <player name="Mike Moore" life="100" x="1" y="1">
         <items>
-            <item src="knife" />
-            <item src="lamp" />
-            <item src="apple" />
+            <item ref="knife" />
+            <item ref="lamp" />
+            <item ref="apple" />
         </items>        
     </player>
 
