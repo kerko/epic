@@ -53,9 +53,9 @@ import org.w3c.dom.NodeList;
  */
 public class XMLGameManager implements GameManager {
     
-    private DocumentWriter documentWriter;
+    private final DocumentWriter documentWriter;
     
-    private DocumentFactory documentFactory;
+    private final DocumentFactory documentFactory;
     
     public XMLGameManager() {
         documentWriter = new SimpleDocumentWriter();
@@ -76,33 +76,32 @@ public class XMLGameManager implements GameManager {
         
         try {
             
-        // Player
-        Node node = converter.toOutput(adventure.getPlayer());
+            Node root = converter.toOutput(adventure);
             
-        // Items
-        Collection<Item> items = pool.getAll(Item.class);
-        
-        for (Item item : items) {
-            node = converter.toOutput(item);
-            // TODO
-        }
-        
-        // Creatures
-        Collection<Creature> creatures = pool.getAll(Creature.class);
-        
-        for (Creature creature : creatures) {
-            node = converter.toOutput(creature);
-            // TODO
-        }
-        
-        // Rooms
-        Collection<Room> rooms = pool.getAll(Room.class);
-        
-        for (Room room : rooms) {
-            node = converter.toOutput(room);
-            // TODO
-        }
-        
+            // Add player
+            Node player = converter.toOutput(adventure.getPlayer());
+            root.appendChild(player);
+            
+            // Add Items
+            Collection<Item> items = pool.getAll(Item.class);
+            
+            for (Item item : items) {
+                root.appendChild(converter.toOutput(item));
+            }
+            
+            // Add creatures
+            Collection<Creature> creatures = pool.getAll(Creature.class);
+            
+            for (Creature creature : creatures) {
+                root.appendChild(converter.toOutput(creature));
+            }
+            
+            // Add rooms
+            Collection<Room> rooms = pool.getAll(Room.class);
+            
+            for (Room room : rooms) {
+                root.appendChild(converter.toOutput(room));
+            }
         } catch (ConvertException e) {
             throw new IOException(e);
         }
@@ -132,6 +131,7 @@ public class XMLGameManager implements GameManager {
     private IOConverter<Node> createConverter(Document document) {
         IOConverter converter = new SimpleIOConverter< >();
         
+        converter.addContentConverter(new AdventureConverter(), TextAdventure.class);
         converter.addContentConverter(new PlayerConverter(), Player.class);
         converter.addContentConverter(new ItemConverter(), Item.class);
         converter.addContentConverter(new CreatureConverter(), Creature.class);

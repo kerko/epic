@@ -51,15 +51,17 @@ public class SimpleTextAdventure extends SimpleObserver<AdventureListener> imple
     private final Player player;
     private final Map<String, Room> rooms;
     private final String name;
+    private final String story;
     private boolean running;
 
-    public SimpleTextAdventure(String name, Collection<Room> rooms, Player player) {
+    public SimpleTextAdventure(String name, Room entry, String story, Collection<Room> rooms, Player player) {
         
+        this.story = story;
         commandHandler = new SimpleCommandHandler();
         this.name = name;
         this.rooms = new HashMap< >();
         this.player = player;
-        
+       
         for (Room room : rooms) {
             this.rooms.put(room.getID(), room);
         }

@@ -1,29 +1,31 @@
-
 package nl.fontys.epic.core.impl;
 
 import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.core.GameObject;
 import nl.fontys.epic.core.Room;
+import nl.fontys.epic.util.GameObjectPool;
 import nl.fontys.epic.util.Position;
+import nl.fontys.epic.util.SharedGameObjectPool;
 
 /**
  *
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
  */
 public class SimpleGameObject extends SimpleIDProvider implements GameObject {
-    private SimpleTextAdventure adventure;
-    protected Position posi;   
-    protected String currentRoomID;
 
-    public SimpleGameObject(SimpleTextAdventure adventure, int posix,int posiy, String currentRoomID, String ID) {
+    private final SimpleTextAdventure adventure;
+    protected Position posi;
+    protected String currentRoomID;
+    private final GameObjectPool pool;
+
+    public SimpleGameObject(SimpleTextAdventure adventure, int posix, int posiy, String currentRoomID, String ID) {
         super(ID);
+        pool = SharedGameObjectPool.getInstance(adventure.getID());
         this.adventure = adventure;
         this.posi.x = posix;
-        this.posi.y= posiy;
+        this.posi.y = posiy;
         this.currentRoomID = currentRoomID;
     }
-    
-    
 
     @Override
     public Position getPosition() {
@@ -32,7 +34,7 @@ public class SimpleGameObject extends SimpleIDProvider implements GameObject {
 
     @Override
     public Room getRoom() {
-        return adventure.getRoom(currentRoomID);
+        return pool.get(currentRoomID, Room.class);
     }
 
     @Override
@@ -44,12 +46,12 @@ public class SimpleGameObject extends SimpleIDProvider implements GameObject {
     @Override
     public boolean isInfrontOf(GameObject object) {
         Room otherRoom = object.getRoom();
-        if(otherRoom == this.getRoom()){
-            if(Math.abs(object.getPosition().y-this.posi.y) == 1 
-                    && Math.abs(object.getPosition().x-this.posi.x) == 1){
+        if (otherRoom == this.getRoom()) {
+            if (Math.abs(object.getPosition().y - this.posi.y) == 1
+                    && Math.abs(object.getPosition().x - this.posi.x) == 1) {
                 return true;
             }
-                
+
         }
         return false;
     }
@@ -68,5 +70,10 @@ public class SimpleGameObject extends SimpleIDProvider implements GameObject {
     public int getY() {
         return posi.y;
     }
-    
+
+    @Override
+    public void setRoom(Room room) {
+        currentRoomID = room.getID();
+    }
+
 }

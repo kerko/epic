@@ -20,50 +20,31 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.fontys.epic.core;
+package nl.fontys.epic.io.xml;
 
-import nl.fontys.epic.impl.SimpleTextAdventure;
-import nl.fontys.epic.util.Indexable;
-import nl.fontys.epic.util.Position;
+import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.core.Creature;
+import nl.fontys.epic.io.ContentConverter;
+import nl.fontys.epic.io.ConvertException;
+import org.w3c.dom.Node;
 
 /**
- *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * Converts objects of {@see Creature} to XML nodes and vise versa
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public interface GameObject extends IDProvider, Indexable{
+public class AdventureConverter implements ContentConverter<Node, TextAdventure> {
 
-    /**
-     * 
-     * 
-     * @return 
-     */
-    Position getPosition();
-    
-    /**
-     * 
-     * 
-     * @return 
-     */
-    Room getRoom();
-    
-    void setRoom(Room room);
-    
-    /**
-     * 
-     * 
-     * @param x
-     * @param y 
-     */
-    void setPosition(int x, int y);
-    
-    /**
-     * 
-     * 
-     * @param object
-     * @return 
-     */
-    boolean isInfrontOf(GameObject object);
-    
-    SimpleTextAdventure getAdventure();
+    @Override
+    public Node toOutput(TextAdventure source) throws ConvertException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
+    @Override
+    public TextAdventure toInput(Node source) throws ConvertException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }
