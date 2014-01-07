@@ -149,10 +149,12 @@ public class XMLGameManager implements GameManager {
                         case Attributes.TAG_PLAYER:
                             player = converter.toInput(node, Player.class);
                             pool.add(player.getID(), player);
+                            buildCreature(node.getChildNodes(), player, storage, pool, converter);
                             break;
                         case Attributes.TAG_CREATURE:
                             Creature creature = converter.toInput(node, Creature.class);
                             pool.add(creature.getID(), creature);
+                            buildCreature(node.getChildNodes(), creature, storage, pool, converter);
                             break;
                         case Attributes.TAG_ITEM_COLLECT: 
                         case Attributes.TAG_ITEM_CONSUM:
@@ -200,6 +202,24 @@ public class XMLGameManager implements GameManager {
         converter.addContentConverter(new DoorConverter(), Door.class);
         
         return converter;
+    }
+    
+     // Builds a room with content
+    private void buildCreature(NodeList children, Creature creature, DeferredStorage storage, GameObjectPool pool, IOConverter<Node> converter) throws ConvertException {
+             
+        for (int i = 0; i < children.getLength(); ++i) {
+            
+            Node child = children.item(i);
+            
+            if (child.getNodeType() == Node.ELEMENT_NODE) {
+                Element element =(Element)child;
+                String ref = element.getAttribute("ref");
+                
+                if (element.getNodeName().equals(Attributes.TAG_ITEM)) {
+                    storage.add(creature.getID(), ref, DeferredStorage.StorageType.ITEM);
+                }
+            }
+        }
     }
     
     // Builds a room with content
