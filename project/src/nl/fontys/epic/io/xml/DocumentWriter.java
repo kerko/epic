@@ -19,27 +19,27 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+package nl.fontys.epic.io.xml;
 
-package nl.fontys.epic.core;
+import java.io.IOException;
+import java.io.OutputStream;
+import org.w3c.dom.Document;
 
 /**
- *
- * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
+ * Writes documents to a given output stream
+ * 
+ * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @since 1.0
+ * @version 1.0
  */
-public enum ItemType {
+public interface DocumentWriter {
     
     /**
+     * Writes the given document to the output stream
      * 
+     * @param document given DOM document
+     * @param output output stream to write to
+     * @throws java.io.IOException
      */
-    CONSUMABLE,
-    
-    /**
-     * 
-     */
-    COLLECTABLE,
-    
-    /**
-     * 
-     */
-    EQUIPABLE;
+    void write(Document document, OutputStream output) throws IOException;
 }

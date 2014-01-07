@@ -19,51 +19,44 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package nl.fontys.epic.io.xml;
 
-import nl.fontys.epic.Attributes;
-import nl.fontys.epic.core.Item;
-import nl.fontys.epic.io.ContentConverter;
-import nl.fontys.epic.io.ConvertException;
-import org.w3c.dom.DOMException;
+import java.io.IOException;
+import java.io.OutputStream;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.UserDataHandler;
 
 /**
- * Converts objects of {@see Item} to XML nodes and vise versa
+ * Simple implementation of {@see DocumentWriter}
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public class ItemConverter implements ContentConverter<Node, Item> {
+public class SimpleDocumentWriter implements DocumentWriter {
 
     @Override
-    public Node toOutput(Item source) throws ConvertException {
-        
-        String nodeName = Attributes.TAG_ITEM_COLLECT;
-        
-        switch (source.getType()) {
-            case CONSUMABLE:
-                nodeName = Attributes.TAG_ITEM_CONSUM;
-                break;
-            case EQUIPABLE:
-                nodeName = Attributes.TAG_ITEM_EQUIP;
-                break;
+    public void write(Document document, OutputStream output) throws IOException {
+        TransformerFactory xformFactory
+                = TransformerFactory.newInstance();
+        Transformer idTransform;
+        try {
+            idTransform = xformFactory.newTransformer();
+            Source input = new DOMSource(document);
+            Result result = new StreamResult(output);
+            idTransform.transform(input, result);
+        } catch (TransformerConfigurationException ex) {
+            throw new IOException(ex);
+        } catch (TransformerException ex) {
+            throw new IOException(ex);
         }
-        
-        
-        
-        return null;
     }
 
-    @Override
-    public Item toInput(Node source) throws ConvertException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

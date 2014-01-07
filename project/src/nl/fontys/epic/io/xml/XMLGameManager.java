@@ -37,8 +37,10 @@ import nl.fontys.epic.core.Room;
 import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.io.ConvertException;
 import nl.fontys.epic.io.GameManager;
+import nl.fontys.epic.io.IOConverter;
 import nl.fontys.epic.util.GameObjectPool;
 import nl.fontys.epic.util.SharedGameObjectPool;
+import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -51,15 +53,13 @@ import org.w3c.dom.NodeList;
  */
 public class XMLGameManager implements GameManager {
     
-    private final SimpleIOConverter<Node> converter;
+    private DocumentWriter documentWriter;
+    
+    private DocumentFactory documentFactory;
     
     public XMLGameManager() {
-        converter = new SimpleIOConverter< >();
-        
-        converter.addContentConverter(new PlayerConverter(), Player.class);
-        converter.addContentConverter(new ItemConverter(), Item.class);
-        converter.addContentConverter(new CreatureConverter(), Creature.class);
-        converter.addContentConverter(new RoomConverter(), Room.class);
+        documentWriter = new SimpleDocumentWriter();
+        documentFactory = new SimpleDocumentFactory();
     }
 
     @Override
@@ -70,6 +70,9 @@ public class XMLGameManager implements GameManager {
         if (pool == null) {
             throw new IOException("Invalid adventure index: " + adventure.getID());
         }
+        
+        Document document = documentFactory.create();
+        IOConverter<Node> converter = createConverter(document);
         
         try {
             
@@ -108,7 +111,9 @@ public class XMLGameManager implements GameManager {
     @Override
     public TextAdventure load(InputStream in) throws IOException {
         
-        NodeList nodes = null; // TODO
+        Document document = documentFactory.create(in);
+        
+        NodeList nodes = document.getChildNodes();
         
         for (int i = 0; i < nodes.getLength(); ++i) {
             
@@ -122,6 +127,17 @@ public class XMLGameManager implements GameManager {
         String name = null; // TODO
         
         return new SimpleTextAdventure(name, rooms, player);
+    }
+    
+    private IOConverter<Node> createConverter(Document document) {
+        IOConverter converter = new SimpleIOConverter< >();
+        
+        converter.addContentConverter(new PlayerConverter(), Player.class);
+        converter.addContentConverter(new ItemConverter(), Item.class);
+        converter.addContentConverter(new CreatureConverter(), Creature.class);
+        converter.addContentConverter(new RoomConverter(), Room.class);
+        
+        return converter;
     }
     
 }

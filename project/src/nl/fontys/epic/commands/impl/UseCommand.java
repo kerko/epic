@@ -28,7 +28,7 @@ import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Item;
 import nl.fontys.epic.commands.CommandResponse.ResponseType;
-import nl.fontys.epic.util.Useable;
+import nl.fontys.epic.util.Consumable;
 
 /**
  * Uses an item and throws it away
@@ -50,8 +50,8 @@ public class UseCommand implements Command {
             if (inventory.contains(itemId)) {
                 Item item = inventory.get(itemId);
                 
-                if (item instanceof Useable) {
-                    ((Useable)item).use(adventure);
+                if (item instanceof Consumable) {
+                    ((Consumable)item).use(adventure);
                     inventory.remove(itemId);
                     return new SimpleCommandResponse("You successfully used " + itemId);
                 } else {

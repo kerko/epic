@@ -36,7 +36,6 @@ public class Attributes {
     public static final String TAG_PLAYER = "player";
     public static final String TAG_ITEM_EQUIP = "equip-item";
     public static final String TAG_ITEM_CONSUM = "consum-item";
-    public static final String TAG_ITEM_CONTAINER = "container-item";
     public static final String TAG_ITEM_COLLECT = "collect-item";
     public static final String TAG_CREATURE = "creature";
     public static final String TAG_ROOM = "room";
@@ -58,10 +57,8 @@ public class Attributes {
     public static final String ATTR_Y = "y";
     public static final String ATTR_DESCRIPTION = "description";
     public static final String ATTR_DAMAGE = "damage";
-    public static final String ATTR_TRIGGER = "trigger";
     public static final String ATTR_OPEN = "open";
     public static final String ATTR_TYPE = "type";
     public static final String ATTR_SOURCE = "src";
-    public static final String ATTR_TARGET = "target";
     public static final String ATTR_MESSAGE = "message";
 }

@@ -31,7 +31,7 @@ import nl.fontys.epic.impl.SimpleTextAdventure;
  * @since 1.0
  * @version 1.0
  */
-public interface Useable {
+public interface Consumable {
     
     void use(SimpleTextAdventure adventure);
 }
