@@ -101,14 +101,14 @@
         </xs:complexType>
     </xs:element>
     
-    <xs:element name="creatureref" >
+    <xs:element name="creature-ref" >
     <xs:complexType>
         <xs:attributeGroup ref="position"/>
         <xs:attribute ref="reference">
     </xs:complexType>
     </xs:element>   
     
-     <xs:element name="itemref">
+     <xs:element name="item-ref">
         <xs:complexType>
         <xs:attributeGroup ref="position"/>
         <xs:attribute ref="reference">
