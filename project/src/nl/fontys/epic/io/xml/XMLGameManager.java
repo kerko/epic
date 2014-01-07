@@ -28,11 +28,10 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import nl.fontys.epic.Attributes;
 import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.Creature;
+import nl.fontys.epic.core.Door;
 import nl.fontys.epic.core.Item;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Room;
@@ -45,6 +44,7 @@ import nl.fontys.epic.util.DeferredStorage;
 import nl.fontys.epic.util.GameObjectPool;
 import nl.fontys.epic.util.SharedGameObjectPool;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -132,9 +132,10 @@ public class XMLGameManager implements GameManager {
 
         List<Room> rooms = new ArrayList<>();
         Player player = null;
-        String name = null;
-        String story = null;
-        String entryID = null;
+        
+        String name = retrieveAttribute(Attributes.ATTR_NAME, root);
+        String story = retrieveAttribute(Attributes.ATTR_STORY, root);
+        String entryID = retrieveAttribute(Attributes.ATTR_ENTRY, root);
 
         GameObjectPool pool = SharedGameObjectPool.getInstance(name);
 
@@ -147,19 +148,22 @@ public class XMLGameManager implements GameManager {
                     switch (node.getNodeName()) {
                         case Attributes.TAG_PLAYER:
                             player = converter.toInput(node, Player.class);
-                            pool.add(player.getID(), player);                            
+                            pool.add(player.getID(), player);
                             break;
                         case Attributes.TAG_CREATURE:
                             Creature creature = converter.toInput(node, Creature.class);
                             pool.add(creature.getID(), creature);
                             break;
-                        case Attributes.TAG_ITEM:
+                        case Attributes.TAG_ITEM_COLLECT: 
+                        case Attributes.TAG_ITEM_CONSUM:
+                        case Attributes.TAG_ITEM_EQUIP:
                             Item item = converter.toInput(node, Item.class);
                             pool.add(item.getID(), item);
                             break;
                         case Attributes.TAG_ROOM:
                             Room room = converter.toInput(node, Room.class);
                             pool.add(room.getID(), room);
+                            buildRoom(node.getChildNodes(), room, storage, pool, converter);
                             break;
                     }
                 }
@@ -173,7 +177,11 @@ public class XMLGameManager implements GameManager {
             }
             
             // Set the room of the player
-            player.setRoom(pool.get(entryID, Room.class));
+            if (player != null) {
+                player.setRoom(pool.get(entryID, Room.class));
+            } else {
+                throw new IOException("Player is not defined.");
+            }
 
         } catch (ConvertException | DeferredEntityLoader.LoadingException e) {
             throw new IOException(e);
@@ -185,13 +193,50 @@ public class XMLGameManager implements GameManager {
     private IOConverter<Node> createConverter() {
         IOConverter converter = new SimpleIOConverter<>();
 
-        converter.addContentConverter(new AdventureConverter(), TextAdventure.class);
         converter.addContentConverter(new PlayerConverter(), Player.class);
         converter.addContentConverter(new ItemConverter(), Item.class);
         converter.addContentConverter(new CreatureConverter(), Creature.class);
         converter.addContentConverter(new RoomConverter(), Room.class);
-
+        converter.addContentConverter(new DoorConverter(), Door.class);
+        
         return converter;
+    }
+    
+    // Builds a room with content
+    private void buildRoom(NodeList children, Room room, DeferredStorage storage, GameObjectPool pool, IOConverter<Node> converter) throws ConvertException {
+      
+        for (int i = 0; i < children.getLength(); ++i) {
+            Node child = children.item(i);
+            
+            if (child.getNodeType() == Node.ELEMENT_NODE) {                
+                Element element = (Element)child;
+                String ref = element.getAttribute("ref");
+                
+                switch (element.getNodeName()) {
+                    
+                    case Attributes.TAG_ITEM:
+                        storage.add(room.getID(), ref, DeferredStorage.StorageType.ITEM);
+                        break;
+                    case Attributes.TAG_CREATURE:
+                        storage.add(room.getID(), ref, DeferredStorage.StorageType.CREATURE);
+                        break;
+                    case Attributes.TAG_DOOR:
+                        Door door = converter.toInput(child, Door.class);
+                        pool.add(door.getID(), door);
+                        room.addObject(door);
+                        break;
+                }
+            }
+        }
+    }
+    
+    private String retrieveAttribute(String attr, Node node) {        
+        if (node.getNodeType() == Node.ELEMENT_NODE) {
+            Element element = (Element)node;            
+            return element.getAttribute(attr);
+        } else {
+            return null;
+        }
     }
 
 }

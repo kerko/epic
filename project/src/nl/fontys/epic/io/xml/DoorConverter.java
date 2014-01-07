@@ -22,27 +22,27 @@
 
 package nl.fontys.epic.io.xml;
 
-import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.core.Door;
 import nl.fontys.epic.io.ContentConverter;
 import nl.fontys.epic.io.ConvertException;
 import org.w3c.dom.Node;
 
 /**
- * Converts objects of {@see Creature} to XML nodes and vise versa
+ * Converts objects of {@see Door} to XML nodes and vise versa
  * 
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
  */
-public class AdventureConverter implements ContentConverter<Node, TextAdventure> {
+public class DoorConverter implements ContentConverter<Node, Door> {
 
     @Override
-    public Node toOutput(TextAdventure source) throws ConvertException {
+    public Node toOutput(Door source) throws ConvertException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public TextAdventure toInput(Node source) throws ConvertException {
+    public Door toInput(Node source) throws ConvertException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

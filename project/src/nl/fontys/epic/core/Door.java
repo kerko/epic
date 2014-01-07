@@ -30,5 +30,5 @@ package nl.fontys.epic.core;
  */
 public interface Door extends GameObject {
     
-    String getTargetId();
+    String getTargetID();
 }
