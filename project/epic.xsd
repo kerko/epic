@@ -20,6 +20,7 @@
     <!-- Definiton of simple Elements-->
     <xs:attribute name="name" type="gameString" use="required"/>
     <xs:attribute name="id" type="gameString" use="required"/>
+    <xs:attribute name="reference" type="gameString" use="required"/>
     <xs:attribute name="description" type="xs:string"/>
     <xs:attribute name="message" type="xs:string"/>
     <xs:attribute name="life" type="xs:positiveInteger" use="required"/>
@@ -96,9 +97,23 @@
             <xs:attribute ref="name"/>
             <xs:attribute ref="life"/>
             <xs:attributeGroup ref="stats"/>
-            <xs:attributeGroup ref="position"/>    
+                
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="creatureref" >
+    <xs:complexType>
+        <xs:attributeGroup ref="position"/>
+        <xs:attribute ref="reference">
+    </xs:complexType>
+    </xs:element>   
+    
+     <xs:element name="itemref">
+        <xs:complexType>
+        <xs:attributeGroup ref="position"/>
+        <xs:attribute ref="reference">
+    </xs:complexType>
+    </xs:element>   
     
     <xs:element name="room">
         <xs:complexType>
@@ -107,8 +122,8 @@
             <xs:attribute ref="message"/>
             <xs:attributeGroup ref="size"/>
             <xs:element ref="door" maxOccurs="unbounded" />
-            <xs:element ref="creature" maxOccurs="unbounded" />
-            <xs:element ref="item" maxOccurs="unbounded" />
+            <xs:element ref="creatureref" maxOccurs="unbounded" />
+            <xs:element ref="itemref" maxOccurs="unbounded" />
         </xs:complexType>
     </xs:element>
     
