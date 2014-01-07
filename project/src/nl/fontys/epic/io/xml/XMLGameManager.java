@@ -25,9 +25,20 @@ package nl.fontys.epic.io.xml;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.core.Creature;
+import nl.fontys.epic.core.Item;
+import nl.fontys.epic.core.Player;
+import nl.fontys.epic.core.Room;
+import nl.fontys.epic.impl.SimpleTextAdventure;
+import nl.fontys.epic.io.ConvertException;
 import nl.fontys.epic.io.GameManager;
 import nl.fontys.epic.util.GameObjectPool;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * XML implementation of {@see GameManager}
@@ -50,13 +61,56 @@ public class XMLGameManager implements GameManager {
     @Override
     public void save(TextAdventure adventure, OutputStream out) throws IOException {
         
-        // Save items
-                       
+        try {
+            
+        // Player
+        Node node = converter.toOutput(adventure.getPlayer());
+            
+        // Items
+        Collection<Item> items = pool.getAll(Item.class);
+        
+        for (Item item : items) {
+            node = converter.toOutput(item);
+            // TODO
+        }
+        
+        // Creatures
+        Collection<Creature> creatures = pool.getAll(Creature.class);
+        
+        for (Creature creature : creatures) {
+            node = converter.toOutput(creature);
+            // TODO
+        }
+        
+        // Rooms
+        Collection<Room> rooms = pool.getAll(Room.class);
+        
+        for (Room room : rooms) {
+            node = converter.toOutput(room);
+            // TODO
+        }
+        
+        } catch (ConvertException e) {
+            throw new IOException(e);
+        }
     }
 
     @Override
     public TextAdventure load(InputStream in) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        NodeList nodes = null; // TODO
+        
+        for (int i = 0; i < nodes.getLength(); ++i) {
+            
+            Node node = nodes.item(i);
+            
+            // TODO
+        }        
+        
+        List<Room> rooms = new ArrayList< >(); // TODO
+        Player player = null; // TODO
+        
+        return new SimpleTextAdventure(rooms, player);
     }
     
 }
