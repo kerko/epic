@@ -21,6 +21,7 @@
  */
 package nl.fontys.epic.core.impl;
 
+import java.util.Objects;
 import nl.fontys.epic.core.Item;
 import nl.fontys.epic.core.ItemType;
 
@@ -40,6 +41,10 @@ public class SimpleItem extends SimpleIDProvider implements Item {
         this.description = description;
         this.type = type;
     }
+    
+    public SimpleItem(Item item) {
+        this(item.getID(), item.getName(), item.getDescription(), item.getType());
+    }
 
     @Override
     public ItemType getType() {
@@ -55,4 +60,38 @@ public class SimpleItem extends SimpleIDProvider implements Item {
     public String getName() {
         return this.name;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 17 * hash + Objects.hashCode(this.name);
+        hash = 17 * hash + Objects.hashCode(this.description);
+        hash = 17 * hash + Objects.hashCode(this.type);
+        return hash;
+    }
+
+    
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final SimpleItem other = (SimpleItem) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (this.type != other.type) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }

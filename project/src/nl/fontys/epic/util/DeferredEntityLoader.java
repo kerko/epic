@@ -26,6 +26,8 @@ import nl.fontys.epic.core.Creature;
 import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Item;
 import nl.fontys.epic.core.Room;
+import nl.fontys.epic.core.impl.SimpleCreature;
+import nl.fontys.epic.core.impl.SimpleItem;
 import nl.fontys.epic.util.DeferredStorage.StorageData;
 import nl.fontys.epic.util.DeferredStorage.StorageType;
 
@@ -56,6 +58,7 @@ public class DeferredEntityLoader {
                 Creature creature = resourceManager.get(data.id, Creature.class);
                 
                 if (creature != null) {
+                    creature = new SimpleCreature(creature);
                     creature.setPosition(data.pos.x, data.pos.y);
                 } else {
                     throw new LoadingException("No creature found with id=" + data.id + " in room with id=" + room.getID());
@@ -66,7 +69,7 @@ public class DeferredEntityLoader {
             if (data.type.equals(StorageType.ITEM)) {
                 Item item = resourceManager.get(data.id, Item.class);
                 Inventory items = room.getItems(data.pos.x, data.pos.y);
-                items.add(item);
+                items.add(new SimpleItem(item));
             }
         }
     }

@@ -48,8 +48,12 @@ public class SimpleCreature extends SimpleGameObject implements Creature {
         this.life = life;
         this.maxLife = maxLife;
         this.name = name;
-        this.inv = inv;
+        this.inv = new SimpleInventory(inv);
         this.base = base;
+    }
+    
+    public SimpleCreature(Creature c) {
+        this(c.getLife(), c.getMaxLife(), c.getName(), c.getInventory(), c.getStats(), c.getAdventure(), c.getX(), c.getY(), c.getRoom().getID(), c.getID());
     }
 
     @Override

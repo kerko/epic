@@ -33,8 +33,19 @@ import nl.fontys.epic.core.Item;
  */
 public class SimpleInventory implements Inventory,Iterable<Item>{
     
-    private final HashMap<String,Item> inventory = new HashMap<>();
+    private final HashMap<String,Item> inventory;
     
+    public SimpleInventory() {
+        inventory = new HashMap<>();
+    }
+    
+    public SimpleInventory(Inventory in) {
+        inventory = new HashMap<>();
+        
+        for (Item i : in.getItems()) {
+            inventory.put(i.getID(), new SimpleItem(i));
+        }
+    }
 
     @Override
     public boolean remove(String itemId) {

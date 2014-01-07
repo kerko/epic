@@ -21,6 +21,7 @@
  */
 package nl.fontys.epic.core.impl;
 
+import java.util.Objects;
 import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.core.GameObject;
 import nl.fontys.epic.core.Room;
@@ -96,5 +97,33 @@ public class SimpleGameObject extends SimpleIDProvider implements GameObject {
     public void setRoom(Room room) {
         currentRoomID = room.getID();
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.posi);
+        hash = 53 * hash + Objects.hashCode(this.currentRoomID);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final SimpleGameObject other = (SimpleGameObject) obj;
+        if (!Objects.equals(this.posi, other.posi)) {
+            return false;
+        }
+        if (!Objects.equals(this.currentRoomID, other.currentRoomID)) {
+            return false;
+        }
+        return true;
+    }
+
+    
 
 }
