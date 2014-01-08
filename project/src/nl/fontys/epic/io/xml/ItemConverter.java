@@ -23,6 +23,8 @@
 package nl.fontys.epic.io.xml;
 
 import nl.fontys.epic.Attributes;
+import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.core.Door;
 import nl.fontys.epic.core.Item;
 import nl.fontys.epic.io.ContentConverter;
 import nl.fontys.epic.io.ConvertException;
@@ -40,7 +42,11 @@ import org.w3c.dom.UserDataHandler;
  * @since 1.0
  * @version 1.0
  */
-public class ItemConverter implements ContentConverter<Node, Item> {
+public class ItemConverter  extends AbstractContentConverter<Node, Item> {
+
+    public ItemConverter(TextAdventure game) {
+        super(game);
+    }
 
     @Override
     public Node toOutput(Item source) throws ConvertException {

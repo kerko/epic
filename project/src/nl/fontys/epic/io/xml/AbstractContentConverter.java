@@ -19,48 +19,28 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package nl.fontys.epic.io.xml;
 
-import nl.fontys.epic.Attributes;
 import nl.fontys.epic.TextAdventure;
-import nl.fontys.epic.core.Door;
 import nl.fontys.epic.io.ContentConverter;
-import nl.fontys.epic.io.ConvertException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
- * Converts objects of {@see Door} to XML nodes and vise versa
- * 
+ * Abstract factory to save work
+ *
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
+ * @param <OutputType>
+ * @param <ContentType>
  * @since 1.0
  * @version 1.0
  */
-public class DoorConverter extends AbstractContentConverter<Node, Door> {
+public abstract class AbstractContentConverter<OutputType, ContentType> implements ContentConverter<OutputType, ContentType> {
 
-    public DoorConverter(TextAdventure game) {
-        super(game);
-    }
+    protected TextAdventure game;
 
-    @Override
-    public Node toOutput(Door source) throws ConvertException {
-        Document doc = documentFactory.create();
-        Element door = doc.createElement(Attributes.TAG_DOOR);  
-        
-        door.setAttribute(Attributes.ATTR_ID, source.getID());
-        door.setAttribute(Attributes.ATTR_X, String.valueOf(source.getX()));
-        door.setAttribute(Attributes.ATTR_Y, String.valueOf(source.getY()));
-        door.setAttribute(Attributes.ATTR_ROOM, source.getRoom().getID());
-        door.setAttribute(Attributes.ATTR_TARGET, source.getTargetDoorID());
-        
-        return door;
-    }
+    protected DocumentFactory documentFactory;
 
-    @Override
-    public Door toInput(Node source) throws ConvertException {
-        return null;
+    public AbstractContentConverter(TextAdventure game) {
+        this.game = game;
+        this.documentFactory = new SimpleDocumentFactory();
     }
-    
 }

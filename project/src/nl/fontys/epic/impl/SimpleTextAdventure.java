@@ -21,6 +21,7 @@
  */
 package nl.fontys.epic.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,15 +50,19 @@ import nl.fontys.epic.util.SimpleObserver;
  */
 public class SimpleTextAdventure extends SimpleObserver<AdventureListener> implements Observer<AdventureListener>, TextAdventure {
 
-    private final CommandHandler commandHandler;
-    private final Player player;
-    private final Map<String, Room> rooms;
-    private final String name;
-    private final String story;
+    private CommandHandler commandHandler;
+    private Player player;
+    private Map<String, Room> rooms;
+    private String name;
+    private String story;
     private boolean running;
     
     public SimpleTextAdventure(String name, Collection<Room> rooms, Player player) {
         this(name, null, rooms, player);
+    }
+    
+    public SimpleTextAdventure() {
+        this(null, null, new ArrayList<Room>(), null);
     }
 
     public SimpleTextAdventure(String name, String story, Collection<Room> rooms, Player player) {
@@ -152,4 +157,30 @@ public class SimpleTextAdventure extends SimpleObserver<AdventureListener> imple
     public boolean isRunning() {
         return running;
     }
+    
+    
+    // Setters for convinience
+    
+    public SimpleTextAdventure setPlayer(Player player) {
+        this.player = player;
+        return this;
+    }
+    
+    public SimpleTextAdventure setRooms(Collection<Room> rooms) {
+        this.rooms.clear();
+        for (Room room : rooms) {
+            this.rooms.put(room.getID(), room);
+        }
+        return this;
+    }
+    
+    public SimpleTextAdventure setStory(String story) {
+        this.story = story;
+        return this;
+    }
+    
+    public SimpleTextAdventure setName(String name) {
+        this.name = name;
+        return this;
+    } 
 }

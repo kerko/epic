@@ -78,7 +78,7 @@ public class XMLGameManager implements GameManager {
         }
 
         Document document = documentFactory.create();
-        IOConverter<Node> converter = createConverter();
+        IOConverter<Node> converter = createConverter(adventure);
 
         try {
 
@@ -119,7 +119,8 @@ public class XMLGameManager implements GameManager {
     public TextAdventure load(InputStream in) throws IOException {
 
         Document document = documentFactory.create(in);
-        IOConverter<Node> converter = createConverter();
+        SimpleTextAdventure adventure = new SimpleTextAdventure();
+        IOConverter<Node> converter = createConverter(adventure);
         DeferredStorage storage = DeferredStorage.getInstance();
         NodeList nodes = document.getChildNodes();
         Node root = nodes.item(0);
@@ -188,18 +189,23 @@ public class XMLGameManager implements GameManager {
         } catch (ConvertException | DeferredEntityLoader.LoadingException e) {
             throw new IOException(e);
         }
+        
+        adventure.setRooms(rooms)
+        .setName(name)
+        .setStory(story)
+        .setPlayer(player);
 
-        return new SimpleTextAdventure(name, story, rooms, player);
+        return adventure;
     }
 
-    private IOConverter<Node> createConverter() {
+    private IOConverter<Node> createConverter(TextAdventure adventure) {
         IOConverter converter = new SimpleIOConverter<>();
 
-        converter.addContentConverter(new PlayerConverter(), Player.class);
-        converter.addContentConverter(new ItemConverter(), Item.class);
-        converter.addContentConverter(new CreatureConverter(), Creature.class);
-        converter.addContentConverter(new RoomConverter(), Room.class);
-        converter.addContentConverter(new DoorConverter(), Door.class);
+        converter.addContentConverter(new PlayerConverter(adventure), Player.class);
+        converter.addContentConverter(new ItemConverter(adventure), Item.class);
+        converter.addContentConverter(new CreatureConverter(adventure), Creature.class);
+        converter.addContentConverter(new RoomConverter(adventure), Room.class);
+        converter.addContentConverter(new DoorConverter(adventure), Door.class);
 
         return converter;
     }

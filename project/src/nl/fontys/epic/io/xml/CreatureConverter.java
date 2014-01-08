@@ -22,7 +22,9 @@
 
 package nl.fontys.epic.io.xml;
 
+import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.Creature;
+import nl.fontys.epic.core.Door;
 import nl.fontys.epic.io.ContentConverter;
 import nl.fontys.epic.io.ConvertException;
 import org.w3c.dom.Node;
@@ -34,7 +36,11 @@ import org.w3c.dom.Node;
  * @since 1.0
  * @version 1.0
  */
-public class CreatureConverter implements ContentConverter<Node, Creature> {
+public class CreatureConverter  extends AbstractContentConverter<Node, Creature> {
+
+    public CreatureConverter(TextAdventure game) {
+        super(game);
+    }
 
     @Override
     public Node toOutput(Creature source) throws ConvertException {

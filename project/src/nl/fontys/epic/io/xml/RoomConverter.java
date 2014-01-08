@@ -22,8 +22,8 @@
 
 package nl.fontys.epic.io.xml;
 
+import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.Room;
-import nl.fontys.epic.io.ContentConverter;
 import nl.fontys.epic.io.ConvertException;
 import org.w3c.dom.Node;
 
@@ -34,7 +34,11 @@ import org.w3c.dom.Node;
  * @since 1.0
  * @version 1.0
  */
-public class RoomConverter implements ContentConverter<Node, Room> {
+public class RoomConverter  extends AbstractContentConverter<Node, Room> {
+
+    public RoomConverter(TextAdventure game) {
+        super(game);
+    }
 
     @Override
     public Node toOutput(Room source) throws ConvertException {
