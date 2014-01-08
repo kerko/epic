@@ -19,8 +19,11 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package nl.fontys.epic.commands;
+package nl.fontys.epic.commands.impl;
 
+import nl.fontys.epic.commands.Command;
+import nl.fontys.epic.commands.CommandException;
+import nl.fontys.epic.commands.Event;
 import nl.fontys.epic.commands.impl.SimpleEvent;
 import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.core.Player;
