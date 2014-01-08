@@ -8,9 +8,11 @@ We provide a very simple sample game so everyone can see how it works.  You can 
  An example for a creature or player:
  \begin{verbatim}
  <player name="Mike Moore" life="100" xcordinate="1" ycordinate="1">
-        <item ref="knife" />
-        <item ref="lamp" />
-        <item ref="apple" />
+        <items>
+              <item-ref ref="knife" />
+              <item-ref ref="lamp" />
+              <item-ref ref="apple" />
+        </items>
     </player>
  \end{verbatim}
  The  attributes name,life and x,y-cordinates to determine the status and stats of the player.
