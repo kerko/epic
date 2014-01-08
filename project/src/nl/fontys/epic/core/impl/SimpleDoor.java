@@ -21,6 +21,7 @@
  */
 package nl.fontys.epic.core.impl;
 
+import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.Door;
 import nl.fontys.epic.impl.SimpleTextAdventure;
 
@@ -29,24 +30,29 @@ import nl.fontys.epic.impl.SimpleTextAdventure;
  * @author miguel
  */
 public class SimpleDoor extends SimpleGameObject implements Door {
+    
+    private String targetDoorID, targetRoomID;
 
-    public SimpleDoor(SimpleTextAdventure adventure, int posix, int posiy, String currentRoomID, String ID) {
-        super(adventure, posix, posiy, currentRoomID, ID);
+    public SimpleDoor(TextAdventure adventure, int posix, int posiy, String targetDoorID, String targetRoomID, String ID) {
+        super(adventure, posix, posiy, ID);
+        this.targetDoorID = targetDoorID;
+        this.targetRoomID = targetRoomID;
     }
 
     @Override
     public String getTargetDoorID() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return targetDoorID;
     }
 
     @Override
     public String getTargetRoomID() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return targetRoomID;
     }
 
     @Override
-    public boolean open(SimpleTextAdventure adventure) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean open(TextAdventure adventure) {
+        return true;
+        
     }
 
     

@@ -22,6 +22,7 @@
 package nl.fontys.epic.core.impl;
 
 import java.util.Objects;
+import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.core.GameObject;
 import nl.fontys.epic.core.Room;
@@ -35,18 +36,18 @@ import nl.fontys.epic.util.SharedGameObjectPool;
  */
 public class SimpleGameObject extends SimpleIDProvider implements GameObject {
 
-    private final SimpleTextAdventure adventure;
+    private final TextAdventure adventure;
     protected Position posi;
     protected String currentRoomID;
     private final GameObjectPool pool;
 
-    public SimpleGameObject(SimpleTextAdventure adventure, int posix, int posiy, String currentRoomID, String ID) {
+    public SimpleGameObject(TextAdventure adventure, int posix, int posiy, String ID) {
         super(ID);
         pool = SharedGameObjectPool.getInstance(adventure.getID());
         this.adventure = adventure;
         this.posi.x = posix;
         this.posi.y = posiy;
-        this.currentRoomID = currentRoomID;
+        this.currentRoomID = null;
     }
 
     @Override
@@ -79,7 +80,7 @@ public class SimpleGameObject extends SimpleIDProvider implements GameObject {
     }
 
     @Override
-    public SimpleTextAdventure getAdventure() {
+    public TextAdventure getAdventure() {
         return adventure;
     }
 

@@ -22,7 +22,7 @@
 
 package nl.fontys.epic.util;
 
-import nl.fontys.epic.impl.SimpleTextAdventure;
+import nl.fontys.epic.TextAdventure;
 
 /**
  *
@@ -34,6 +34,8 @@ public interface Openable {
     
     /**
      * Open the openable. Returns false when it can't open at the moment
+     * @param adventure
+     * @return 
      */
-    boolean open(SimpleTextAdventure adventure);
+    boolean open(TextAdventure adventure);
 }

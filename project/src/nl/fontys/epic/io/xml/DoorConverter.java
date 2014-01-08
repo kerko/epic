@@ -19,12 +19,12 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package nl.fontys.epic.io.xml;
 
 import nl.fontys.epic.Attributes;
 import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.Door;
+import nl.fontys.epic.core.impl.SimpleDoor;
 import nl.fontys.epic.io.ContentConverter;
 import nl.fontys.epic.io.ConvertException;
 import org.w3c.dom.Document;
@@ -32,8 +32,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * Converts objects of {@see Door} to XML nodes and vise versa
- * 
+ * Converts objects of {
+ *
+ * @see Door} to XML nodes and vise versa
+ *
  * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
  * @since 1.0
  * @version 1.0
@@ -47,20 +49,34 @@ public class DoorConverter extends AbstractContentConverter<Node, Door> {
     @Override
     public Node toOutput(Door source) throws ConvertException {
         Document doc = documentFactory.create();
-        Element door = doc.createElement(Attributes.TAG_DOOR);  
-        
+        Element door = doc.createElement(Attributes.TAG_DOOR);
+
         door.setAttribute(Attributes.ATTR_ID, source.getID());
         door.setAttribute(Attributes.ATTR_X, String.valueOf(source.getX()));
         door.setAttribute(Attributes.ATTR_Y, String.valueOf(source.getY()));
         door.setAttribute(Attributes.ATTR_ROOM, source.getRoom().getID());
         door.setAttribute(Attributes.ATTR_TARGET, source.getTargetDoorID());
-        
+
         return door;
     }
 
     @Override
     public Door toInput(Node source) throws ConvertException {
-        return null;
+
+        if (source.getNodeType() == Node.ELEMENT_NODE && source.getNodeName().equals(Attributes.TAG_DOOR)) {
+            
+            Element element = (Element)source;
+            
+            int x = Integer.valueOf(element.getAttribute(Attributes.ATTR_X));
+            int y = Integer.valueOf(element.getAttribute(Attributes.ATTR_Y));
+            String targetDoorID = element.getAttribute(Attributes.ATTR_TARGET);
+            String targetRoomID = element.getAttribute(Attributes.ATTR_ROOM);
+            String ID = element.getAttribute(Attributes.ATTR_ID);
+            
+            return new SimpleDoor(game, x, y, targetDoorID, targetRoomID, ID);
+        } else {
+            throw new ConvertException(source + " is an invalid source");
+        }
     }
-    
+
 }
