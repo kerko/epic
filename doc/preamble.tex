@@ -1,4 +1,5 @@
 \usepackage{helvet}
+\usepackage[svgnames]{xcolor}
 \usepackage[ngerman, english]{babel} 
 \usepackage[a4paper, left=3cm, right=3cm, top=1.3cm]{geometry}
 \usepackage{graphicx}
@@ -12,6 +13,9 @@
 \usepackage{amsmath}
 \usepackage{cite}
 \usepackage{svn-multi}
+\usepackage{hyperref}
+\usepackage{listings}
+
 
 % Document version
 \newcommand{\srsversion}{1.1}
@@ -32,3 +36,17 @@
   {\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
 \titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
 \selectlanguage{english}
+\lstdefinelanguage{XML}
+{
+  basicstyle=\ttfamily\footnotesize,
+  morestring=[b]",
+  moredelim=[s][\bfseries\color{Maroon}]{<}{\ },
+  moredelim=[s][\bfseries\color{Maroon}]{</}{>},
+  moredelim=[l][\bfseries\color{Maroon}]{/>},
+  moredelim=[l][\bfseries\color{Maroon}]{>},
+  morecomment=[s]{<?}{?>},
+  morecomment=[s]{<!--}{-->},
+  commentstyle=\color{DarkOliveGreen},
+  stringstyle=\color{blue},
+  identifierstyle=\color{red}
+}
