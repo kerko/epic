@@ -23,7 +23,6 @@ package nl.fontys.epic.core.impl;
 
 import java.util.Objects;
 import nl.fontys.epic.TextAdventure;
-import nl.fontys.epic.impl.SimpleTextAdventure;
 import nl.fontys.epic.core.GameObject;
 import nl.fontys.epic.core.Room;
 import nl.fontys.epic.util.GameObjectPool;

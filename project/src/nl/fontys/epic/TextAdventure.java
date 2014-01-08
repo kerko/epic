@@ -24,9 +24,9 @@ package nl.fontys.epic;
 import java.util.Collection;
 import nl.fontys.epic.commands.Command;
 import nl.fontys.epic.core.AdventureListener;
-import nl.fontys.epic.core.IDProvider;
 import nl.fontys.epic.core.Player;
 import nl.fontys.epic.core.Room;
+import nl.fontys.epic.util.IDProvider;
 import nl.fontys.epic.util.Observer;
 
 /**

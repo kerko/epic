@@ -22,11 +22,11 @@
 package nl.fontys.epic.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import nl.fontys.epic.core.IDProvider;
 
 /**
  * Stores entities to load them later on
@@ -88,6 +88,8 @@ public class DeferredStorage {
     private static final DeferredStorage instance;
     
     private final Map<String, List<StorageData> > data;
+    
+    private List<IDProvider> providers;
 
     static {
         instance = new DeferredStorage();
@@ -95,6 +97,7 @@ public class DeferredStorage {
 
     private DeferredStorage() {
         data = new HashMap< >();
+        providers = new ArrayList< >();
     }
 
     public static DeferredStorage getInstance() {
@@ -127,6 +130,18 @@ public class DeferredStorage {
         }
         
         return element;
+    }
+    
+    public void registerCustomProvider(IDProvider provider) {
+        this.providers.add(provider);
+    }
+    
+    public Collection<IDProvider> getCustomProviders() {
+        return providers;
+    }
+    
+    public void clearCustomProviders() {
+        providers.clear();
     }
     
     public boolean hasNext(IDProvider parent) {

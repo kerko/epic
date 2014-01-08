@@ -78,7 +78,8 @@ public class XMLGameManager implements GameManager {
         }
 
         Document document = documentFactory.create();
-        IOConverter<Node> converter = createConverter(adventure);
+        DeferredStorage storage = DeferredStorage.getInstance();
+        IOConverter<Node> converter = createConverter(adventure, storage);
 
         try {
 
@@ -119,9 +120,9 @@ public class XMLGameManager implements GameManager {
     public TextAdventure load(InputStream in) throws IOException {
 
         Document document = documentFactory.create(in);
-        SimpleTextAdventure adventure = new SimpleTextAdventure();
-        IOConverter<Node> converter = createConverter(adventure);
+        SimpleTextAdventure adventure = new SimpleTextAdventure();        
         DeferredStorage storage = DeferredStorage.getInstance();
+        IOConverter<Node> converter = createConverter(adventure, storage);
         NodeList nodes = document.getChildNodes();
         Node root = nodes.item(0);
 
@@ -198,12 +199,12 @@ public class XMLGameManager implements GameManager {
         return adventure;
     }
 
-    private IOConverter<Node> createConverter(TextAdventure adventure) {
+    private IOConverter<Node> createConverter(TextAdventure adventure, DeferredStorage storage) {
         IOConverter converter = new SimpleIOConverter<>();
 
         converter.addContentConverter(new PlayerConverter(adventure), Player.class);
         converter.addContentConverter(new ItemConverter(adventure), Item.class);
-        converter.addContentConverter(new CreatureConverter(adventure), Creature.class);
+        converter.addContentConverter(new CreatureConverter(adventure, storage), Creature.class);
         converter.addContentConverter(new RoomConverter(adventure), Room.class);
         converter.addContentConverter(new DoorConverter(adventure), Door.class);
 

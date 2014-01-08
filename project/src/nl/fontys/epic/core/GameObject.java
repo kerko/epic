@@ -23,6 +23,7 @@
 package nl.fontys.epic.core;
 
 import nl.fontys.epic.TextAdventure;
+import nl.fontys.epic.util.IDProvider;
 import nl.fontys.epic.util.Indexable;
 import nl.fontys.epic.util.Position;
 

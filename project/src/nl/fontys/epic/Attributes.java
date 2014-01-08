@@ -57,6 +57,8 @@ public class Attributes {
     public static final String ATTR_Y = "ycoordinate";
     public static final String ATTR_DESCRIPTION = "description";
     public static final String ATTR_DAMAGE = "damage";
+    public static final String ATTR_POWER = "power";
+    public static final String ATTR_DEFENSE = "defense";
     public static final String ATTR_OPEN = "open";
     public static final String ATTR_TYPE = "type";
     public static final String ATTR_SOURCE = "ref";

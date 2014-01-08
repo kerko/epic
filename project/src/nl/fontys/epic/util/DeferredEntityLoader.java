@@ -22,6 +22,7 @@
 
 package nl.fontys.epic.util;
 
+import java.util.Collection;
 import nl.fontys.epic.core.Creature;
 import nl.fontys.epic.core.Inventory;
 import nl.fontys.epic.core.Item;
@@ -40,22 +41,23 @@ import nl.fontys.epic.util.DeferredStorage.StorageType;
  */
 public class DeferredEntityLoader {
     
-    private GameObjectPool resourceManager;
+    private GameObjectPool pool;
     
     private DeferredStorage entityStorage;
     
     public DeferredEntityLoader(GameObjectPool resourceManager, DeferredStorage entityStorage) {
-        this.resourceManager = resourceManager;
+        this.pool = resourceManager;
         this.entityStorage = entityStorage;
     }
     
     public void load(Room room) throws LoadingException {
+        
         while (entityStorage.hasNext(room)) {
             StorageData data = entityStorage.fetch(room);
             
             // Creatures
             if (data.type.equals(StorageType.CREATURE)) {
-                Creature creature = resourceManager.get(data.id, Creature.class);
+                Creature creature = pool.get(data.id, Creature.class);
                 
                 if (creature != null) {
                     creature = new SimpleCreature(creature);
@@ -68,10 +70,28 @@ public class DeferredEntityLoader {
             
             // Items
             if (data.type.equals(StorageType.ITEM)) {
-                Item item = resourceManager.get(data.id, Item.class);
+                Item item = pool.get(data.id, Item.class);
                 Inventory items = room.getItems(data.pos.x, data.pos.y);
                 item = new SimpleItem(item);                
                 items.add(item);
+            }
+        }
+        
+        Collection<IDProvider> providers = entityStorage.getCustomProviders();
+        
+        for (IDProvider provider : providers) {
+            while (entityStorage.hasNext(provider)) {
+                StorageData data = entityStorage.fetch(provider);
+                
+                if (data.type.equals(StorageType.ITEM)) {
+                    
+                    Item item = pool.get(data.id, Item.class);
+                            
+                    if (provider instanceof Inventory) {
+                        Inventory inventory = (Inventory)provider;
+                        inventory.add(new SimpleItem(item));
+                    }
+                }
             }
         }
     }

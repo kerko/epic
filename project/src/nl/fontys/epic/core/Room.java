@@ -22,6 +22,8 @@
 
 package nl.fontys.epic.core;
 
+import nl.fontys.epic.util.IDProvider;
+
 /**
  *
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>

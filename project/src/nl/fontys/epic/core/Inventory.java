@@ -23,13 +23,14 @@
 package nl.fontys.epic.core;
 
 import java.util.Collection;
+import nl.fontys.epic.util.IDProvider;
 
 /**
  * Item container
  * 
  * @author Jan Kerkenhoff <jan.kerkenhoff@gmail.com>
  */
-public interface Inventory extends Iterable<Item>{
+public interface Inventory extends Iterable<Item>, IDProvider {
     
     /**
      * 

@@ -16,7 +16,8 @@ public class InventoryAdapter extends SimpleInventory implements Indexable {
     private int x, y;
     
 
-    public InventoryAdapter(int x, int y) {
+    public InventoryAdapter(int x, int y, String ID) {
+        super(ID);
         this.x = x;
         this.y = y;
     }

@@ -35,11 +35,16 @@ public class SimpleInventory implements Inventory,Iterable<Item>{
     
     private final HashMap<String,Item> inventory;
     
-    public SimpleInventory() {
+    private String id;
+    
+    public SimpleInventory(String ID) {
+        this.id = ID;
         inventory = new HashMap<>();
     }
     
     public SimpleInventory(Inventory in) {
+        
+        this.id = in.getID();
         inventory = new HashMap<>();
         
         for (Item i : in.getItems()) {
@@ -114,6 +119,11 @@ public class SimpleInventory implements Inventory,Iterable<Item>{
     @Override
     public Iterator<Item> iterator() {
         return inventory.values().iterator();
+    }
+
+    @Override
+    public String getID() {
+        return id;
     }
     
 }
