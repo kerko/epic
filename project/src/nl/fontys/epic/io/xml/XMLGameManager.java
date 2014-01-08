@@ -132,7 +132,7 @@ public class XMLGameManager implements GameManager {
 
         List<Room> rooms = new ArrayList<>();
         Player player = null;
-        
+
         String name = retrieveAttribute(Attributes.ATTR_NAME, root);
         String story = retrieveAttribute(Attributes.ATTR_STORY, root);
         String entryID = retrieveAttribute(Attributes.ATTR_ENTRY, root);
@@ -156,7 +156,7 @@ public class XMLGameManager implements GameManager {
                             pool.add(creature.getID(), creature);
                             buildCreature(node.getChildNodes(), creature, storage, pool, converter);
                             break;
-                        case Attributes.TAG_ITEM_COLLECT: 
+                        case Attributes.TAG_ITEM_COLLECT:
                         case Attributes.TAG_ITEM_CONSUM:
                         case Attributes.TAG_ITEM_EQUIP:
                             Item item = converter.toInput(node, Item.class);
@@ -177,7 +177,7 @@ public class XMLGameManager implements GameManager {
             for (Room room : rooms) {
                 entityLoader.load(room);
             }
-            
+
             // Set the room of the player
             if (player != null) {
                 player.setRoom(pool.get(entryID, Room.class));
@@ -200,44 +200,55 @@ public class XMLGameManager implements GameManager {
         converter.addContentConverter(new CreatureConverter(), Creature.class);
         converter.addContentConverter(new RoomConverter(), Room.class);
         converter.addContentConverter(new DoorConverter(), Door.class);
-        
+
         return converter;
     }
-    
-     // Builds a room with content
+
+    // Builds a room with content
     private void buildCreature(NodeList children, Creature creature, DeferredStorage storage, GameObjectPool pool, IOConverter<Node> converter) throws ConvertException {
-             
+
         for (int i = 0; i < children.getLength(); ++i) {
-            
+
             Node child = children.item(i);
-            
-            if (child.getNodeType() == Node.ELEMENT_NODE) {
-                Element element =(Element)child;
-                String ref = element.getAttribute("ref");
-                
-                if (element.getNodeName().equals(Attributes.TAG_ITEM)) {
-                    storage.add(creature.getID(), ref, DeferredStorage.StorageType.ITEM);
+
+            if (child.getNodeType() == Node.ELEMENT_NODE && child.getNodeName().equals(Attributes.TAG_ITEMS)) {
+
+                NodeList items = child.getChildNodes();
+
+                for (int index = 0; index < items.getLength(); ++index) {
+
+                    Node itemNode = items.item(index);
+
+                    if (itemNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                        Element element = (Element) itemNode;
+                        String ref = element.getAttribute("ref");
+
+                        if (element.getNodeName().equals(Attributes.TAG_ITEM_REF)) {
+                            storage.add(creature.getID(), ref, DeferredStorage.StorageType.ITEM);
+                        }
+                    }
                 }
             }
         }
     }
-    
+
     // Builds a room with content
     private void buildRoom(NodeList children, Room room, DeferredStorage storage, GameObjectPool pool, IOConverter<Node> converter) throws ConvertException {
-      
+
         for (int i = 0; i < children.getLength(); ++i) {
             Node child = children.item(i);
-            
-            if (child.getNodeType() == Node.ELEMENT_NODE) {                
-                Element element = (Element)child;
+
+            if (child.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) child;
                 String ref = element.getAttribute("ref");
-                
+
                 switch (element.getNodeName()) {
-                    
-                    case Attributes.TAG_ITEM:
+
+                    case Attributes.TAG_ITEM_REF:
                         storage.add(room.getID(), ref, DeferredStorage.StorageType.ITEM);
                         break;
-                    case Attributes.TAG_CREATURE:
+                    case Attributes.TAG_CREATURE_REF:
                         storage.add(room.getID(), ref, DeferredStorage.StorageType.CREATURE);
                         break;
                     case Attributes.TAG_DOOR:
@@ -249,10 +260,10 @@ public class XMLGameManager implements GameManager {
             }
         }
     }
-    
-    private String retrieveAttribute(String attr, Node node) {        
+
+    private String retrieveAttribute(String attr, Node node) {
         if (node.getNodeType() == Node.ELEMENT_NODE) {
-            Element element = (Element)node;            
+            Element element = (Element) node;
             return element.getAttribute(attr);
         } else {
             return null;

@@ -22,9 +22,13 @@
 
 package nl.fontys.epic.io.xml;
 
+import nl.fontys.epic.Attributes;
 import nl.fontys.epic.core.Door;
 import nl.fontys.epic.io.ContentConverter;
 import nl.fontys.epic.io.ConvertException;
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
@@ -35,10 +39,20 @@ import org.w3c.dom.Node;
  * @version 1.0
  */
 public class DoorConverter implements ContentConverter<Node, Door> {
+    
+    private DocumentFactory documentFactory = new SimpleDocumentFactory();
 
     @Override
     public Node toOutput(Door source) throws ConvertException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Document doc = documentFactory.create();
+        Element door = doc.createElement(Attributes.TAG_DOOR);  
+        
+        door.setAttribute(Attributes.ATTR_ID, source.getID());
+        door.setAttribute(Attributes.ATTR_X, String.valueOf(source.getX()));
+        door.setAttribute(Attributes.ATTR_Y, String.valueOf(source.getY()));
+        door.setAttribute(Attributes.ATTR_ROOM, source.getRoom().getID());
+        
+        return door;
     }
 
     @Override

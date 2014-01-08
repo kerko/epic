@@ -39,11 +39,11 @@ public class Attributes {
     public static final String TAG_ITEM_COLLECT = "collect-item";
     public static final String TAG_CREATURE = "creature";
     public static final String TAG_ROOM = "room";
-    public static final String TAG_DOORS = "doors";
     public static final String TAG_DOOR = "door";
-    public static final String TAG_CREATURES = "creatures";
     public static final String TAG_ITEMS = "items";
     public static final String TAG_ITEM = "item";
+    public static final String TAG_ITEM_REF = "item-ref";
+    public static final String TAG_CREATURE_REF = "creature-ref";
     public static final String TAG_TEXT = "text";
     
     /* ATTRIBUTES */
@@ -53,12 +53,14 @@ public class Attributes {
     public static final String ATTR_NAME = "name";
     public static final String ATTR_LIFE = "life";
     public static final String ATTR_ID = "id";
-    public static final String ATTR_X = "x";
-    public static final String ATTR_Y = "y";
+    public static final String ATTR_X = "xcoordinate";
+    public static final String ATTR_Y = "ycoordinate";
     public static final String ATTR_DESCRIPTION = "description";
     public static final String ATTR_DAMAGE = "damage";
     public static final String ATTR_OPEN = "open";
     public static final String ATTR_TYPE = "type";
-    public static final String ATTR_SOURCE = "src";
+    public static final String ATTR_SOURCE = "ref";
+    public static final String ATTR_TARGET = "target";
+    public static final String ATTR_ROOM = "room";
     public static final String ATTR_MESSAGE = "message";
 }

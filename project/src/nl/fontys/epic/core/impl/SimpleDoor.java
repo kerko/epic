@@ -19,20 +19,36 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package nl.fontys.epic.core;
+package nl.fontys.epic.core.impl;
 
-import nl.fontys.epic.util.Openable;
+import nl.fontys.epic.core.Door;
+import nl.fontys.epic.impl.SimpleTextAdventure;
 
 /**
- * A one-way door to another room, magic!
  *
- * @author Miguel Gonzalez <miguel-gonzalez@gmx.de>
- * @since 1.0
- * @version 1.0
+ * @author miguel
  */
-public interface Door extends GameObject, Openable {
+public class SimpleDoor extends SimpleGameObject implements Door {
+
+    public SimpleDoor(SimpleTextAdventure adventure, int posix, int posiy, String currentRoomID, String ID) {
+        super(adventure, posix, posiy, currentRoomID, ID);
+    }
+
+    @Override
+    public String getTargetDoorID() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getTargetRoomID() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean open(SimpleTextAdventure adventure) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
-    String getTargetDoorID();
     
-    String getTargetRoomID();
 }

@@ -46,7 +46,7 @@
     </room>
 
     <room id="chamber" name="Chamber of horror" width="3" height="3" message="You are alone. Forever.">
-        <door-ref xcoordinate="0" ycoordinate="0" id="closeddoor"/>
+        <door xcoordinate="0" ycoordinate="0" id="closeddoor"/>
         <creature-ref reference="ghost" xcoordinate="2" ycoordinate="1" />
     </room>
 
