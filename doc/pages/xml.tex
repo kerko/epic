@@ -1,5 +1,51 @@
 \chapter{XML}
 
 \section{XML standard}
+Our XML standard is really simple it uses mainly tag with attributes to create the different Entities and so on. Only entities which belong to other objects , like items a player carrys. These are processed as a reference tag inside the belonging tag.
+
+Example Player with items inside:
+\lstset{language=XML}
+\begin{lstlisting}
+<player name="Mike Moore" life="100" xcordinate="1" ycordinate="1">
+        <item reference="knife" />
+        <item reference="lamp" />
+        <item reference="apple" />
+    </player>
+\end{lstlisting}
+The items are specified as followed:
+\lstset{language=XML}
+\begin{lstlisting}
+<equip-item
+        id="knife"
+        name="Knife"
+        description="A sharp knife, use with caution!"
+        damage="5" />
+
+    <consum-item
+        id="apple"
+        name="Apple"
+        description="A red apply. Seems to be tasty!"/>
+
+    <collect-item
+        id="lamp"
+        name="Lamp"
+        description="A bright lamp" />
+\end{lstlisting}
+
+Rooms are using attributes to specify their look and equally to player they have reference tags in them with contain creatures or items.
+Example of a Room from the sample game:
+\lstset{language=XML}
+\begin{lstlisting}
+<room id="dungeon" name="Dark Dungeon" width="3" height="3" message="You are alone. In front of you is a dark dungeon. Suddenly you hear some noise. RUN!">
+        <door xcoordinate="2" ycoordinate="2" room="chamber" target="closeddoor" />
+        <creature-ref reference="ghost" xcoordinate="2" ycoordinate="1" />
+        <item-ref reference="apple" x="1" y="2" />
+    </room>
+
+\end{lstlisting}
+
+
+        
+
 
 \section{XML processing}

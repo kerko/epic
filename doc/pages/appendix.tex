@@ -7,113 +7,56 @@
 \begin{lstlisting}
 
 <?xml version="1.0" encoding="UTF-8"?>
-<adventure name="epic demo adventure" entry="@room/forest" story="@text/welcome">
+<adventure name="Dark trinity" entry="dungeon" story="You are alone. In front of you is a dark dungeon. Suddenly you hear some noise. RUN!">
 
     <!--Player -->
-    <player 
-        name="Bilbo Beutlin"
-        life="100"
-        location="center" />
+    <player name="Mike Moore" life="100" xcordinate="1" ycordinate="1">
+        <item reference="knife" />
+        <item reference="lamp" />
+        <item reference="apple" />
+    </player>
 
     <!--Items -->
     
     <equip-item
-        id="dark_bow"
-        name="Dark bow of darkness"
-        description="A dark bow, full of darkness. What else?"
+        id="knife"
+        name="Knife"
+        description="A sharp knife, use with caution!"
         damage="5" />
 
     <consum-item
-        id="iron_heart"
-        name="Iron heart"
-        description="A heavy heart"
-        trigger="@trigger/health/25"/>
-
-    <container-item
-        id="dark_chest"
-        name="Dark chest"
-        description="a heavy chest"
-        open="@trigger/item/shadow_key" />
+        id="apple"
+        name="Apple"
+        description="A red apply. Seems to be tasty!"/>
 
     <collect-item
-        id="shadow_key"
-        name="Shadow key"
-        description="a dark shadow key" />
+        id="lamp"
+        name="Lamp"
+        description="A bright lamp" />
 
     <!--Creatures -->
 
     <creature
-        id="dark_troll"
-        name="Dark troll"
-        description="A very dark troll" 
-        life="200"
-        damage="20"
-        type="neutral" />
-
-    <creature
-        id="pink_troll"
-        name="Pink troll"
-        description="A very pink troll"
-        life="500"
-        damage="10"
-        type="enemy">
-        
-        <items>
-            <item src="@item/dark_bow"/>
-        </items>
-
+        id="ghost"
+        name="Dark ghost"
+        description="A dangerous ghost"
+        life="20"
+        damage="10">
+        <item ref="lamp"/>
     </creature>
        
     <!--Rooms -->
 
-    <room id="forest" name="Forest">
-
-        <doors>
-            <door location="east" target="@room/swamp"/>
-            <door location="west" target="@room/desert"/>
-        </doors>
-
-        <creatures>
-            <creature src="@creature/pink_troll" location="east" />
-            <creature src="@creature/pink_troll" location="north" />
-        </creatures>
-
-        </items>
-            <item src="@item/iron_heart" location="south" />
-        </items>
+    <room id="dungeon" name="Dark Dungeon" width="3" height="3" message="You are alone. In front of you is a dark dungeon. Suddenly you hear some noise. RUN!">
+        <door xcoordinate="2" ycoordinate="2" room="chamber" target="closeddoor" />
+        <creature-ref reference="ghost" xcoordinate="2" ycoordinate="1" />
+        <item-ref reference="apple" x="1" y="2" />
     </room>
 
-    <room id="swamp" name="Dark swamp" message="@text/swamp">
-
-        <doors>
-            <door location="west" target="@room/forest"/>
-        </doors>
-
-        <creatures>
-            <creature src="@creature/dark_troll" location="north|east" />
-        </creatures>
-
-        </items>
-            <item src="@item/dark_chest" location="south|west">
-                <items>
-                    <item src="@item/dark_bow"/>
-                </items>
-            </item>
-        </items>
+    <room id="chamber" name="Chamber of horror" width="3" height="3" message="You are alone. Forever.">
+        <door xcoordinate="0" ycoordinate="0" id="closeddoor"/>
+        <creature-ref reference="ghost" xcoordinate="2" ycoordinate="1" />
     </room>
-
-    <room id="desert" name="Warm desert" message="@text/desert">
-
-        <doors>
-            <door location="east" target="@room/forest"/>
-        </doors>
-    </room>
-
-    <!--Texts -->
-
-    <text id="welcome">You are in a small forest. Have fun!</text>
-    <text id="swamp">You enter a dark swamp. It's very noisy here.</text>
-    <text id="desert">You enter big desert. It is very warm and you begin to sweat.</text>
 
 </adventure>
 \end{lstlisting}
@@ -270,3 +213,12 @@
 </xs:schema>
 
 \end{lstlisting}
+Package Diagramm:
+
+\includegraphics[scale=0.50]{assets/package-diagram.png}
+IO-Package:
+
+\includegraphics[scale=0.38]{assets/package-io.png}
+CORE-Package
+
+\includegraphics[scale=0.20]{assets/class-diagram.png}
