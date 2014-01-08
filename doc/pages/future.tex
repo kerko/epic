@@ -1,8 +1,28 @@
 \chapter{Look into the future}
-Our system supports a basic text adventure as of now. We have rooms, creatures, items and moving and fighting. It's basically everything you would need for a simple text adventure.
+Our system supports a basic text adventure as of now. We have rooms, creatures, items and moving and fighting. It's basically everything you would need for a simple text adventure. In the future we would do some optimizing of the code to make it perform more efficiently and maybe faster. Also we would like to support more different item types and various effects that come with them. 
+Also we planned to do triggers which can be used to give the game a more dynamic feel. In the far future we also would do a more complex version of the combat system. Right now its basically just you hit something and if it is not dead it hits back.
 
- In the future we would do some optimizing of the code to make it perform more efficiently and maybe faster.
-Also we would like to support more different item types and various effects that come with them. 
-Also we planned to do triggers which can be used to give the game a more dynamic feel.  
-In the far future we also would do a more complex version of the combat system. Right now its basically just; you hit something and if its not dead its hits back.
+\section{Custom commands}
+
+Our API supports already custom commands. We'd like to integrate it into our XML part in order to register custom created commands in XML. This can be very useful when a user of our API decides to provide more or different commands than usual.
+
+\section{Triggers}
+
+Triggers are a concept for a later version (1.1). A trigger is basically an event which triggers on some action. We intended that a user can use predefined triggers as well as custom triggers. Afterwards he can set triggers on some actions in XML, e.g. when a creature got hit or a door opens. Triggers make the whole game more dynamically.
+
+\section{AI logic}
+
+Currently each creature in a room stands still. This can be improved by introducing some kind of AI part. By using this part, users of our system may be able to define custom and predefined AI components to attach them to creatures in XML.
+
+\section{JSON support}
+
+To support JSON aside XML it would be nice to have JSON support. As a result, users could easily write games in their favourite language!
+
+\section{NPC types}
+
+In the beginning we had a thought about NPC types. Our idea was to have types like 'friendly', 'neutral' and 'enemy'. You can talk and interact with friendly NPCs. Neutral NPCs will ignore you, unless you're attacking them. Enemy NPCs will attack you instantly. If you attack a friendly NPC it first gets neutral and then become an enemy.
+
+\section{Chests}
+
+It would be nice to have chests. We implemented it first very roughly but then we moved on with other parts.
 
