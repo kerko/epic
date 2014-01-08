@@ -75,3 +75,10 @@ Creatures are currently just enemies in the game. They have attributes like dama
 A room is some kind of item container. It has a size (width and height) and the player can move inside the room's bounds. Additionally each room is divided into chunks. Each coordinate represents a single chunk. It is possible to set creatures on a given position. Additionally it is possible to add doors to the room as well as items.
 
 \section{XML processing}
+
+We need to come up with a standard in which the order of the elements shouldn't have any effects on the game. Additionally we wanted to provide a non-repetitive system in which previously defined XML parts can be reused. Therefore we introduced deferred loading mechanics.
+
+\subsection{Deferred loading}
+
+The idea is to scan the whole document for entities (identified by their tags, like creature or player). These entities will be created as a prototype object and loaded into a so called GameObjectPool. Each game instance has its own pool to access all game entities independently of the game class. There are also so called reference tags in the XML standard. These tags specify pointers to a predefined elements like items, creatures or rooms. In fact, they are very useful because we can now define an entity once and re-use it in XML multiple times. Whenever a reference has been detected by our system, the ID of the element it belongs to and the ID of the element it references to will be stored temporary.
+After the whole document has been read, all stored references are fetched and the already loaded game objects and entities will be assigned. This mechanism is called deferred loading or post-processing.
