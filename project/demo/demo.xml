@@ -3,9 +3,11 @@
 
     <!--Player -->
     <player name="Mike Moore" life="100" xcordinate="1" ycordinate="1">
-        <item reference="knife" />
-        <item reference="lamp" />
-        <item reference="apple" />
+        <items>
+            <item-ref reference="knife" />
+            <item-ref reference="lamp" />
+            <item-ref reference="apple" />
+        </items>
     </player>
 
     <!--Items -->
@@ -34,7 +36,9 @@
         description="A dangerous ghost"
         life="20"
         damage="10">
-        <item ref="lamp"/>
+        <items>
+            <item-ref ref="lamp"/>
+        </items>
     </creature>
        
     <!--Rooms -->
