@@ -60,6 +60,7 @@ public class DeferredEntityLoader {
                 if (creature != null) {
                     creature = new SimpleCreature(creature);
                     creature.setPosition(data.pos.x, data.pos.y);
+                    creature.setRoom(room);
                 } else {
                     throw new LoadingException("No creature found with id=" + data.id + " in room with id=" + room.getID());
                 }
@@ -69,7 +70,8 @@ public class DeferredEntityLoader {
             if (data.type.equals(StorageType.ITEM)) {
                 Item item = resourceManager.get(data.id, Item.class);
                 Inventory items = room.getItems(data.pos.x, data.pos.y);
-                items.add(new SimpleItem(item));
+                item = new SimpleItem(item);                
+                items.add(item);
             }
         }
     }

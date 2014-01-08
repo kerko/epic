@@ -43,4 +43,13 @@ public abstract class AbstractContentConverter<OutputType, ContentType> implemen
         this.game = game;
         this.documentFactory = new SimpleDocumentFactory();
     }
+    
+    protected int derriveValue(String source) {
+        
+        if (source.isEmpty()) {
+            return 0;
+        } else {
+            return Integer.valueOf(source);
+        }
+    }
 }

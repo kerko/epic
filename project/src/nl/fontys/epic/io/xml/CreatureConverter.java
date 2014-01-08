@@ -22,11 +22,13 @@
 
 package nl.fontys.epic.io.xml;
 
+import nl.fontys.epic.Attributes;
 import nl.fontys.epic.TextAdventure;
 import nl.fontys.epic.core.Creature;
-import nl.fontys.epic.core.Door;
-import nl.fontys.epic.io.ContentConverter;
+import nl.fontys.epic.core.Stats;
 import nl.fontys.epic.io.ConvertException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
@@ -44,7 +46,17 @@ public class CreatureConverter  extends AbstractContentConverter<Node, Creature>
 
     @Override
     public Node toOutput(Creature source) throws ConvertException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Document doc = documentFactory.create();
+        Element creature = doc.createElement(Attributes.TAG_CREATURE);
+        Stats stats = source.getStats();
+        
+        creature.setAttribute(Attributes.ATTR_ID, source.getID());
+        creature.setAttribute(Attributes.ATTR_NAME, source.getName());
+        creature.setAttribute(Attributes.ATTR_LIFE, String.valueOf(source.getLife()));
+        creature.setAttribute(Attributes.ATTR_MAX_LIFE, String.valueOf(source.getMaxLife()));
+        
+        // TODO
+        return creature;
     }
 
     @Override

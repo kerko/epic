@@ -63,4 +63,5 @@ public class Attributes {
     public static final String ATTR_TARGET = "target";
     public static final String ATTR_ROOM = "room";
     public static final String ATTR_MESSAGE = "message";
+    public static final String ATTR_MAX_LIFE = "maxLife";
 }

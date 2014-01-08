@@ -260,6 +260,7 @@ public class XMLGameManager implements GameManager {
                     case Attributes.TAG_DOOR:
                         Door door = converter.toInput(child, Door.class);
                         pool.add(door.getID(), door);
+                        door.setRoom(room);
                         room.addObject(door);
                         break;
                 }
