@@ -1,5 +1,7 @@
 \chapter{XML}
 
+We defined our own XML standard in XSD format in order to ensure that the user of our system is able to write well-formed code. Furthermore it improves the workflow and the understanding of our system. 
+
 \section{XML standard}
 Our XML standard is really simple it uses mainly tag with attributes to create the different Entities and so on. Only entities which belong to other objects , like items a player carrys. These are processed as a reference tag inside the belonging tag.
 
@@ -47,5 +49,29 @@ Example of a Room from the sample game:
 
         
 
+
+Our idea is to define one game per XML file. Each game has a name, an entry point (in which room the player will start). We create a system to seperate definitions from their usage. This means, we first define all entities which exists in the game and plug them together afterwards. We also ensured that it's independent of what is defined first. For example, we can reference items to a player which are declared later on in the document.
+
+\subsection{Items}
+
+Items are hold by a creature. There are currently 3 types of items in our system:
+
+\begin{itemize}
+\item equip-item: this item can be equipped by the player. This feature is not complete yet, because the player has different slots (e.g. head gear, foot gear, left hand, right hand etc.). It's possible to give creatures equip items as well, but they can't equip them.
+\item consum-item: this item can be used by the player. It's intented to trigger some effect after usage. We've not implemented the complete system behind it, because we need the trigger framework for it
+\item collect-item: these items just doing nothing and are just in the inventory. 
+\end{itemize}
+
+\subsection{Player}
+
+The player is some kind of creature as well. Additionally it is possible to wear equip to improve the power. Each player has some kind of defense and power. Additionally the player has life points.
+
+\subsection{Creature}
+
+Creatures are currently just enemies in the game. They have attributes like damage, life, a name and a description.
+
+\subsection{Room}
+
+A room is some kind of item container. It has a size (width and height) and the player can move inside the room's bounds. Additionally each room is divided into chunks. Each coordinate represents a single chunk. It is possible to set creatures on a given position. Additionally it is possible to add doors to the room as well as items.
 
 \section{XML processing}
